@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/all.css">
     
     
-    <title>Java中的单例设计模式与组合设计模式</title>
+    <title>JAVA04-单例设计模式与组合设计模式</title>
 </head>
 <body class="container"><div id="fastSearch">
   <input id="searchInput" tabindex="0">
@@ -164,7 +164,7 @@
 </style>
 <div id="content">
 <div>
-<h4>Java中的单例设计模式与组合设计模式</h4>
+<h4>JAVA04-单例设计模式与组合设计模式</h4>
 <span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
 <span class="font-size-14 color-999">本文共 138 字，阅读约 1 分钟</span>
 
@@ -222,30 +222,30 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 2. 提供实例常量
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 3. 提供工厂方法getInstance方法返回实例常量
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">World</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> World SINGLETON_INSTANCE <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> World<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">World</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> World SINGLETON_INSTANCE <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> World();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> World <span style="color:#50fa7b">getInstance</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> SINGLETON_INSTANCE<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> World <span style="color:#50fa7b">getInstance</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> SINGLETON_INSTANCE;
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#50fa7b">World</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#50fa7b">World</span>() {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li><input checked="" disabled="" type="checkbox"> 设计模式之组合模式</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">AClass</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">hello</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;Hello&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">AClass</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">hello</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">BClass</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">world</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;World&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">BClass</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">world</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;World&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 现在我们想拥有这A,B这两个类的方法该怎么办呢? 又不能同时继承两个类
@@ -253,18 +253,18 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 1. 将目标类放入成员变量
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 2. 转发请求
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">CClass</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    AClass aClass <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AClass<span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>    BClass bClass <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> BClass<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">CClass</span> {
+</span></span><span style="display:flex;"><span>    AClass aClass <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AClass();
+</span></span><span style="display:flex;"><span>    BClass bClass <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> BClass();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">hello</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        aClass<span style="color:#ff79c6">.</span><span style="color:#50fa7b">hello</span><span style="color:#ff79c6">();</span> <span style="color:#6272a4">// 转发请求
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">hello</span>() {
+</span></span><span style="display:flex;"><span>        aClass.<span style="color:#50fa7b">hello</span>(); <span style="color:#6272a4">// 转发请求</span>
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">world</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        bClass<span style="color:#ff79c6">.</span><span style="color:#50fa7b">world</span><span style="color:#ff79c6">();</span> <span style="color:#6272a4">// 转发请求
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">world</span>() {
+</span></span><span style="display:flex;"><span>        bClass.<span style="color:#50fa7b">world</span>(); <span style="color:#6272a4">// 转发请求</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li><input checked="" disabled="" type="checkbox"> 在使用继承时，总是应该先考虑是否使用组合，继承是 is-a 的关系， 组合是 has-a 的关系</li>
 </ul>
@@ -280,17 +280,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -300,11 +300,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -314,7 +314,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -331,7 +331,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

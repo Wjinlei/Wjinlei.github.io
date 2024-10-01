@@ -181,6 +181,8 @@
 </div>
 
 
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-09 文中内容可能已过时，请注意甄别。</div>
+
 <br>
 <p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch10-02-traits.html">Rust 程序设计语言</a>》第10.2章 <code>Trait：定义共同行为</code></p>
 <p><code>trait</code> 类似其他语言中的 <code>接口</code> 的概念，我们可以通过 <code>trait</code> 以一种抽象的方式定义共享的行为。</p>
@@ -306,7 +308,7 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">write</span>(<span style="color:#ff79c6">&amp;</span>self, data: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span>) {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;写入数据 {} 到U盘成功.&#34;</span>, data);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;写入数据 </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> 到U盘成功.&#34;</span>, data);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -324,7 +326,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">usb_read</span><span style="color:#ff79c6">&lt;</span>T: <span style="color:#50fa7b">Usb</span> <span style="color:#ff79c6">+</span> ReadWrite<span style="color:#ff79c6">&gt;</span>(device: <span style="color:#50fa7b">T</span>) {
 </span></span><span style="display:flex;"><span>        device.insert();
 </span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> data <span style="color:#ff79c6">=</span> device.read();
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;读取到数据: {}&#34;</span>, data);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;读取到数据: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, data);
 </span></span><span style="display:flex;"><span>        device.remove();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>通过 where 简化 trait bound</strong></p>
@@ -345,7 +347,7 @@
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    device.insert();
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> data <span style="color:#ff79c6">=</span> device.read();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;读取到数据: {}&#34;</span>, data);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;读取到数据: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, data);
 </span></span><span style="display:flex;"><span>    device.remove();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>有条件的实现方法</strong></p>
@@ -369,9 +371,9 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">impl</span><span style="color:#ff79c6">&lt;</span>T: <span style="color:#50fa7b">Display</span> <span style="color:#ff79c6">+</span> <span style="color:#8be9fd;font-style:italic">PartialOrd</span><span style="color:#ff79c6">&gt;</span> Pair<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">cmp_display</span>(<span style="color:#ff79c6">&amp;</span>self) {
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> self.x <span style="color:#ff79c6">&gt;=</span> self.y {
-</span></span><span style="display:flex;"><span>            println!(<span style="color:#f1fa8c">&#34;The largest member is x = {}&#34;</span>, self.x);
+</span></span><span style="display:flex;"><span>            println!(<span style="color:#f1fa8c">&#34;The largest member is x = </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, self.x);
 </span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
-</span></span><span style="display:flex;"><span>            println!(<span style="color:#f1fa8c">&#34;The largest member is y = {}&#34;</span>, self.y);
+</span></span><span style="display:flex;"><span>            println!(<span style="color:#f1fa8c">&#34;The largest member is y = </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, self.y);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
@@ -395,17 +397,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -415,11 +417,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -429,7 +431,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -446,7 +448,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

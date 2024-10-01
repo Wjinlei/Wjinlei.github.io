@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/all.css">
     
     
-    <title>Http协议与爬虫</title>
+    <title>JAVA09-Http协议与爬虫</title>
 </head>
 <body class="container"><div id="fastSearch">
   <input id="searchInput" tabindex="0">
@@ -164,7 +164,7 @@
 </style>
 <div id="content">
 <div>
-<h4>Http协议与爬虫</h4>
+<h4>JAVA09-Http协议与爬虫</h4>
 <span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
 <span class="font-size-14 color-999">本文共 367 字，阅读约 2 分钟</span>
 
@@ -263,22 +263,22 @@ Cookie 使基于无状态的HTTP协议记录稳定的状态信息成为了可能
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>2.11.0<span style="color:#ff79c6">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
 </span></span></code></pre></div><h2 id="java发送get请求">Java发送Get请求</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        CloseableHttpClient httpClient <span style="color:#ff79c6">=</span> HttpClients<span style="color:#ff79c6">.</span><span style="color:#50fa7b">createDefault</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        HttpGet httpRequest <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HttpGet<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;https://www.baidu.com&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            CloseableHttpResponse httpResponse <span style="color:#ff79c6">=</span> httpClient<span style="color:#ff79c6">.</span><span style="color:#50fa7b">execute</span><span style="color:#ff79c6">(</span>httpRequest<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>            StatusLine statusLine <span style="color:#ff79c6">=</span> httpResponse<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getStatusLine</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>statusLine<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getStatusCode</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; &#34;</span> <span style="color:#ff79c6">+</span> statusLine<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getReasonPhrase</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>            HttpEntity httpEntity <span style="color:#ff79c6">=</span> httpResponse<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getEntity</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>            InputStream httpContent <span style="color:#ff79c6">=</span> httpEntity<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getContent</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>IOUtils<span style="color:#ff79c6">.</span><span style="color:#50fa7b">toString</span><span style="color:#ff79c6">(</span>httpContent<span style="color:#ff79c6">,</span> StandardCharsets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">UTF_8</span><span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">catch</span> <span style="color:#ff79c6">(</span>IOException e<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            e<span style="color:#ff79c6">.</span><span style="color:#50fa7b">printStackTrace</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        CloseableHttpClient httpClient <span style="color:#ff79c6">=</span> HttpClients.<span style="color:#50fa7b">createDefault</span>();
+</span></span><span style="display:flex;"><span>        HttpGet httpRequest <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HttpGet(<span style="color:#f1fa8c">&#34;https://www.baidu.com&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            CloseableHttpResponse httpResponse <span style="color:#ff79c6">=</span> httpClient.<span style="color:#50fa7b">execute</span>(httpRequest);
+</span></span><span style="display:flex;"><span>            StatusLine statusLine <span style="color:#ff79c6">=</span> httpResponse.<span style="color:#50fa7b">getStatusLine</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(statusLine.<span style="color:#50fa7b">getStatusCode</span>() <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; &#34;</span> <span style="color:#ff79c6">+</span> statusLine.<span style="color:#50fa7b">getReasonPhrase</span>());
+</span></span><span style="display:flex;"><span>            HttpEntity httpEntity <span style="color:#ff79c6">=</span> httpResponse.<span style="color:#50fa7b">getEntity</span>();
+</span></span><span style="display:flex;"><span>            InputStream httpContent <span style="color:#ff79c6">=</span> httpEntity.<span style="color:#50fa7b">getContent</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(IOUtils.<span style="color:#50fa7b">toString</span>(httpContent, StandardCharsets.<span style="color:#50fa7b">UTF_8</span>));
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="jsoup">Jsoup</h2>
 <ul>
 <li>学习一个第三方库，应该去看它的<a href="https://jsoup.org/">官方文档</a></li>
@@ -290,65 +290,65 @@ Cookie 使基于无状态的HTTP协议记录稳定的状态信息成为了可能
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>1.14.3<span style="color:#ff79c6">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
 </span></span></code></pre></div><h3 id="解析html结构">解析Html结构</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        CloseableHttpClient httpClient <span style="color:#ff79c6">=</span> HttpClients<span style="color:#ff79c6">.</span><span style="color:#50fa7b">createDefault</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        HttpGet httpRequest <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HttpGet<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;https://github.com/gradle/gradle/issues&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            CloseableHttpResponse httpResponse <span style="color:#ff79c6">=</span> httpClient<span style="color:#ff79c6">.</span><span style="color:#50fa7b">execute</span><span style="color:#ff79c6">(</span>httpRequest<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>            StatusLine statusLine <span style="color:#ff79c6">=</span> httpResponse<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getStatusLine</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>statusLine<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getStatusCode</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; &#34;</span> <span style="color:#ff79c6">+</span> statusLine<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getReasonPhrase</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>            HttpEntity httpEntity <span style="color:#ff79c6">=</span> httpResponse<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getEntity</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>            InputStream httpContent <span style="color:#ff79c6">=</span> httpEntity<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getContent</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>            String httpBody <span style="color:#ff79c6">=</span> IOUtils<span style="color:#ff79c6">.</span><span style="color:#50fa7b">toString</span><span style="color:#ff79c6">(</span>httpContent<span style="color:#ff79c6">,</span> StandardCharsets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">UTF_8</span><span style="color:#ff79c6">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        CloseableHttpClient httpClient <span style="color:#ff79c6">=</span> HttpClients.<span style="color:#50fa7b">createDefault</span>();
+</span></span><span style="display:flex;"><span>        HttpGet httpRequest <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HttpGet(<span style="color:#f1fa8c">&#34;https://github.com/gradle/gradle/issues&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            CloseableHttpResponse httpResponse <span style="color:#ff79c6">=</span> httpClient.<span style="color:#50fa7b">execute</span>(httpRequest);
+</span></span><span style="display:flex;"><span>            StatusLine statusLine <span style="color:#ff79c6">=</span> httpResponse.<span style="color:#50fa7b">getStatusLine</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(statusLine.<span style="color:#50fa7b">getStatusCode</span>() <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; &#34;</span> <span style="color:#ff79c6">+</span> statusLine.<span style="color:#50fa7b">getReasonPhrase</span>());
+</span></span><span style="display:flex;"><span>            HttpEntity httpEntity <span style="color:#ff79c6">=</span> httpResponse.<span style="color:#50fa7b">getEntity</span>();
+</span></span><span style="display:flex;"><span>            InputStream httpContent <span style="color:#ff79c6">=</span> httpEntity.<span style="color:#50fa7b">getContent</span>();
+</span></span><span style="display:flex;"><span>            String httpBody <span style="color:#ff79c6">=</span> IOUtils.<span style="color:#50fa7b">toString</span>(httpContent, StandardCharsets.<span style="color:#50fa7b">UTF_8</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>            <span style="color:#6272a4">/* 解析html */</span>
-</span></span><span style="display:flex;"><span>            Document document <span style="color:#ff79c6">=</span> Jsoup<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parse</span><span style="color:#ff79c6">(</span>httpBody<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>            Elements issueRow <span style="color:#ff79c6">=</span> document<span style="color:#ff79c6">.</span><span style="color:#50fa7b">select</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;.js-issue-row&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>Element next <span style="color:#ff79c6">:</span> issueRow<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>                System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>next<span style="color:#ff79c6">.</span><span style="color:#50fa7b">child</span><span style="color:#ff79c6">(</span>0<span style="color:#ff79c6">).</span><span style="color:#50fa7b">child</span><span style="color:#ff79c6">(</span>1<span style="color:#ff79c6">).</span><span style="color:#50fa7b">child</span><span style="color:#ff79c6">(</span>0<span style="color:#ff79c6">).</span><span style="color:#50fa7b">text</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">catch</span> <span style="color:#ff79c6">(</span>IOException e<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            e<span style="color:#ff79c6">.</span><span style="color:#50fa7b">printStackTrace</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>            Document document <span style="color:#ff79c6">=</span> Jsoup.<span style="color:#50fa7b">parse</span>(httpBody);
+</span></span><span style="display:flex;"><span>            Elements issueRow <span style="color:#ff79c6">=</span> document.<span style="color:#50fa7b">select</span>(<span style="color:#f1fa8c">&#34;.js-issue-row&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (Element next : issueRow) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(next.<span style="color:#50fa7b">child</span>(0).<span style="color:#50fa7b">child</span>(1).<span style="color:#50fa7b">child</span>(0).<span style="color:#50fa7b">text</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="crawler-pull-request">Crawler pull request</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Crawler</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">GitHubPullRequest</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Pull request的编号
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> number<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Pull request的标题
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        String title<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Pull request的作者的 GitHub 用户名
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        String author<span style="color:#ff79c6">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Crawler</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">GitHubPullRequest</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Pull request的编号</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> number;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Pull request的标题</span>
+</span></span><span style="display:flex;"><span>        String title;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Pull request的作者的 GitHub 用户名</span>
+</span></span><span style="display:flex;"><span>        String author;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        GitHubPullRequest<span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> number<span style="color:#ff79c6">,</span> String title<span style="color:#ff79c6">,</span> String author<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">number</span> <span style="color:#ff79c6">=</span> number<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">title</span> <span style="color:#ff79c6">=</span> title<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">author</span> <span style="color:#ff79c6">=</span> author<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        GitHubPullRequest(<span style="color:#8be9fd">int</span> number, String title, String author) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">number</span> <span style="color:#ff79c6">=</span> number;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">title</span> <span style="color:#ff79c6">=</span> title;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">author</span> <span style="color:#ff79c6">=</span> author;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 给定一个仓库名，例如&#34;golang/go&#34;，或者&#34;gradle/gradle&#34;，返回第一页的Pull request信息
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> List<span style="color:#ff79c6">&lt;</span>GitHubPullRequest<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getFirstPageOfPullRequests</span><span style="color:#ff79c6">(</span>String repo<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">throws</span> IOException <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>GitHubPullRequest<span style="color:#ff79c6">&gt;</span> list <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>        CloseableHttpClient document <span style="color:#ff79c6">=</span> HttpClients<span style="color:#ff79c6">.</span><span style="color:#50fa7b">createDefault</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        HttpGet httpGet <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HttpGet<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;https://api.github.com/repos/&#34;</span> <span style="color:#ff79c6">+</span> repo <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;/pulls&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        CloseableHttpResponse httpResponse <span style="color:#ff79c6">=</span> document<span style="color:#ff79c6">.</span><span style="color:#50fa7b">execute</span><span style="color:#ff79c6">(</span>httpGet<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        InputStream content <span style="color:#ff79c6">=</span> httpResponse<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getEntity</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">getContent</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        String body <span style="color:#ff79c6">=</span> IOUtils<span style="color:#ff79c6">.</span><span style="color:#50fa7b">toString</span><span style="color:#ff79c6">(</span>content<span style="color:#ff79c6">,</span> StandardCharsets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">UTF_8</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        JSONArray jsonArray <span style="color:#ff79c6">=</span> JSON<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseArray</span><span style="color:#ff79c6">(</span>body<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>Object object <span style="color:#ff79c6">:</span> jsonArray<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            JSONObject jsonObject <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">(</span>JSONObject<span style="color:#ff79c6">)</span> object<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            list<span style="color:#ff79c6">.</span><span style="color:#50fa7b">add</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> GitHubPullRequest<span style="color:#ff79c6">(</span>
-</span></span><span style="display:flex;"><span>                    jsonObject<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getIntValue</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;number&#34;</span><span style="color:#ff79c6">),</span>
-</span></span><span style="display:flex;"><span>                    jsonObject<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getString</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;title&#34;</span><span style="color:#ff79c6">),</span>
-</span></span><span style="display:flex;"><span>                    jsonObject<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getJSONObject</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;user&#34;</span><span style="color:#ff79c6">).</span><span style="color:#50fa7b">getString</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;login&#34;</span><span style="color:#ff79c6">)));</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> list<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 给定一个仓库名，例如&#34;golang/go&#34;，或者&#34;gradle/gradle&#34;，返回第一页的Pull request信息</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> List<span style="color:#ff79c6">&lt;</span>GitHubPullRequest<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getFirstPageOfPullRequests</span>(String repo) <span style="color:#8be9fd;font-style:italic">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>GitHubPullRequest<span style="color:#ff79c6">&gt;</span> list <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        CloseableHttpClient document <span style="color:#ff79c6">=</span> HttpClients.<span style="color:#50fa7b">createDefault</span>();
+</span></span><span style="display:flex;"><span>        HttpGet httpGet <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HttpGet(<span style="color:#f1fa8c">&#34;https://api.github.com/repos/&#34;</span> <span style="color:#ff79c6">+</span> repo <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;/pulls&#34;</span>);
+</span></span><span style="display:flex;"><span>        CloseableHttpResponse httpResponse <span style="color:#ff79c6">=</span> document.<span style="color:#50fa7b">execute</span>(httpGet);
+</span></span><span style="display:flex;"><span>        InputStream content <span style="color:#ff79c6">=</span> httpResponse.<span style="color:#50fa7b">getEntity</span>().<span style="color:#50fa7b">getContent</span>();
+</span></span><span style="display:flex;"><span>        String body <span style="color:#ff79c6">=</span> IOUtils.<span style="color:#50fa7b">toString</span>(content, StandardCharsets.<span style="color:#50fa7b">UTF_8</span>);
+</span></span><span style="display:flex;"><span>        JSONArray jsonArray <span style="color:#ff79c6">=</span> JSON.<span style="color:#50fa7b">parseArray</span>(body);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (Object object : jsonArray) {
+</span></span><span style="display:flex;"><span>            JSONObject jsonObject <span style="color:#ff79c6">=</span> (JSONObject) object;
+</span></span><span style="display:flex;"><span>            list.<span style="color:#50fa7b">add</span>(<span style="color:#ff79c6">new</span> GitHubPullRequest(
+</span></span><span style="display:flex;"><span>                    jsonObject.<span style="color:#50fa7b">getIntValue</span>(<span style="color:#f1fa8c">&#34;number&#34;</span>),
+</span></span><span style="display:flex;"><span>                    jsonObject.<span style="color:#50fa7b">getString</span>(<span style="color:#f1fa8c">&#34;title&#34;</span>),
+</span></span><span style="display:flex;"><span>                    jsonObject.<span style="color:#50fa7b">getJSONObject</span>(<span style="color:#f1fa8c">&#34;user&#34;</span>).<span style="color:#50fa7b">getString</span>(<span style="color:#f1fa8c">&#34;login&#34;</span>)));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> list;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 
 <script src="https://utteranc.es/client.js"
@@ -362,17 +362,17 @@ Cookie 使基于无状态的HTTP协议记录稳定的状态信息成为了可能
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -382,11 +382,11 @@ Cookie 使基于无状态的HTTP协议记录稳定的状态信息成为了可能
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -396,7 +396,7 @@ Cookie 使基于无状态的HTTP协议记录稳定的状态信息成为了可能
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -413,7 +413,7 @@ Cookie 使基于无状态的HTTP协议记录稳定的状态信息成为了可能
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

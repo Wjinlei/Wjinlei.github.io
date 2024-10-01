@@ -181,6 +181,8 @@
 </div>
 
 
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-04 文中内容可能已过时，请注意甄别。</div>
+
 <br>
 <p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch08-02-strings.html">Rust 程序设计语言</a>》第8.2章 <code>使用字符串储存 UTF-8 编码的文本</code></p>
 <blockquote>
@@ -198,19 +200,19 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 第一种方式，通过关联函数 new() 创建一个空字符串
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> s1 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::new();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s1);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s1);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 第二种方式，通过 to_string() 方法创建一个字符串，它能用于任何实现了 Display trait 的类型，字符串字面值也实现了它。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> data <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;s2 Helllo World&#34;</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s2 <span style="color:#ff79c6">=</span> data.to_string();
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s2);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s2);
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s3 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;s3 Hello World&#34;</span>.to_string(); <span style="color:#6272a4">// 字符串字面量 to_string()
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s3);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s3);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 第三种方式，可以使用 String::from 函数来从字符串字面值创建 String，它等同于使用 to_string。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// String::from 和 .to_string 最终做了完全相同的工作，所以如何选择就是风格问题了。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> s4 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;s4 Hello World&#34;</span>);
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s4);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s4);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>字符串的更新</li>
@@ -220,11 +222,11 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> s5 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;foo&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s6 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;bar&#34;</span>;
 </span></span><span style="display:flex;"><span>    s5.push_str(s6);
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;s6 is {}&#34;</span>, s6); <span style="color:#6272a4">// 我们注意到s6依然可用，原因是 push_str 方法采用字符串 slice，因为我们并不需要获取参数的所有权。
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;s6 is </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s6); <span style="color:#6272a4">// 我们注意到s6依然可用，原因是 push_str 方法采用字符串 slice，因为我们并不需要获取参数的所有权。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// push 方法被定义为获取一个单独的字符作为参数，并附加到 String 中。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    s5.push(<span style="color:#f1fa8c">&#39;l&#39;</span>);
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s5);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s5);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>拼接字符串</li>
@@ -234,7 +236,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> s7 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Hello, &#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s8 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;world!&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s9 <span style="color:#ff79c6">=</span> s7 <span style="color:#ff79c6">+</span> <span style="color:#ff79c6">&amp;</span>s8; 
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s7); <span style="color:#6272a4">// 注意 s7 被移动了，不能继续使用
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s7); <span style="color:#6272a4">// 注意 s7 被移动了，不能继续使用
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
 </span></span></code></pre></div><p>这里要说明一下，<code>s7</code> 在相加后不再有效的原因，使用 <code>+</code> 运算符时调用的函数签名有关。<code>+</code> 运算符使用了 <code>add</code> 函数，这个函数签名看起来像这样：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add</span>(self, s: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span>) -&gt; <span style="color:#8be9fd;font-style:italic">String</span> {}
@@ -246,8 +248,8 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> s10 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;tic&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s11 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;tac&#34;</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s12 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;toe&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s13 <span style="color:#ff79c6">=</span> format!(<span style="color:#f1fa8c">&#34;{}-{}-{}&#34;</span>, s10, s11, s12);
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s13);
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s13 <span style="color:#ff79c6">=</span> format!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">-</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">-</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s10, s11, s12);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s13);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
 <p>注意 format! 生成的代码使用索引并且不会获取任何参数的所有权。</p>
@@ -270,11 +272,11 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() { 
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> hello <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Здравствуйте&#34;</span>; <span style="color:#6272a4">// 这些字母都是两个字节长度
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> s <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>hello[<span style="color:#bd93f9">0</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">4</span>]; <span style="color:#6272a4">// 如果获取 &amp;hello[0..1] 会发生什么呢？答案是：Rust 在运行时会 panic，就跟访问 vector 中的无效索引时一样
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s); <span style="color:#6272a4">// Зд 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s); <span style="color:#6272a4">// Зд 
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> hello2 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Hello World&#34;</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> s2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>hello2[<span style="color:#bd93f9">0</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">1</span>]; <span style="color:#6272a4">// 正常的英文字母占1个字节的，因此这里获取 &amp;hello[0..1] 不会有问题
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, s2); <span style="color:#6272a4">// H
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, s2); <span style="color:#6272a4">// H
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
 </span></span></code></pre></div><p><code>你应该小心谨慎的使用这个操作，因为这么做可能会使你的程序崩溃。</code></p>
 <ul>
@@ -283,7 +285,7 @@
 <p>操作字符串每一部分的最好的方法是明确表示需要字符还是字节。对于单独的 <code>Unicode 标量值</code>使用 <code>chars</code> 方法。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> c <span style="color:#ff79c6">in</span> <span style="color:#f1fa8c">&#34;नमस्ते&#34;</span>.chars() {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, c);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, c);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>这将返回 <code>Unicode 标量值</code></p>
@@ -295,7 +297,7 @@
 </span></span><span style="display:flex;"><span>े
 </span></span></code></pre></div><p>另外 <code>bytes</code> 方法返回每一个原始字节，这可能会适合你的使用场景</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">for</span> b <span style="color:#ff79c6">in</span> <span style="color:#f1fa8c">&#34;नमस्ते&#34;</span>.bytes() {
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, b);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, b);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>这些代码会打印出组成这个 <code>String</code> 的 <code>18 个字节</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>224
@@ -322,17 +324,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -342,11 +344,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -356,7 +358,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -373,7 +375,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

@@ -181,6 +181,8 @@
 </div>
 
 
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-10-12 文中内容可能已过时，请注意甄别。</div>
+
 <br>
 <p>参考章节《<a href="https://course.rs/async-rust/async/getting-started.html">Rust语言圣经(Rust Course)</a>》第4.1章 <code>Rust 异步编程</code></p>
 <p><strong>什么是异步编程？</strong></p>
@@ -274,7 +276,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f2 <span style="color:#ff79c6">=</span> dance();
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// `join!`可以并发的处理和等待多个`Future`，若`learn_and_sing Future`被阻塞，那`dance Future`可以拿过线程的所有权继续执行。若`dance`也变成阻塞状态，那`learn_and_sing`又可以再次拿回线程所有权，继续执行。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 若两个都被阻塞，那么`async main`会变成阻塞状态，然后让出线程所有权，并将其交给`main`函数中的`block_on`执行器
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    futures::join<span style="color:#ff79c6">!</span>(f1, f2);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    futures::join!(f1, f2);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
@@ -301,17 +303,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -321,11 +323,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -335,7 +337,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -352,7 +354,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

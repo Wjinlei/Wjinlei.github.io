@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.101.0" />
+	<meta name="generator" content="Hugo 0.135.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -427,7 +427,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> connection <span style="color:#ff79c6">=</span> Connection::new(socket);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#8be9fd;font-style:italic">Some</span>(frame) <span style="color:#ff79c6">=</span> connection.read_frame().<span style="color:#ff79c6">await</span>.unwrap() {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;GOT: {:?}&#34;</span>, frame);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;GOT: </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, frame);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// Respond with an error
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">let</span> response <span style="color:#ff79c6">=</span> Frame::Error(<span style="color:#f1fa8c">&#34;unimplemented&#34;</span>.to_string());
@@ -472,7 +472,7 @@
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Do some other work
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> out <span style="color:#ff79c6">=</span> handle.<span style="color:#ff79c6">await</span>.unwrap(); <span style="color:#6272a4">// `.await` 会返回一个 `Result`，若 `spawn` 创建的任务正常运行结束，则返回一个 `Ok(T)` 的值，否则会返回一个错误 `Err`
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;GOT {}&#34;</span>, out);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;GOT </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, out);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>任务是一个由 Tokio 调度程序管理的<code>执行单元</code>。生成任务将首先提交给 Tokio 调度程序，然后确保任务在有工作要做时执行。<br>
 任务是一个<code>异步的绿色线程</code>，它们通过 <code>tokio::spawn</code> 进行创建，该函数会返回一个 <code>JoinHandle</code> 类型的句柄，调用者可以使用该句柄跟创建的任务进行交互。<br>
@@ -490,7 +490,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> v <span style="color:#ff79c6">=</span> vec![<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>];
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    task::spawn(<span style="color:#ff79c6">async</span> {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;Here&#39;s a vec: {:?}&#34;</span>, v);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;Here&#39;s a vec: </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, v);
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>上面代码中，由于引用了外部环境中的变量 <code>v</code> ，导致以下报错:</p>
@@ -542,7 +542,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 因此 rc 并不会影响 .await 的安全性
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">let</span> rc <span style="color:#ff79c6">=</span> Rc::new(<span style="color:#f1fa8c">&#34;hello&#34;</span>);
-</span></span><span style="display:flex;"><span>            println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, rc);
+</span></span><span style="display:flex;"><span>            println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, rc);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// rc 的作用范围已经失效，因此当任务让出所有权给当前线程时，它无需作为状态被保存起来
@@ -563,7 +563,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 事实上，注释掉下面一行代码，依然会报错
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 原因是：是否保存，不取决于 rc 是否被使用，而是取决于 .await 后，rc 是否仍然有效
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, rc);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, rc);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// rc 作用域在这里结束
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    });
@@ -606,7 +606,7 @@
 </span></span><span style="display:flex;"><span>                    Frame::Null
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            cmd <span style="color:#ff79c6">=&gt;</span> panic!(<span style="color:#f1fa8c">&#34;unimplemented {:?}&#34;</span>, cmd),
+</span></span><span style="display:flex;"><span>            cmd <span style="color:#ff79c6">=&gt;</span> panic!(<span style="color:#f1fa8c">&#34;unimplemented </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, cmd),
 </span></span><span style="display:flex;"><span>        };
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 将请求响应返回给客户端
@@ -1048,17 +1048,17 @@ Steam并没有为ArchLinux提供支持，Steam只对<code>Ubuntu LTS</code> 提�
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -1068,11 +1068,11 @@ Steam并没有为ArchLinux提供支持，Steam只对<code>Ubuntu LTS</code> 提�
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -1082,7 +1082,7 @@ Steam并没有为ArchLinux提供支持，Steam只对<code>Ubuntu LTS</code> 提�
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -1099,7 +1099,7 @@ Steam并没有为ArchLinux提供支持，Steam只对<code>Ubuntu LTS</code> 提�
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

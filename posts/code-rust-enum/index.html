@@ -181,6 +181,8 @@
 </div>
 
 
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-07-25 文中内容可能已过时，请注意甄别。</div>
+
 <br>
 <p>本篇是阅读 《<a href="https://kaisery.github.io/trpl-zh-cn/ch06-00-enums.html">Rust 程序设计语言</a>》第6.1章 <code>枚举</code> 而来的结果</p>
 <p>枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同，Rust中的枚举允许你通过列举可能的成员（variants）来定义一个类型</p>
@@ -209,7 +211,7 @@
 </span></span><span style="display:flex;"><span>        kind: <span style="color:#50fa7b">IpAddrKind</span>::V4,
 </span></span><span style="display:flex;"><span>        address: <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;127.0.0.1&#34;</span>),
 </span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, home);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, home);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>上面的方式有点麻烦，我们需要<code>定义一个结构体，手动关联它</code>，我们还有更方便的方式<br>
 我们直接将数据附加到枚举的每个成员上，这样就不需要一个额外的结构体了，请看下面示例代码2</p>
@@ -224,7 +226,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 我们可以使用一种更简洁的方式来表达相同的概念，
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 仅仅使用枚举并将数据直接放进每一个枚举成员而不是将枚举作为结构体的一部分。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> home <span style="color:#ff79c6">=</span> IpAddr::V4(<span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;127.0.0.1&#34;</span>));
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, home);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, home);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
 <p>这里也很容易看出枚举工作的另一个细节：每一个我们定义的枚举成员的名字也变成了一个构建枚举的实例的函数。<br>
@@ -245,12 +247,12 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 如果我们想要将 V4 地址存储为四个 u8 值而 V6 地址仍然表现为一个 String，
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 这就不能使用结构体了。枚举则可以轻易的处理这个情况：
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> home <span style="color:#ff79c6">=</span> IpAddr::V4(<span style="color:#bd93f9">127</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">1</span>);
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, home);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, home);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>最后提一嘴，我们在枚举上还可以定义方法</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> IpAddr {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">print</span>(<span style="color:#ff79c6">&amp;</span>self) {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, self)
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, self)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
@@ -266,17 +268,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -286,11 +288,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -300,7 +302,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -317,7 +319,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

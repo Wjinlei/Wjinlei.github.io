@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/all.css">
     
     
-    <title>正则表达式</title>
+    <title>JAVA28-正则表达式</title>
 </head>
 <body class="container"><div id="fastSearch">
   <input id="searchInput" tabindex="0">
@@ -164,7 +164,7 @@
 </style>
 <div id="content">
 <div>
-<h4>正则表达式</h4>
+<h4>JAVA28-正则表达式</h4>
 <span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
 <span class="font-size-14 color-999">本文共 832 字，阅读约 4 分钟</span>
 
@@ -190,162 +190,162 @@
 <h2 id="正则表达式">正则表达式</h2>
 <h3 id="常用的元字符">常用的元字符</h3>
 <table>
-<thead>
-<tr>
-<th>正则字符</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>^</code></td>
-<td>匹配开始的位置</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>匹配结束的位置</td>
-</tr>
-<tr>
-<td><code>.</code></td>
-<td>匹配单个任意字符</td>
-</tr>
-<tr>
-<td><code>\w</code></td>
-<td>匹配单个单词</td>
-</tr>
-<tr>
-<td><code>\s</code></td>
-<td>匹配单个空白字符</td>
-</tr>
-<tr>
-<td><code>\d</code></td>
-<td>匹配单个数字字符</td>
-</tr>
-<tr>
-<td><code>\b</code></td>
-<td>开始或结尾一定要是一个单词</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">正则字符</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>^</code></td>
+          <td style="text-align: left">匹配开始的位置</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$</code></td>
+          <td style="text-align: left">匹配结束的位置</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>.</code></td>
+          <td style="text-align: left">匹配单个任意字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\w</code></td>
+          <td style="text-align: left">匹配单个单词</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\s</code></td>
+          <td style="text-align: left">匹配单个空白字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\d</code></td>
+          <td style="text-align: left">匹配单个数字字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\b</code></td>
+          <td style="text-align: left">开始或结尾一定要是一个单词</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="次数匹配">次数匹配</h3>
 <table>
-<thead>
-<tr>
-<th>正则字符</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>*</code></td>
-<td>匹配0次或多次</td>
-</tr>
-<tr>
-<td><code>+</code></td>
-<td>匹配1次或多次</td>
-</tr>
-<tr>
-<td><code>?</code></td>
-<td>匹配0次或1次</td>
-</tr>
-<tr>
-<td><code>{n}</code></td>
-<td>匹配n次</td>
-</tr>
-<tr>
-<td><code>{n,}</code></td>
-<td>匹配&gt;=n次</td>
-</tr>
-<tr>
-<td><code>{n,m}</code></td>
-<td>匹配n到m次</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">正则字符</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>*</code></td>
+          <td style="text-align: left">匹配0次或多次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>+</code></td>
+          <td style="text-align: left">匹配1次或多次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>?</code></td>
+          <td style="text-align: left">匹配0次或1次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>{n}</code></td>
+          <td style="text-align: left">匹配n次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>{n,}</code></td>
+          <td style="text-align: left">匹配&gt;=n次</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>{n,m}</code></td>
+          <td style="text-align: left">匹配n到m次</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="选择匹配">选择匹配</h3>
 <table>
-<thead>
-<tr>
-<th>正则字符</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[aeiou]</code></td>
-<td>匹配单个字符<code>a</code>,<code>e</code>,<code>i</code>,<code>o</code>,<code>u</code>中的任意一个</td>
-</tr>
-<tr>
-<td><code>[0-9]</code></td>
-<td>匹配数字0到9</td>
-</tr>
-<tr>
-<td><code>[A-Z]</code></td>
-<td>匹配大写字母</td>
-</tr>
-<tr>
-<td><code>[A-Z0-9_]</code></td>
-<td>匹配大写字母或数字或下划线</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">正则字符</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>[aeiou]</code></td>
+          <td style="text-align: left">匹配单个字符<code>a</code>,<code>e</code>,<code>i</code>,<code>o</code>,<code>u</code>中的任意一个</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>[0-9]</code></td>
+          <td style="text-align: left">匹配数字0到9</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>[A-Z]</code></td>
+          <td style="text-align: left">匹配大写字母</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>[A-Z0-9_]</code></td>
+          <td style="text-align: left">匹配大写字母或数字或下划线</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="匹配反义">匹配反义</h3>
 <table>
-<thead>
-<tr>
-<th>正则字符</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[^aeiou]</code></td>
-<td>匹配除了<code>a</code>,<code>e</code>,<code>i</code>,<code>o</code>,<code>u</code>之外的任意单个字符</td>
-</tr>
-<tr>
-<td><code>[^x]</code></td>
-<td>匹配单个非<code>x</code>的字符</td>
-</tr>
-<tr>
-<td><code>\W</code></td>
-<td>匹配非单个单词</td>
-</tr>
-<tr>
-<td><code>\S</code></td>
-<td>匹配单个非空白字符</td>
-</tr>
-<tr>
-<td><code>\D</code></td>
-<td>匹配单个非数字字符</td>
-</tr>
-<tr>
-<td><code>\B</code></td>
-<td>开始或结尾不能是一个单词</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">正则字符</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>[^aeiou]</code></td>
+          <td style="text-align: left">匹配除了<code>a</code>,<code>e</code>,<code>i</code>,<code>o</code>,<code>u</code>之外的任意单个字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>[^x]</code></td>
+          <td style="text-align: left">匹配单个非<code>x</code>的字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\W</code></td>
+          <td style="text-align: left">匹配非单个单词</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\S</code></td>
+          <td style="text-align: left">匹配单个非空白字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\D</code></td>
+          <td style="text-align: left">匹配单个非数字字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>\B</code></td>
+          <td style="text-align: left">开始或结尾不能是一个单词</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="分组与捕获">分组与捕获</h3>
 <table>
-<thead>
-<tr>
-<th>正则字符</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>()</code></td>
-<td>使用括号来指定一个被捕获的分组,分组的编号从1开始,而0表示整个匹配的字符串,1开始才是分组</td>
-</tr>
-<tr>
-<td><code>(?:)</code></td>
-<td>不捕获和分配编号,括号只用与分组或标记优先级</td>
-</tr>
-<tr>
-<td><code>(?s).*</code></td>
-<td>让<code>.</code>匹配换行符</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">正则字符</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>()</code></td>
+          <td style="text-align: left">使用括号来指定一个被捕获的分组,分组的编号从1开始,而0表示整个匹配的字符串,1开始才是分组</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>(?:)</code></td>
+          <td style="text-align: left">不捕获和分配编号,括号只用与分组或标记优先级</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>(?s).*</code></td>
+          <td style="text-align: left">让<code>.</code>匹配换行符</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="java中使用正则表达式">Java中使用正则表达式</h2>
 <ul>
@@ -356,141 +356,141 @@
 <li>String.replaceAll</li>
 </ul>
 <h3 id="正则练习1判断一个字符串是不是合法的固定电话号码">正则练习1,判断一个字符串是不是合法的固定电话号码</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">PhoneNumberMatcher</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Pattern pattern <span style="color:#ff79c6">=</span> Pattern<span style="color:#ff79c6">.</span><span style="color:#50fa7b">compile</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;([0]\\d{2,3})-([^0]\\d{6,7})&#34;</span><span style="color:#ff79c6">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">PhoneNumberMatcher</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Pattern pattern <span style="color:#ff79c6">=</span> Pattern.<span style="color:#50fa7b">compile</span>(<span style="color:#f1fa8c">&#34;([0]\\d{2,3})-([^0]\\d{6,7})&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 请编写一个函数，判断一个字符串是不是合法的固定电话号码
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 合法的固定电话号码为：区号-号码
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 其中区号以0开头，三位或者四位
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 号码以非零开头，七位或者八位
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 三位区号后面只能跟八位电话号码
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 合法的电话号码示例：
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 021-12345678
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 0571-12345678
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 0373-1234567
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 不合法的电话号码示例：
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 02134-1234 位数不对
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 123-45678901 区号必须以0开头
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 021-1234567 三位区号后面只能跟八位电话号码
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isPhoneNumber</span><span style="color:#ff79c6">(</span>String str<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        Matcher matcher <span style="color:#ff79c6">=</span> pattern<span style="color:#ff79c6">.</span><span style="color:#50fa7b">matcher</span><span style="color:#ff79c6">(</span>str<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> isMatcher <span style="color:#ff79c6">=</span> matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">find</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>isMatcher<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>1<span style="color:#ff79c6">).</span><span style="color:#50fa7b">length</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">==</span> 3<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>2<span style="color:#ff79c6">).</span><span style="color:#50fa7b">length</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">==</span> 8<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> isMatcher<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 请编写一个函数，判断一个字符串是不是合法的固定电话号码</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 合法的固定电话号码为：区号-号码</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 其中区号以0开头，三位或者四位</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 号码以非零开头，七位或者八位</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 三位区号后面只能跟八位电话号码</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 合法的电话号码示例：</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 021-12345678</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 0571-12345678</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 0373-1234567</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 不合法的电话号码示例：</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 02134-1234 位数不对</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 123-45678901 区号必须以0开头</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 021-1234567 三位区号后面只能跟八位电话号码</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isPhoneNumber</span>(String str) {
+</span></span><span style="display:flex;"><span>        Matcher matcher <span style="color:#ff79c6">=</span> pattern.<span style="color:#50fa7b">matcher</span>(str);
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> isMatcher <span style="color:#ff79c6">=</span> matcher.<span style="color:#50fa7b">find</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (isMatcher) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (matcher.<span style="color:#50fa7b">group</span>(1).<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">==</span> 3) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> matcher.<span style="color:#50fa7b">group</span>(2).<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">==</span> 8;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> isMatcher;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="正则练习2传入日志字符串将每行开头的时间戳删除">正则练习2,传入日志字符串,将每行开头的时间戳删除</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">LogProcessor</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 传入日志字符串，将每行开头的时间戳删除
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 返回删除时间戳后的字符串
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，输入字符串：
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">//
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// [2019-08-01 21:24:41] bt3102 (11m:21s)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// [2019-08-01 21:24:42] TeamCity server version is 2019.1.1 (build 66192)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// [2019-08-01 21:24:43] Collecting changes in 2 VCS roots (22s)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">//
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 返回结果：
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">//
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// bt3102 (11m:21s)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// TeamCity server version is 2019.1.1 (build 66192)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// Collecting changes in 2 VCS roots (22s)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> String <span style="color:#50fa7b">process</span><span style="color:#ff79c6">(</span>String log<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#ff79c6">return</span> log<span style="color:#ff79c6">.</span><span style="color:#50fa7b">replaceAll</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;\\[\\d{4}-\\d{2}-\\d{2} (?:\\d{2}:){2}\\d{2}]\\s\\b&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">LogProcessor</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 传入日志字符串，将每行开头的时间戳删除</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 返回删除时间戳后的字符串</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，输入字符串：</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// [2019-08-01 21:24:41] bt3102 (11m:21s)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// [2019-08-01 21:24:42] TeamCity server version is 2019.1.1 (build 66192)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// [2019-08-01 21:24:43] Collecting changes in 2 VCS roots (22s)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 返回结果：</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// bt3102 (11m:21s)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// TeamCity server version is 2019.1.1 (build 66192)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Collecting changes in 2 VCS roots (22s)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> String <span style="color:#50fa7b">process</span>(String log) {
+</span></span><span style="display:flex;"><span>       <span style="color:#ff79c6">return</span> log.<span style="color:#50fa7b">replaceAll</span>(<span style="color:#f1fa8c">&#34;\\[\\d{4}-\\d{2}-\\d{2} (?:\\d{2}:){2}\\d{2}]\\s\\b&#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
 </span></span><span style="display:flex;"><span>        String str <span style="color:#ff79c6">=</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;[2019-08-01 21:24:41] bt3102 (11m:21s)\n&#34;</span>
 </span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;[2019-08-01 21:24:42] TeamCity server version is 2019.1.1 (build 66192)\n&#34;</span>
-</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;[2019-08-01 21:24:43] Collecting changes in 2 VCS roots (22s)\n&#34;</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;[2019-08-01 21:24:43] Collecting changes in 2 VCS roots (22s)\n&#34;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>process<span style="color:#ff79c6">(</span>str<span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(process(str));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="正则练习3请从中提取gc活动的信息每行提取出一个gcactivity对象">正则练习3,请从中提取GC活动的信息,每行提取出一个GCActivity对象</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">GCLogAnalyzer</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Pattern pattern <span style="color:#ff79c6">=</span> Pattern<span style="color:#ff79c6">.</span><span style="color:#50fa7b">compile</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;\\[PSYoungGen: (\\d+)K-&gt;(\\d+)K\\((\\d+)K\\)].*\\s(\\d+)K-&gt;(\\d+)K\\((\\d+)K\\).*user=(\\d\\.\\d+)(?:\\s?).*sys=(\\d\\.\\d+)(?:\\s?).*real=(\\d\\.\\d+)&#34;</span><span style="color:#ff79c6">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">GCLogAnalyzer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Pattern pattern <span style="color:#ff79c6">=</span> Pattern.<span style="color:#50fa7b">compile</span>(<span style="color:#f1fa8c">&#34;\\[PSYoungGen: (\\d+)K-&gt;(\\d+)K\\((\\d+)K\\)].*\\s(\\d+)K-&gt;(\\d+)K\\((\\d+)K\\).*user=(\\d\\.\\d+)(?:\\s?).*sys=(\\d\\.\\d+)(?:\\s?).*real=(\\d\\.\\d+)&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 在本项目的根目录下有一个gc.log文件，是JVM的GC日志
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 请从中提取GC活动的信息，每行提取出一个GCActivity对象
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">//
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 2019-08-21T07:48:17.401+0200: 2.924: [GC (Allocation Failure) [PSYoungGen:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 393216K-&gt;6384K(458752K)] 416282K-&gt;29459K(1507328K), 0.0051622 secs] [Times: user=0.02
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// sys=0.00, real=0.01 secs]
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，对于上面这行GC日志，
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// [PSYoungGen: 393216K-&gt;6384K(458752K)] 代表JVM的年轻代总内存为458752，经过GC后已用内存从393216下降到了6384
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 416282K-&gt;29459K(1507328K) 代表JVM总堆内存1507328，经过GC后已用内存从416282下降到了29459
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// user=0.02 sys=0.00, real=0.01 分别代表用户态消耗的时间、系统调用消耗的时间和物理世界真实流逝的时间
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 请将这些信息解析成一个GCActivity类的实例
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 如果某行中不包含这些数据，请直接忽略该行
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> List<span style="color:#ff79c6">&lt;</span>GCActivity<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">parse</span><span style="color:#ff79c6">(</span>File gcLog<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">throws</span> IOException <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> lines <span style="color:#ff79c6">=</span> Files<span style="color:#ff79c6">.</span><span style="color:#50fa7b">readAllLines</span><span style="color:#ff79c6">(</span>gcLog<span style="color:#ff79c6">.</span><span style="color:#50fa7b">toPath</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> lines<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stream</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">map</span><span style="color:#ff79c6">(</span>pattern<span style="color:#ff79c6">::</span>matcher<span style="color:#ff79c6">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">filter</span><span style="color:#ff79c6">(</span>Matcher<span style="color:#ff79c6">::</span>find<span style="color:#ff79c6">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">map</span><span style="color:#ff79c6">(</span>matcher <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">new</span> GCActivity<span style="color:#ff79c6">(</span>Integer<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseInt</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>1<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Integer<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseInt</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>2<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Integer<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseInt</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>3<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Integer<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseInt</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>4<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Integer<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseInt</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>5<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Integer<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseInt</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>6<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Double<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseDouble</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>7<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Double<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseDouble</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>8<span style="color:#ff79c6">)),</span>
-</span></span><span style="display:flex;"><span>                        Double<span style="color:#ff79c6">.</span><span style="color:#50fa7b">parseDouble</span><span style="color:#ff79c6">(</span>matcher<span style="color:#ff79c6">.</span><span style="color:#50fa7b">group</span><span style="color:#ff79c6">(</span>9<span style="color:#ff79c6">))))</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">.</span><span style="color:#50fa7b">collect</span><span style="color:#ff79c6">(</span>Collectors<span style="color:#ff79c6">.</span><span style="color:#50fa7b">toList</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 在本项目的根目录下有一个gc.log文件，是JVM的GC日志</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 请从中提取GC活动的信息，每行提取出一个GCActivity对象</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 2019-08-21T07:48:17.401+0200: 2.924: [GC (Allocation Failure) [PSYoungGen:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 393216K-&gt;6384K(458752K)] 416282K-&gt;29459K(1507328K), 0.0051622 secs] [Times: user=0.02</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// sys=0.00, real=0.01 secs]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，对于上面这行GC日志，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// [PSYoungGen: 393216K-&gt;6384K(458752K)] 代表JVM的年轻代总内存为458752，经过GC后已用内存从393216下降到了6384</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 416282K-&gt;29459K(1507328K) 代表JVM总堆内存1507328，经过GC后已用内存从416282下降到了29459</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// user=0.02 sys=0.00, real=0.01 分别代表用户态消耗的时间、系统调用消耗的时间和物理世界真实流逝的时间</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 请将这些信息解析成一个GCActivity类的实例</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 如果某行中不包含这些数据，请直接忽略该行</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> List<span style="color:#ff79c6">&lt;</span>GCActivity<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">parse</span>(File gcLog) <span style="color:#8be9fd;font-style:italic">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> lines <span style="color:#ff79c6">=</span> Files.<span style="color:#50fa7b">readAllLines</span>(gcLog.<span style="color:#50fa7b">toPath</span>());
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> lines.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">map</span>(pattern::matcher)
+</span></span><span style="display:flex;"><span>                .<span style="color:#50fa7b">filter</span>(Matcher::find)
+</span></span><span style="display:flex;"><span>                .<span style="color:#50fa7b">map</span>(matcher <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">new</span> GCActivity(Integer.<span style="color:#50fa7b">parseInt</span>(matcher.<span style="color:#50fa7b">group</span>(1)),
+</span></span><span style="display:flex;"><span>                        Integer.<span style="color:#50fa7b">parseInt</span>(matcher.<span style="color:#50fa7b">group</span>(2)),
+</span></span><span style="display:flex;"><span>                        Integer.<span style="color:#50fa7b">parseInt</span>(matcher.<span style="color:#50fa7b">group</span>(3)),
+</span></span><span style="display:flex;"><span>                        Integer.<span style="color:#50fa7b">parseInt</span>(matcher.<span style="color:#50fa7b">group</span>(4)),
+</span></span><span style="display:flex;"><span>                        Integer.<span style="color:#50fa7b">parseInt</span>(matcher.<span style="color:#50fa7b">group</span>(5)),
+</span></span><span style="display:flex;"><span>                        Integer.<span style="color:#50fa7b">parseInt</span>(matcher.<span style="color:#50fa7b">group</span>(6)),
+</span></span><span style="display:flex;"><span>                        Double.<span style="color:#50fa7b">parseDouble</span>(matcher.<span style="color:#50fa7b">group</span>(7)),
+</span></span><span style="display:flex;"><span>                        Double.<span style="color:#50fa7b">parseDouble</span>(matcher.<span style="color:#50fa7b">group</span>(8)),
+</span></span><span style="display:flex;"><span>                        Double.<span style="color:#50fa7b">parseDouble</span>(matcher.<span style="color:#50fa7b">group</span>(9))))
+</span></span><span style="display:flex;"><span>                .<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">toList</span>());
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">throws</span> IOException <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>GCActivity<span style="color:#ff79c6">&gt;</span> activities <span style="color:#ff79c6">=</span> parse<span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> File<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;gc.log&#34;</span><span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>        activities<span style="color:#ff79c6">.</span><span style="color:#50fa7b">forEach</span><span style="color:#ff79c6">(</span>System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">::</span>println<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>GCActivity<span style="color:#ff79c6">&gt;</span> activities <span style="color:#ff79c6">=</span> parse(<span style="color:#ff79c6">new</span> File(<span style="color:#f1fa8c">&#34;gc.log&#34;</span>));
+</span></span><span style="display:flex;"><span>        activities.<span style="color:#50fa7b">forEach</span>(System.<span style="color:#50fa7b">out</span>::println);
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">GCActivity</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 年轻代GC前内存占用，单位K
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> youngGenBefore<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 年轻代GC后内存占用，单位K
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> youngGenAfter<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 年轻代总内存，单位K
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> youngGenTotal<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JVM堆GC前内存占用，单位K
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> heapBefore<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JVM堆GC后内存占用，单位K
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> heapAfter<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JVM堆总内存，单位K
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> heapTotal<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 用户态时间
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">double</span> user<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 系统调用消耗时间
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">double</span> sys<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 物理世界流逝的时间
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">double</span> real<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">GCActivity</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 年轻代GC前内存占用，单位K</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> youngGenBefore;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 年轻代GC后内存占用，单位K</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> youngGenAfter;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 年轻代总内存，单位K</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> youngGenTotal;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JVM堆GC前内存占用，单位K</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> heapBefore;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JVM堆GC后内存占用，单位K</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> heapAfter;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JVM堆总内存，单位K</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> heapTotal;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 用户态时间</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">double</span> user;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 系统调用消耗时间</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">double</span> sys;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 物理世界流逝的时间</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">double</span> real;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">GCActivity</span><span style="color:#ff79c6">(</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> youngGenBefore<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> youngGenAfter<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> youngGenTotal<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> heapBefore<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> heapAfter<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> heapTotal<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">double</span> user<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">double</span> sys<span style="color:#ff79c6">,</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">double</span> real<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">youngGenBefore</span> <span style="color:#ff79c6">=</span> youngGenBefore<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">youngGenAfter</span> <span style="color:#ff79c6">=</span> youngGenAfter<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">youngGenTotal</span> <span style="color:#ff79c6">=</span> youngGenTotal<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">heapBefore</span> <span style="color:#ff79c6">=</span> heapBefore<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">heapAfter</span> <span style="color:#ff79c6">=</span> heapAfter<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">heapTotal</span> <span style="color:#ff79c6">=</span> heapTotal<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">user</span> <span style="color:#ff79c6">=</span> user<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">sys</span> <span style="color:#ff79c6">=</span> sys<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">real</span> <span style="color:#ff79c6">=</span> real<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">GCActivity</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> youngGenBefore,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> youngGenAfter,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> youngGenTotal,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> heapBefore,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> heapAfter,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> heapTotal,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">double</span> user,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">double</span> sys,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">double</span> real) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">youngGenBefore</span> <span style="color:#ff79c6">=</span> youngGenBefore;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">youngGenAfter</span> <span style="color:#ff79c6">=</span> youngGenAfter;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">youngGenTotal</span> <span style="color:#ff79c6">=</span> youngGenTotal;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">heapBefore</span> <span style="color:#ff79c6">=</span> heapBefore;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">heapAfter</span> <span style="color:#ff79c6">=</span> heapAfter;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">heapTotal</span> <span style="color:#ff79c6">=</span> heapTotal;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">user</span> <span style="color:#ff79c6">=</span> user;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">sys</span> <span style="color:#ff79c6">=</span> sys;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">real</span> <span style="color:#ff79c6">=</span> real;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        @Override
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">toString</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">toString</span>() {
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;GCActivity{&#34;</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;youngGenBefore=&#34;</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> youngGenBefore
@@ -510,46 +510,46 @@
 </span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> sys
 </span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;, real=&#34;</span>
 </span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> real
-</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39;}&#39;</span><span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39;}&#39;</span>;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getYoungGenBefore</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> youngGenBefore<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getYoungGenBefore</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> youngGenBefore;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getYoungGenAfter</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> youngGenAfter<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getYoungGenAfter</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> youngGenAfter;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getYoungGenTotal</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> youngGenTotal<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getYoungGenTotal</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> youngGenTotal;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getHeapBefore</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> heapBefore<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getHeapBefore</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> heapBefore;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getHeapAfter</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> heapAfter<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getHeapAfter</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> heapAfter;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getHeapTotal</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> heapTotal<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getHeapTotal</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> heapTotal;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">getUser</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> user<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">getUser</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> user;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">getSys</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> sys<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">getSys</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> sys;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">getReal</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> real<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">double</span> <span style="color:#50fa7b">getReal</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> real;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>日志文件示例</li>
 </ul>
@@ -583,17 +583,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -603,11 +603,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -617,7 +617,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -634,7 +634,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

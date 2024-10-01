@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/all.css">
     
     
-    <title>MyBatis</title>
+    <title>JAVA25-MyBatis</title>
 </head>
 <body class="container"><div id="fastSearch">
   <input id="searchInput" tabindex="0">
@@ -164,7 +164,7 @@
 </style>
 <div id="content">
 <div>
-<h4>MyBatis</h4>
+<h4>JAVA25-MyBatis</h4>
 <span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
 <span class="font-size-14 color-999">本文共 919 字，阅读约 5 分钟</span>
 
@@ -262,15 +262,15 @@
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
 </span></span></code></pre></div><p>配置<code>LOG4J</code>,在<code>resources</code>目录下新建<code>log4j.properties</code>
 ,并写入如下配置,具体配置可以去<a href="https://logging.apache.org/log4j/2.x/manual/configuration.html">LOG4J官网</a> 查看</p>
-<pre tabindex="0"><code class="language-properties" data-lang="properties"># 全局日志配置,设置日志级别为DEBUG级别
-log4j.rootLogger=DEBUG, stdout
-# 为指定的 MyBatis Mapper 设置日志
-log4j.logger.db.mybatis.mybatis-mapper=TRACE
-# 控制台输出
-log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#6272a4"># 全局日志配置,设置日志级别为DEBUG级别</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">log4j.rootLogger</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">DEBUG, stdout</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 为指定的 MyBatis Mapper 设置日志</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">log4j.logger.db.mybatis.mybatis-mapper</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">TRACE</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 控制台输出</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">log4j.appender.stdout</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">org.apache.log4j.ConsoleAppender</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">log4j.appender.stdout.layout</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">org.apache.log4j.PatternLayout</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">log4j.appender.stdout.layout.ConversionPattern</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">%5p [%t] - %m%n</span>
+</span></span></code></pre></div><ul>
 <li>创建Mapper(Sql关系映射) <code>db/mybatis/mybatis-mapper.xml</code>,这个文件位置也是可以改的</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
@@ -289,18 +289,18 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </span></span></code></pre></div><ul>
 <li>获取 SqlSessionFactory 对象</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String resource <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;db/mybatis/mybatis-config.xml&#34;</span><span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>InputStream inputStream <span style="color:#ff79c6">=</span> Resources<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getResourceAsStream</span><span style="color:#ff79c6">(</span>resource<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>SqlSessionFactory sqlSessionFactory <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SqlSessionFactoryBuilder<span style="color:#ff79c6">().</span><span style="color:#50fa7b">build</span><span style="color:#ff79c6">(</span>inputStream<span style="color:#ff79c6">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String resource <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;db/mybatis/mybatis-config.xml&#34;</span>;
+</span></span><span style="display:flex;"><span>InputStream inputStream <span style="color:#ff79c6">=</span> Resources.<span style="color:#50fa7b">getResourceAsStream</span>(resource);
+</span></span><span style="display:flex;"><span>SqlSessionFactory sqlSessionFactory <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SqlSessionFactoryBuilder().<span style="color:#50fa7b">build</span>(inputStream);
 </span></span></code></pre></div><ul>
 <li>简单使用</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Test
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectList</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUsers&#34;</span><span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>()) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(sqlSession.<span style="color:#50fa7b">selectList</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUsers&#34;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="mybatis的结果集类型resulttype">MyBatis的结果集类型(resultType)</h3>
 <ul>
 <li><code>resultType</code>指定了返回的结果集类型,我们可以直接给定一个类,它会将结果直接映射到这个类的对象上,这就是ORM(对象关系映射)</li>
@@ -332,26 +332,26 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 <li>java 传递参数的第一种方法给它一个map,里面的key是参数的名字id,因为上面xml指定了参数<code>#{id}</code></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Test
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">,</span> Integer<span style="color:#ff79c6">&gt;</span> param <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>        param<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;id&#34;</span><span style="color:#ff79c6">,</span> 1<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span> user <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectOne</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserById&#34;</span><span style="color:#ff79c6">,</span> param<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>user<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>()) {
+</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> param <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        param.<span style="color:#50fa7b">put</span>(<span style="color:#f1fa8c">&#34;id&#34;</span>, 1);
+</span></span><span style="display:flex;"><span>        Sql.<span style="color:#50fa7b">User</span> user <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectOne</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserById&#34;</span>, param);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(user);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>java 第二种方法,直接传递User对象,设置id为1,它内部实现原理是调用对象的<code>getId</code>方法,如果没有就看有没有<code>id字段</code></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Test
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span> user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        user<span style="color:#ff79c6">.</span><span style="color:#50fa7b">id</span> <span style="color:#ff79c6">=</span> 1<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span> result <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectOne</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserById&#34;</span><span style="color:#ff79c6">,</span> user<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>result<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>()) {
+</span></span><span style="display:flex;"><span>        Sql.<span style="color:#50fa7b">User</span> user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Sql.<span style="color:#50fa7b">User</span>();
+</span></span><span style="display:flex;"><span>        user.<span style="color:#50fa7b">id</span> <span style="color:#ff79c6">=</span> 1;
+</span></span><span style="display:flex;"><span>        Sql.<span style="color:#50fa7b">User</span> result <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectOne</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserById&#34;</span>, user);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(result);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="mybatis的动态sql">MyBatis的动态SQL</h3>
 <p>动态SQL是MyBatis的灵魂,详细的可以参考<a href="https://mybatis.org/mybatis-3/zh/dynamic-sql.html">官方文档的动态SQL章节</a></p>
 <h4 id="if">if</h4>
@@ -363,17 +363,17 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/if&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/select&gt;</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Test
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">,</span> String<span style="color:#ff79c6">&gt;</span> param <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>        param<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;wangwu&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span> user <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectOne</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserByName&#34;</span><span style="color:#ff79c6">,</span> param<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>user<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>()) {
+</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String, String<span style="color:#ff79c6">&gt;</span> param <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        param.<span style="color:#50fa7b">put</span>(<span style="color:#f1fa8c">&#34;name&#34;</span>, <span style="color:#f1fa8c">&#34;wangwu&#34;</span>);
+</span></span><span style="display:flex;"><span>        Sql.<span style="color:#50fa7b">User</span> user <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectOne</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserByName&#34;</span>, param);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(user);
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span><span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectList</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserByName&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>users<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>Sql.<span style="color:#50fa7b">User</span><span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectList</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.selectUserByName&#34;</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(users);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="choosewhenotherwise">choose,when,otherwise</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 类似选择,
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4">当 name == wangwu 时拼接,WHERE name = &#39;wangwu&#39;,
@@ -394,19 +394,19 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/choose&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/select&gt;</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Test
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">,</span> String<span style="color:#ff79c6">&gt;</span> param1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>        param1<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;wangwu&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span> wangWu <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectOne</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.chooseUserByName&#34;</span><span style="color:#ff79c6">,</span> param1<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>wangWu<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>()) {
+</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String, String<span style="color:#ff79c6">&gt;</span> param1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        param1.<span style="color:#50fa7b">put</span>(<span style="color:#f1fa8c">&#34;name&#34;</span>, <span style="color:#f1fa8c">&#34;wangwu&#34;</span>);
+</span></span><span style="display:flex;"><span>        Sql.<span style="color:#50fa7b">User</span> wangWu <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectOne</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.chooseUserByName&#34;</span>, param1);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(wangWu);
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">,</span> String<span style="color:#ff79c6">&gt;</span> param2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>        param2<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;lisi&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span> liSi <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectOne</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.chooseUserByName&#34;</span><span style="color:#ff79c6">,</span> param2<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>liSi<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String, String<span style="color:#ff79c6">&gt;</span> param2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        param2.<span style="color:#50fa7b">put</span>(<span style="color:#f1fa8c">&#34;name&#34;</span>, <span style="color:#f1fa8c">&#34;lisi&#34;</span>);
+</span></span><span style="display:flex;"><span>        Sql.<span style="color:#50fa7b">User</span> liSi <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectOne</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.chooseUserByName&#34;</span>, param2);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(liSi);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="foreach">foreach</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 循环拼接 --&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;select</span> <span style="color:#50fa7b">id=</span><span style="color:#f1fa8c">&#34;foreachUserByIds&#34;</span> <span style="color:#50fa7b">resultType=</span><span style="color:#f1fa8c">&#34;User&#34;</span><span style="color:#ff79c6">&gt;</span>
@@ -421,14 +421,14 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/foreach&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/select&gt;</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Test
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">,</span> Object<span style="color:#ff79c6">&gt;</span> param <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;();</span>
-</span></span><span style="display:flex;"><span>        param<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;ids&#34;</span><span style="color:#ff79c6">,</span> Arrays<span style="color:#ff79c6">.</span><span style="color:#50fa7b">asList</span><span style="color:#ff79c6">(</span>1<span style="color:#ff79c6">,</span> 4<span style="color:#ff79c6">,</span> 5<span style="color:#ff79c6">,</span> 9<span style="color:#ff79c6">,</span> 3<span style="color:#ff79c6">,</span> 6<span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>Sql<span style="color:#ff79c6">.</span><span style="color:#50fa7b">User</span><span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectList</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.foreachUserByIds&#34;</span><span style="color:#ff79c6">,</span> param<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>users<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">selectTest</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>()) {
+</span></span><span style="display:flex;"><span>        HashMap<span style="color:#ff79c6">&lt;</span>String, Object<span style="color:#ff79c6">&gt;</span> param <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        param.<span style="color:#50fa7b">put</span>(<span style="color:#f1fa8c">&#34;ids&#34;</span>, Arrays.<span style="color:#50fa7b">asList</span>(1, 4, 5, 9, 3, 6));
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>Sql.<span style="color:#50fa7b">User</span><span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">selectList</span>(<span style="color:#f1fa8c">&#34;com.github.wjinlei.mapper.foreachUserByIds&#34;</span>, param);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(users);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>注意有些情况下你可能不需要 open 或 close 属性</li>
 </ul>
@@ -501,32 +501,32 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 <li>Order类</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">/** 一个订单 */</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer id<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> User user<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Goods goods<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> BigDecimal totalPrice<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer id;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> User user;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Goods goods;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> BigDecimal totalPrice;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>User类</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.github.hcsp.mybatis.entity<span style="color:#ff79c6">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.github.hcsp.mybatis.entity;
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">/** 一个用户 */</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">User</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer id<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String tel<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String address<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer id;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String tel;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String address;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>Goods类</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">/** 一件商品 */</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Goods</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer id<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> BigDecimal price<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Goods</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer id;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> BigDecimal price;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="通过代理模式执行sql">通过代理模式执行SQL</h3>
 <ul>
 <li>这种模式适合sql比较<code>简单</code>的情况,复杂的sql还是老老实实写<code>xml</code>文件吧</li>
@@ -536,17 +536,17 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param id 待删除的用户ID
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">deleteUserById</span><span style="color:#ff79c6">(</span>Integer id<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">(</span>SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">openSession</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">true</span><span style="color:#ff79c6">))</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        DeleteUserByIdMapper mapper <span style="color:#ff79c6">=</span> sqlSession<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getMapper</span><span style="color:#ff79c6">(</span>DeleteUserByIdMapper<span style="color:#ff79c6">.</span><span style="color:#50fa7b">class</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        mapper<span style="color:#ff79c6">.</span><span style="color:#50fa7b">deleteUserById</span><span style="color:#ff79c6">(</span>id<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">deleteUserById</span>(Integer id) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (SqlSession sqlSession <span style="color:#ff79c6">=</span> sqlSessionFactory.<span style="color:#50fa7b">openSession</span>(<span style="color:#ff79c6">true</span>)) {
+</span></span><span style="display:flex;"><span>        DeleteUserByIdMapper mapper <span style="color:#ff79c6">=</span> sqlSession.<span style="color:#50fa7b">getMapper</span>(DeleteUserByIdMapper.<span style="color:#50fa7b">class</span>);
+</span></span><span style="display:flex;"><span>        mapper.<span style="color:#50fa7b">deleteUserById</span>(id);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">interface</span> <span style="color:#50fa7b">DeleteUserByIdMapper</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    @Delete<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;DELETE FROM user WHERE ID = #{id}&#34;</span><span style="color:#ff79c6">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">deleteUserById</span><span style="color:#ff79c6">(</span>@Param<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;id&#34;</span><span style="color:#ff79c6">)</span> Integer id<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">interface</span> <span style="color:#50fa7b">DeleteUserByIdMapper</span> {
+</span></span><span style="display:flex;"><span>    @Delete(<span style="color:#f1fa8c">&#34;DELETE FROM user WHERE ID = #{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">deleteUserById</span>(@Param(<span style="color:#f1fa8c">&#34;id&#34;</span>) Integer id);
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>还要在<code>mybatis-config.xml</code>中配置<code>&lt;mapper&gt;</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;mappers&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">&lt;!-- 指定你那个接口的全限定名称 --&gt;</span>
@@ -565,17 +565,17 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -585,11 +585,11 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -599,7 +599,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -616,7 +616,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

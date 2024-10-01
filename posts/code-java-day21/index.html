@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/all.css">
     
     
-    <title>Java Stream</title>
+    <title>JAVA21-Stream(流)</title>
 </head>
 <body class="container"><div id="fastSearch">
   <input id="searchInput" tabindex="0">
@@ -164,7 +164,7 @@
 </style>
 <div id="content">
 <div>
-<h4>Java Stream</h4>
+<h4>JAVA21-Stream(流)</h4>
 <span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
 <span class="font-size-14 color-999">本文共 367 字，阅读约 2 分钟</span>
 
@@ -239,137 +239,137 @@
 </ul>
 <h4 id="optional的正确用法">Optional的正确用法</h4>
 <p>不要把它当成空指针用,它的正确用法是和函数式绑定</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">User</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> String name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">int</span> age<span style="color:#ff79c6">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">User</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> String name;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">int</span> age;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">User</span><span style="color:#ff79c6">(</span>String name<span style="color:#ff79c6">,</span> <span style="color:#8be9fd">int</span> age<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">age</span> <span style="color:#ff79c6">=</span> age<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">User</span>(String name, <span style="color:#8be9fd">int</span> age) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">age</span> <span style="color:#ff79c6">=</span> age;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">getName</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">getName</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> name;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setName</span><span style="color:#ff79c6">(</span>String name<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setName</span>(String name) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getAge</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> age<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getAge</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> age;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setAge</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> age<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">age</span> <span style="color:#ff79c6">=</span> age<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setAge</span>(<span style="color:#8be9fd">int</span> age) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">age</span> <span style="color:#ff79c6">=</span> age;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isWang</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> name<span style="color:#ff79c6">.</span><span style="color:#50fa7b">startsWith</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;王&#34;</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isWang</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> name.<span style="color:#50fa7b">startsWith</span>(<span style="color:#f1fa8c">&#34;王&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> Arrays<span style="color:#ff79c6">.</span><span style="color:#50fa7b">asList</span><span style="color:#ff79c6">(</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> User<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;张三&#34;</span><span style="color:#ff79c6">,</span> 20<span style="color:#ff79c6">),</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> User<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;李四&#34;</span><span style="color:#ff79c6">,</span> 25<span style="color:#ff79c6">),</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> User<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;王五&#34;</span><span style="color:#ff79c6">,</span> 23<span style="color:#ff79c6">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> Arrays.<span style="color:#50fa7b">asList</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> User(<span style="color:#f1fa8c">&#34;张三&#34;</span>, 20),
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> User(<span style="color:#f1fa8c">&#34;李四&#34;</span>, 25),
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> User(<span style="color:#f1fa8c">&#34;王五&#34;</span>, 23));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 反例
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        Optional<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> optionalUser <span style="color:#ff79c6">=</span> users<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stream</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">filter</span><span style="color:#ff79c6">(</span>User<span style="color:#ff79c6">::</span>isWang<span style="color:#ff79c6">).</span><span style="color:#50fa7b">findAny</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>optionalUser<span style="color:#ff79c6">.</span><span style="color:#50fa7b">isPresent</span><span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>optionalUser<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">getName</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> IllegalStateException<span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 反例</span>
+</span></span><span style="display:flex;"><span>        Optional<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> optionalUser <span style="color:#ff79c6">=</span> users.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">filter</span>(User::isWang).<span style="color:#50fa7b">findAny</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (optionalUser.<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(optionalUser.<span style="color:#50fa7b">get</span>().<span style="color:#50fa7b">getName</span>());
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> IllegalStateException();
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 正例
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        User user <span style="color:#ff79c6">=</span> users<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stream</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">filter</span><span style="color:#ff79c6">(</span>User<span style="color:#ff79c6">::</span>isWang<span style="color:#ff79c6">).</span><span style="color:#50fa7b">findAny</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">orElseThrow</span><span style="color:#ff79c6">(</span>IllegalStateException<span style="color:#ff79c6">::</span><span style="color:#ff79c6">new</span><span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>user<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getName</span><span style="color:#ff79c6">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 正例</span>
+</span></span><span style="display:flex;"><span>        User user <span style="color:#ff79c6">=</span> users.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">filter</span>(User::isWang).<span style="color:#50fa7b">findAny</span>().<span style="color:#50fa7b">orElseThrow</span>(IllegalStateException::<span style="color:#ff79c6">new</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(user.<span style="color:#50fa7b">getName</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="stream-test">Stream Test</h2>
 <ul>
 <li>Test 1</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem2</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 判断一段文本中是否包含关键词列表中的文本，如果包含任意一个关键词，返回true，否则返回false
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，text=&#34;catcatcat,boyboyboy&#34;, keywords=[&#34;boy&#34;, &#34;girl&#34;]，返回true
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，text=&#34;I am a boy&#34;, keywords=[&#34;cat&#34;, &#34;dog&#34;]，返回false
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">containsKeyword</span><span style="color:#ff79c6">(</span>String text<span style="color:#ff79c6">,</span> List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> keywords<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> keywords<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stream</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">anyMatch</span><span style="color:#ff79c6">(</span>text<span style="color:#ff79c6">::</span>contains<span style="color:#ff79c6">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 判断一段文本中是否包含关键词列表中的文本，如果包含任意一个关键词，返回true，否则返回false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，text=&#34;catcatcat,boyboyboy&#34;, keywords=[&#34;boy&#34;, &#34;girl&#34;]，返回true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，text=&#34;I am a boy&#34;, keywords=[&#34;cat&#34;, &#34;dog&#34;]，返回false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">containsKeyword</span>(String text, List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> keywords) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> keywords.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">anyMatch</span>(text::contains);
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>containsKeyword<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;catcatcat,boyboyboy&#34;</span><span style="color:#ff79c6">,</span> Arrays<span style="color:#ff79c6">.</span><span style="color:#50fa7b">asList</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;boy&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;girl&#34;</span><span style="color:#ff79c6">)));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>containsKeyword<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;I am a boy&#34;</span><span style="color:#ff79c6">,</span> Arrays<span style="color:#ff79c6">.</span><span style="color:#50fa7b">asList</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;cat&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;dog&#34;</span><span style="color:#ff79c6">)));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(containsKeyword(<span style="color:#f1fa8c">&#34;catcatcat,boyboyboy&#34;</span>, Arrays.<span style="color:#50fa7b">asList</span>(<span style="color:#f1fa8c">&#34;boy&#34;</span>, <span style="color:#f1fa8c">&#34;girl&#34;</span>)));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(containsKeyword(<span style="color:#f1fa8c">&#34;I am a boy&#34;</span>, Arrays.<span style="color:#50fa7b">asList</span>(<span style="color:#f1fa8c">&#34;cat&#34;</span>, <span style="color:#f1fa8c">&#34;dog&#34;</span>)));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>Test 2</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem3</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用流的方法，再把之前的题目做一遍吧
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 统计一个给定的字符串中，大写英文字母（A,B,C,...,Z）出现的次数。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，给定字符串&#34;AaBbCc1234ABC&#34;，返回6，因为该字符串中出现了6次大写英文字母ABCABC
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">countUpperCaseLetters</span><span style="color:#ff79c6">(</span>String str<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">)</span> str<span style="color:#ff79c6">.</span><span style="color:#50fa7b">chars</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">filter</span><span style="color:#ff79c6">(</span>Character<span style="color:#ff79c6">::</span>isUpperCase<span style="color:#ff79c6">).</span><span style="color:#50fa7b">count</span><span style="color:#ff79c6">();</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem3</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用流的方法，再把之前的题目做一遍吧</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 统计一个给定的字符串中，大写英文字母（A,B,C,...,Z）出现的次数。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，给定字符串&#34;AaBbCc1234ABC&#34;，返回6，因为该字符串中出现了6次大写英文字母ABCABC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">countUpperCaseLetters</span>(String str) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> (<span style="color:#8be9fd">int</span>) str.<span style="color:#50fa7b">chars</span>().<span style="color:#50fa7b">filter</span>(Character::isUpperCase).<span style="color:#50fa7b">count</span>();
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>countUpperCaseLetters<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;AaBbCc1234ABC&#34;</span><span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(countUpperCaseLetters(<span style="color:#f1fa8c">&#34;AaBbCc1234ABC&#34;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>Test 3</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem5</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> Integer id<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> String name<span style="color:#ff79c6">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem5</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> Integer id;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> String name;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        Order<span style="color:#ff79c6">(</span>Integer id<span style="color:#ff79c6">,</span> String name<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">id</span> <span style="color:#ff79c6">=</span> id<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        Order(Integer id, String name) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">id</span> <span style="color:#ff79c6">=</span> id;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Integer <span style="color:#50fa7b">getId</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> id<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Integer <span style="color:#50fa7b">getId</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> id;
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">getName</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> name<span style="color:#ff79c6">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">getName</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> name;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用流的方法，把订单处理成ID-&gt;订单的映射
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，传入参数[{id=1,name=&#39;肥皂&#39;},{id=2,name=&#39;牙刷&#39;}]
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 返回一个映射{1-&gt;Order(1,&#39;肥皂&#39;),2-&gt;Order(2,&#39;牙刷&#39;)}
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> Map<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">,</span> Order<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">toMap</span><span style="color:#ff79c6">(</span>List<span style="color:#ff79c6">&lt;</span>Order<span style="color:#ff79c6">&gt;</span> orders<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> orders<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stream</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">collect</span><span style="color:#ff79c6">(</span>Collectors<span style="color:#ff79c6">.</span><span style="color:#50fa7b">toMap</span><span style="color:#ff79c6">((</span>order <span style="color:#ff79c6">-&gt;</span> order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">id</span><span style="color:#ff79c6">),</span> <span style="color:#ff79c6">(</span>order <span style="color:#ff79c6">-&gt;</span> order<span style="color:#ff79c6">)));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用流的方法，把订单处理成ID-&gt;订单的映射</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，传入参数[{id=1,name=&#39;肥皂&#39;},{id=2,name=&#39;牙刷&#39;}]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 返回一个映射{1-&gt;Order(1,&#39;肥皂&#39;),2-&gt;Order(2,&#39;牙刷&#39;)}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> Map<span style="color:#ff79c6">&lt;</span>Integer, Order<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">toMap</span>(List<span style="color:#ff79c6">&lt;</span>Order<span style="color:#ff79c6">&gt;</span> orders) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> orders.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">toMap</span>((order <span style="color:#ff79c6">-&gt;</span> order.<span style="color:#50fa7b">id</span>), (order <span style="color:#ff79c6">-&gt;</span> order)));
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>toMap<span style="color:#ff79c6">(</span>Arrays<span style="color:#ff79c6">.</span><span style="color:#50fa7b">asList</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> Order<span style="color:#ff79c6">(</span>1<span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;肥皂&#34;</span><span style="color:#ff79c6">),</span> <span style="color:#ff79c6">new</span> Order<span style="color:#ff79c6">(</span>2<span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;牙刷&#34;</span><span style="color:#ff79c6">))));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(toMap(Arrays.<span style="color:#50fa7b">asList</span>(<span style="color:#ff79c6">new</span> Order(1, <span style="color:#f1fa8c">&#34;肥皂&#34;</span>), <span style="color:#ff79c6">new</span> Order(2, <span style="color:#f1fa8c">&#34;牙刷&#34;</span>))));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>Test 4</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem6</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用流的方法，把所有长度等于1的单词挑出来，然后用逗号连接起来
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 例如，传入参数words=[&#39;a&#39;,&#39;bb&#39;,&#39;ccc&#39;,&#39;d&#39;,&#39;e&#39;]
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 返回字符串a,d,e
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> String <span style="color:#50fa7b">filterThenConcat</span><span style="color:#ff79c6">(</span>Set<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> words<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> words<span style="color:#ff79c6">.</span><span style="color:#50fa7b">stream</span><span style="color:#ff79c6">().</span><span style="color:#50fa7b">filter</span><span style="color:#ff79c6">(</span>ch <span style="color:#ff79c6">-&gt;</span> ch<span style="color:#ff79c6">.</span><span style="color:#50fa7b">length</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">==</span> 1<span style="color:#ff79c6">).</span><span style="color:#50fa7b">collect</span><span style="color:#ff79c6">(</span>Collectors<span style="color:#ff79c6">.</span><span style="color:#50fa7b">joining</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;,&#34;</span><span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Problem6</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用流的方法，把所有长度等于1的单词挑出来，然后用逗号连接起来</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 例如，传入参数words=[&#39;a&#39;,&#39;bb&#39;,&#39;ccc&#39;,&#39;d&#39;,&#39;e&#39;]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 返回字符串a,d,e</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> String <span style="color:#50fa7b">filterThenConcat</span>(Set<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> words) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> words.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">filter</span>(ch <span style="color:#ff79c6">-&gt;</span> ch.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">==</span> 1).<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">joining</span>(<span style="color:#f1fa8c">&#34;,&#34;</span>));
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
-</span></span><span style="display:flex;"><span>        Set<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> set <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> LinkedHashSet<span style="color:#ff79c6">&lt;&gt;(</span>Arrays<span style="color:#ff79c6">.</span><span style="color:#50fa7b">asList</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;a&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;bb&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;ccc&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;d&#34;</span><span style="color:#ff79c6">,</span> <span style="color:#f1fa8c">&#34;e&#34;</span><span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span>filterThenConcat<span style="color:#ff79c6">(</span>set<span style="color:#ff79c6">));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Set<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> set <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> LinkedHashSet<span style="color:#ff79c6">&lt;&gt;</span>(Arrays.<span style="color:#50fa7b">asList</span>(<span style="color:#f1fa8c">&#34;a&#34;</span>, <span style="color:#f1fa8c">&#34;bb&#34;</span>, <span style="color:#f1fa8c">&#34;ccc&#34;</span>, <span style="color:#f1fa8c">&#34;d&#34;</span>, <span style="color:#f1fa8c">&#34;e&#34;</span>));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(filterThenConcat(set));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 
 <script src="https://utteranc.es/client.js"
@@ -383,17 +383,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -403,11 +403,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -417,7 +417,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -434,7 +434,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>

@@ -181,6 +181,8 @@
 </div>
 
 
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-03 文中内容可能已过时，请注意甄别。</div>
+
 <br>
 <p>Vector 是《<a href="https://kaisery.github.io/trpl-zh-cn/ch08-01-vectors.html">Rust 程序设计语言</a>》第8.1章 <code>使用 Vector 储存列表</code> 而来的结果</p>
 <blockquote>
@@ -199,12 +201,12 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 而当 Vec 存放某个特定类型时，那个类型位于尖括号中。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 在更实际的代码中，一旦插入值 Rust 就可以推断出想要存放的类型，所以你很少会需要这些类型注解。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> v1: <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">i32</span><span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Vec</span>::new(); <span style="color:#6272a4">// 创建一个只能装i32类型的Vector容器
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, v1);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, v1);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 更常见的做法是使用初始值来创建一个 Vec，而且为了方便 Rust 提供了 vec! 宏。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 这个宏会根据我们提供的值来创建一个新的 Vec。
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> v2 <span style="color:#ff79c6">=</span> vec![<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>];
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, v2);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, v2);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>Vector 的更新与读取</li>
@@ -216,17 +218,17 @@
 </span></span><span style="display:flex;"><span>    v3.push(<span style="color:#bd93f9">2</span>);
 </span></span><span style="display:flex;"><span>    v3.push(<span style="color:#bd93f9">3</span>);
 </span></span><span style="display:flex;"><span>    v3.push(<span style="color:#bd93f9">4</span>);
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, v3);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, v3);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 读取
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 索引语法,这种方法当你引用一个不存在的索引会引发panic异常，不推荐
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> v4 <span style="color:#ff79c6">=</span> vec![<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>];
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> third: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">i32</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>v4[<span style="color:#bd93f9">2</span>];
-</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;The third element is {}&#34;</span>, third);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;The third element is </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, third);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 使用 Vector 的 get 方法,这种方法当你引用一个不存在的索引会返回None
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">match</span> v4.get(<span style="color:#bd93f9">2</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Some</span>(third) <span style="color:#ff79c6">=&gt;</span> println!(<span style="color:#f1fa8c">&#34;The third element is {}&#34;</span>, third),
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Some</span>(third) <span style="color:#ff79c6">=&gt;</span> println!(<span style="color:#f1fa8c">&#34;The third element is </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, third),
 </span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">None</span> <span style="color:#ff79c6">=&gt;</span> println!(<span style="color:#f1fa8c">&#34;There is no third element.&#34;</span>),
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Rust 有两个引用元素的方法的原因是程序可以选择如何处理当索引值在 vector 中没有对应值的情况。
@@ -238,14 +240,14 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 不能修改
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> v5 <span style="color:#ff79c6">=</span> vec![<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>];
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> v5 {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, i);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, i);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 遍历其可变引用并修改它
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> v6 <span style="color:#ff79c6">=</span> vec![<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>];
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> v6 {
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">*</span>i <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">50</span>; <span style="color:#6272a4">// 为了修改可变引用所指向的值，在使用 += 运算符之前必须使用解引用运算符（*）获取 i 中的值。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>, i);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, i);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
@@ -265,7 +267,7 @@
 </span></span><span style="display:flex;"><span>        SpreadsheetCell::Float(<span style="color:#bd93f9">10.12</span>),
 </span></span><span style="display:flex;"><span>    ];
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> row {
-</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;{:?}&#34;</span>, i);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, i);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
@@ -281,17 +283,17 @@
 </div>
 </div><p class="footer text-center color-999">标签列表</p>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">ccna</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/compression/">compression</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/docker/">docker</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/golang/">golang</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">hugo</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/java/">java</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
 
@@ -301,11 +303,11 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">pyenv</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">raylib</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/rust/">rust</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
 
@@ -315,7 +317,7 @@
 
   <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
 
-  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">tokio</a>
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
 
   <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
 
@@ -332,7 +334,7 @@
   <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
 
 
-<p class="footer text-center color-999">&copy; 2022 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
 <p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
 <script src="/js/fuse.min.js"></script>
 <script src="/js/fastsearch.js"></script>
