@@ -14,7 +14,7 @@
     <loc>http://wjinlei.github.io/tags/rust/</loc>
     <lastmod>2022-10-13T11:13:02+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-tokio2/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-tokio2/</loc>
     <lastmod>2022-10-13T11:13:02+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/</loc>
@@ -26,136 +26,136 @@
     <loc>http://wjinlei.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2022-10-13T11:13:02+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-tokio1/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-tokio1/</loc>
     <lastmod>2022-10-12T16:02:33+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-async/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-async/</loc>
     <lastmod>2022-10-12T11:24:29+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-adv_func/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-adv_func/</loc>
     <lastmod>2022-10-11T14:31:51+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-adv_types/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-adv_types/</loc>
     <lastmod>2022-09-29T14:49:46+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-adv_trait/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-adv_trait/</loc>
     <lastmod>2022-09-29T10:14:03+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-unsafe/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-unsafe/</loc>
     <lastmod>2022-09-23T14:41:42+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-pattern/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-pattern/</loc>
     <lastmod>2022-09-23T11:15:33+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-oop/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-oop/</loc>
     <lastmod>2022-09-22T11:51:35+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-send_sync/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-send_sync/</loc>
     <lastmod>2022-09-21T10:46:25+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-atomic/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-atomic/</loc>
     <lastmod>2022-08-30T15:45:53+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-condvar/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-condvar/</loc>
     <lastmod>2022-08-26T12:32:43+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-mutex/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-mutex/</loc>
     <lastmod>2022-08-25T10:20:57+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-channel/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-channel/</loc>
     <lastmod>2022-08-24T16:02:37+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-thread/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-thread/</loc>
     <lastmod>2022-08-24T13:47:53+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-circular_reference/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-circular_reference/</loc>
     <lastmod>2022-08-19T13:39:48+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-refcell/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-refcell/</loc>
     <lastmod>2022-08-17T12:00:04+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-rc/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-rc/</loc>
     <lastmod>2022-08-17T09:45:45+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-drop/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-drop/</loc>
     <lastmod>2022-08-16T16:24:42+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-deref/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-deref/</loc>
     <lastmod>2022-08-16T15:16:49+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-box/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-box/</loc>
     <lastmod>2022-08-16T13:47:20+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-iterator/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-iterator/</loc>
     <lastmod>2022-08-15T15:16:11+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-closures/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-closures/</loc>
     <lastmod>2022-08-15T10:03:36+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-tests/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-tests/</loc>
     <lastmod>2022-08-12T10:14:02+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-lifetime/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-lifetime/</loc>
     <lastmod>2022-08-10T14:42:31+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-trait/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-trait/</loc>
     <lastmod>2022-08-09T13:54:52+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-generics/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-generics/</loc>
     <lastmod>2022-08-08T17:17:23+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-result/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-result/</loc>
     <lastmod>2022-08-08T13:43:04+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-hashmap/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-hashmap/</loc>
     <lastmod>2022-08-04T14:28:00+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-string/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-string/</loc>
     <lastmod>2022-08-04T10:31:13+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-vector/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-vector/</loc>
     <lastmod>2022-08-03T14:46:41+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-mod/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-mod/</loc>
     <lastmod>2022-08-03T10:45:50+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-iflet/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-iflet/</loc>
     <lastmod>2022-08-02T15:44:53+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-match/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-match/</loc>
     <lastmod>2022-08-02T14:19:35+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-option/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-option/</loc>
     <lastmod>2022-07-25T17:09:02+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-enum/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-enum/</loc>
     <lastmod>2022-07-25T16:00:57+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-method/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-method/</loc>
     <lastmod>2022-07-25T15:13:51+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-struct/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-struct/</loc>
     <lastmod>2022-07-25T14:29:56+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-slice/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-slice/</loc>
     <lastmod>2022-07-22T17:10:59+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-references_and_borrowing/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-references_and_borrowing/</loc>
     <lastmod>2022-07-22T16:03:37+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-ownership/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-ownership/</loc>
     <lastmod>2022-07-21T14:21:58+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-function/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-function/</loc>
     <lastmod>2022-07-21T14:02:46+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-mutvar/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-mutvar/</loc>
     <lastmod>2022-07-20T15:13:53+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-guessing_game/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-guessing_game/</loc>
     <lastmod>2022-07-20T14:12:50+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-hello/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-hello/</loc>
     <lastmod>2022-07-20T11:40:57+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/linux/</loc>
@@ -164,7 +164,7 @@
     <loc>http://wjinlei.github.io/categories/linux/</loc>
     <lastmod>2022-07-11T19:36:30+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-steam/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-steam/</loc>
     <lastmod>2022-07-11T19:36:30+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/steam/</loc>
@@ -173,7 +173,7 @@
     <loc>http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/</loc>
     <lastmod>2022-07-11T19:36:30+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-7/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-7/</loc>
     <lastmod>2022-07-09T19:44:58+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/golang/</loc>
@@ -185,25 +185,25 @@
     <loc>http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/</loc>
     <lastmod>2022-07-09T19:44:58+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-6/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-6/</loc>
     <lastmod>2022-07-07T20:52:57+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-5/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-5/</loc>
     <lastmod>2022-07-05T21:10:41+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-4/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-4/</loc>
     <lastmod>2022-07-04T21:36:09+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-3/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-3/</loc>
     <lastmod>2022-07-04T20:09:40+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-2/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-2/</loc>
     <lastmod>2022-07-03T22:20:03+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-raylib-1/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-raylib-1/</loc>
     <lastmod>2022-07-03T14:56:46+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-kof/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-kof/</loc>
     <lastmod>2022-07-02T16:34:20+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/mame/</loc>
@@ -218,13 +218,13 @@
     <loc>http://wjinlei.github.io/tags/compression/</loc>
     <lastmod>2022-07-01T12:36:59+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-compression-png/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-compression-png/</loc>
     <lastmod>2022-07-01T12:36:59+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/java/</loc>
     <lastmod>2021-11-24T19:36:28+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day30/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day30/</loc>
     <lastmod>2021-11-24T19:36:28+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/spring/</loc>
@@ -236,34 +236,34 @@
     <loc>http://wjinlei.github.io/tags/docker/</loc>
     <lastmod>2021-11-23T06:49:45+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day29/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day29/</loc>
     <lastmod>2021-11-23T06:49:45+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day28/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day28/</loc>
     <lastmod>2021-11-22T12:52:39+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2021-11-22T12:52:39+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day27/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day27/</loc>
     <lastmod>2021-11-21T05:54:12+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day26/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day26/</loc>
     <lastmod>2021-11-20T06:09:28+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day25/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day25/</loc>
     <lastmod>2021-11-19T10:40:50+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/mybatis/</loc>
     <lastmod>2021-11-19T10:40:50+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day24/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day24/</loc>
     <lastmod>2021-11-18T11:20:01+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day23/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day23/</loc>
     <lastmod>2021-11-18T00:41:46+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day22/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day22/</loc>
     <lastmod>2021-11-17T02:34:09+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
@@ -272,40 +272,40 @@
     <loc>http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2021-11-17T02:34:09+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day21/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day21/</loc>
     <lastmod>2021-11-16T19:59:52+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day20/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day20/</loc>
     <lastmod>2021-11-16T00:48:47+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day13/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day13/</loc>
     <lastmod>2021-11-11T20:51:37+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day12/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day12/</loc>
     <lastmod>2021-11-08T15:07:49+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day11/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day11/</loc>
     <lastmod>2021-11-07T16:19:57+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/sql/</loc>
     <lastmod>2021-11-07T16:19:57+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day10/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day10/</loc>
     <lastmod>2021-11-06T10:23:26+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day9/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day9/</loc>
     <lastmod>2021-11-05T07:53:50+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/ccna/</loc>
     <lastmod>2021-11-05T07:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/common-ccna/</loc>
+    <loc>http://wjinlei.github.io/posts/sundry/sundry-ccna/</loc>
     <lastmod>2021-11-05T07:00:49+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/categories/%E9%80%9A%E7%94%A8%E5%88%86%E7%B1%BB/</loc>
     <lastmod>2021-11-05T07:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day8/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day8/</loc>
     <lastmod>2021-11-04T09:19:55+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/maven/</loc>
@@ -314,55 +314,55 @@
     <loc>http://wjinlei.github.io/tags/hugo/</loc>
     <lastmod>2021-11-04T03:52:01+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/common-hugo-write-blog/</loc>
+    <loc>http://wjinlei.github.io/posts/sundry/sundry-hugo-write-blog/</loc>
     <lastmod>2021-11-04T03:52:01+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day7/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day7/</loc>
     <lastmod>2021-11-04T02:30:15+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day6/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day6/</loc>
     <lastmod>2021-11-04T02:26:20+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day5/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day5/</loc>
     <lastmod>2021-11-04T02:19:51+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day4/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day4/</loc>
     <lastmod>2021-11-04T02:14:56+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day3/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day3/</loc>
     <lastmod>2021-11-04T02:13:02+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day2/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day2/</loc>
     <lastmod>2021-11-04T02:07:47+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-java-day1/</loc>
+    <loc>http://wjinlei.github.io/posts/code-java/code-java-day1/</loc>
     <lastmod>2021-11-04T02:03:13+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-go-adapter/</loc>
+    <loc>http://wjinlei.github.io/posts/code-golang/code-go-adapter/</loc>
     <lastmod>2021-11-04T01:42:38+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rust-adapter/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rust-adapter/</loc>
     <lastmod>2021-11-04T01:41:53+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/common-docker/</loc>
+    <loc>http://wjinlei.github.io/posts/sundry/sundry-docker/</loc>
     <lastmod>2021-11-04T01:40:42+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/code-rustini/</loc>
+    <loc>http://wjinlei.github.io/posts/code-rust/code-rustini/</loc>
     <lastmod>2021-11-04T01:39:54+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-rpmbuild/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-rpmbuild/</loc>
     <lastmod>2021-11-04T01:38:02+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-debbuild/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-debbuild/</loc>
     <lastmod>2021-11-04T01:37:11+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/tags/pyenv/</loc>
     <lastmod>2021-11-04T01:33:25+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-pyenv/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-pyenv/</loc>
     <lastmod>2021-11-04T01:33:25+08:00</lastmod>
   </url><url>
-    <loc>http://wjinlei.github.io/posts/linux-rcm/</loc>
+    <loc>http://wjinlei.github.io/posts/os/linux/linux-rcm/</loc>
     <lastmod>2021-11-04T01:24:49+08:00</lastmod>
   </url><url>
     <loc>http://wjinlei.github.io/posts/readme/</loc>

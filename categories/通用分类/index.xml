@@ -10,23 +10,23 @@
     <atom:link href="http://wjinlei.github.io/categories/%E9%80%9A%E7%94%A8%E5%88%86%E7%B1%BB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco CCNA学习笔记</title>
-      <link>http://wjinlei.github.io/posts/common-ccna/</link>
+      <link>http://wjinlei.github.io/posts/sundry/sundry-ccna/</link>
       <pubDate>Fri, 05 Nov 2021 07:00:49 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/common-ccna/</guid>
+      <guid>http://wjinlei.github.io/posts/sundry/sundry-ccna/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;这是我学习&lt;code&gt;Cisco CCNA&lt;/code&gt;的笔记，虽然现在思科在国内应该说应用不多了，但对于学习网络基础知识还是非常有帮助的。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;小小的请求，转载请注明出处，谢谢。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;重点摘要&#34;&gt;重点摘要&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;OSI、TCP/IP&#xA;封装的详细过程&#xA;交换机&#xA;研究网络层报头&#xA;研究传输橙报头&#xA;研究数据链路层帧头&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;网络的定义&#34;&gt;网络的定义&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;介质:一般指双绞线&#xA;中间系统:网络设备&#xA;终端系统:一般指PC和服务器&#xA;1).一组使用介质(线缆)互联的中间系统(网络设备)以及终端系统(PC和服务器)&#xA;2).工作组(Network Group),微软定义的最早期的网络雏形,可以理解为它是一个局域网范畴.是最简单的,范围最小的局域网&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;网络的意义&#34;&gt;网络的意义&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;通过让应用程序之间彼此传递信息,从而实现资源共享.&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;一些网络术语&#34;&gt;一些网络术语&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;speed(速度):物理特性,例如10Mbit/s&#xA;cost(开销):计算某种协议到达目标的最短距离称之为开销&#xA;security(安全性):IPSEC VPN,MPLS VPN,SSH,...&#xA;availability(可用性):衡量设备在投入使用后实际使用的效能&#xA;reliability(可靠性):系统在一定时间内,在一定条件下无故障的执行指定功能的能力&#xA;10Base2:使用提供10M带宽基带传输的同轴电缆中的细缆&#xA;10Base5:使用提供10M带宽基带传输的同轴电缆中的粗缆&#xA;10BaseT:使用提供10M带宽基带传输的双绞线&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     <item>
       <title>使用hugo来写博客</title>
-      <link>http://wjinlei.github.io/posts/common-hugo-write-blog/</link>
+      <link>http://wjinlei.github.io/posts/sundry/sundry-hugo-write-blog/</link>
       <pubDate>Thu, 04 Nov 2021 03:52:01 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/common-hugo-write-blog/</guid>
+      <guid>http://wjinlei.github.io/posts/sundry/sundry-hugo-write-blog/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;关于&lt;code&gt;hugo&lt;/code&gt;的一切,你都可以查看其 &lt;a href=&#34;https://gohugo.io/&#34;&gt;官网&lt;/a&gt; 来了解&#xA;，我建议是跟着它的 &lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;quick-start&lt;/a&gt; 一步一步来操作&lt;/p&gt;&#xA;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;hugo&lt;/code&gt;通过&lt;code&gt;Github&lt;/code&gt;发布，这里我推荐你 &lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;下载&lt;/a&gt; &lt;code&gt;extended&lt;/code&gt;版本，而且最好是&lt;code&gt;.tar.gz&lt;/code&gt;或&lt;code&gt;.zip&lt;/code&gt;版本的&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;设置环境变量&lt;/code&gt;，将目录添加到你的&lt;code&gt;Path&lt;/code&gt;变量中，以便&lt;code&gt;命令行&lt;/code&gt;能够找到&lt;code&gt;hugo&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title>几行docker命令</title>
-      <link>http://wjinlei.github.io/posts/common-docker/</link>
+      <link>http://wjinlei.github.io/posts/sundry/sundry-docker/</link>
       <pubDate>Thu, 04 Nov 2021 01:40:42 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/common-docker/</guid>
+      <guid>http://wjinlei.github.io/posts/sundry/sundry-docker/</guid>
       <description></description>
     </item>
     <item>
@@ -34,7 +34,7 @@
       <link>http://wjinlei.github.io/posts/readme/</link>
       <pubDate>Thu, 04 Nov 2021 00:59:33 +0800</pubDate>
       <guid>http://wjinlei.github.io/posts/readme/</guid>
-      <description>&lt;h3 id=&#34;关于我&#34;&gt;关于我&lt;/h3&gt;&#xA;&lt;p&gt;我喜欢&lt;code&gt;骑行&lt;/code&gt;，也是一个&lt;code&gt;Linux&lt;/code&gt;用户，也是一个&lt;code&gt;程序猿&lt;/code&gt; 我喜欢&lt;code&gt;简单实用&lt;/code&gt;的东西，当然&lt;code&gt;不简单但是实用&lt;/code&gt;的东西我也喜欢，哈哈哈&lt;br&gt;&#xA;我&lt;code&gt;除了玩游戏使用 Windows&lt;/code&gt;以外，&lt;code&gt;其他情况下几乎都使用 Linux&lt;/code&gt;，我的编辑器是 &lt;code&gt;neovim&lt;/code&gt; 你可以在这里找到我的&lt;a href=&#34;https://github.com/Wjinlei/nvim&#34;&gt;配置&lt;/a&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;PS: 我偶尔会在B站发一些&lt;a href=&#34;https://space.bilibili.com/393271893&#34;&gt;视频教程&lt;/a&gt;，欢迎关注我，哈哈哈&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;我最常使用的语言是&lt;code&gt;Golang&lt;/code&gt;，当然我有时也会写&lt;code&gt;vue&lt;/code&gt;和&lt;code&gt;C&lt;/code&gt;，我还比较看好&lt;code&gt;Rust&lt;/code&gt;，目前也正在学习它&lt;br&gt;&#xA;我希望在这里能够和大家分享关于&lt;code&gt;Linux&lt;/code&gt;或&lt;code&gt;编程语言&lt;/code&gt;等方面的知识，&lt;code&gt;希望我的文章能够帮助到你&lt;/code&gt;。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;PS: 秀一张我的&lt;code&gt;Linux&lt;/code&gt;桌面截图，哈哈哈哈&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/readme/dwm-preview.png&#34; alt=&#34;我的Linux桌面&#34;&gt;&lt;/p&gt;</description>
+      <description>&lt;h3 id=&#34;关于我&#34;&gt;关于我&lt;/h3&gt;&#xA;&lt;p&gt;我是一个爱折腾的人，我喜欢玩各种&lt;code&gt;游戏&lt;/code&gt;，折腾各种&lt;code&gt;Mod&lt;/code&gt;，我会用&lt;code&gt;Linux&lt;/code&gt;但我也不排斥&lt;code&gt;Windows&lt;/code&gt;。&lt;br&gt;&#xA;我有一套基于&lt;code&gt;Neovim&lt;/code&gt;的配置，你可以在这里找到我的&lt;a href=&#34;https://github.com/Wjinlei/nvim&#34;&gt;Config&lt;/a&gt;，我偶尔会在B站发一些&lt;a href=&#34;https://space.bilibili.com/393271893&#34;&gt;视频教程&lt;/a&gt;，欢迎关注我。&lt;br&gt;&#xA;目前我正在学习&lt;code&gt;C#游戏开发&lt;/code&gt;，博客的文章记录我学习的一些&lt;code&gt;笔记心得&lt;/code&gt;，如果也能帮到你，我也会很开心，^-^。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

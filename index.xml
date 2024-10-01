@@ -10,625 +10,625 @@
     <atom:link href="http://wjinlei.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rust 学习笔记(45)-异步运行时Tokio</title>
-      <link>http://wjinlei.github.io/posts/code-rust-tokio2/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-tokio2/</link>
       <pubDate>Thu, 13 Oct 2022 11:13:02 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-tokio2/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-tokio2/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://tokio.rs/tokio/tutorial/spawning&#34;&gt;Tokio官方文档&lt;/a&gt;》&lt;code&gt;Spawning&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://course.rs/async-rust/async/getting-started.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第4.2章 &lt;code&gt;Tokio 使用指南&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;这一节我们通过写一个简单的redis服务端来继续深入学习Tokio&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(44)-异步运行时Tokio</title>
-      <link>http://wjinlei.github.io/posts/code-rust-tokio1/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-tokio1/</link>
       <pubDate>Wed, 12 Oct 2022 16:02:33 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-tokio1/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-tokio1/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://tokio.rs/tokio/tutorial/setup&#34;&gt;Tokio官方文档&lt;/a&gt;》&lt;code&gt;Setup&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://tokio.rs/tokio/tutorial/hello-tokio&#34;&gt;Tokio官方文档&lt;/a&gt;》&lt;code&gt;Hello Tokio&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://course.rs/async-rust/async/getting-started.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第4.2章 &lt;code&gt;Tokio 使用指南&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;Async Rust&lt;/code&gt;，最最重要的莫过于底层的&lt;code&gt;异步运行时&lt;/code&gt;，它提供了执行器、任务调度、异步 API 等核心服务。&lt;br&gt;&#xA;&lt;code&gt;async/await&lt;/code&gt; 特性编写的异步代码要运行起来，就必须依赖于&lt;code&gt;异步运行时&lt;/code&gt;，否则这些代码将毫无用处。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Tokio 是由 &lt;code&gt;社区驱动的&lt;/code&gt; Rust 中最有名的&lt;code&gt;异步运行时&lt;/code&gt;，也是目前&lt;code&gt;Rust 异步运行时&lt;/code&gt;的&lt;code&gt;事实标准&lt;/code&gt;&lt;br&gt;&#xA;那么从这一节开始，我们将一起学习 &lt;code&gt;Tokio&lt;/code&gt; 的常见用法，让我们开始吧&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(43)-异步编程async</title>
-      <link>http://wjinlei.github.io/posts/code-rust-async/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-async/</link>
       <pubDate>Wed, 12 Oct 2022 11:24:29 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-async/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-async/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://course.rs/async-rust/async/getting-started.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第4.1章 &lt;code&gt;Rust 异步编程&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;什么是异步编程？&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;异步编程允许我们同时并发运行大量的任务，却仅仅需要&lt;code&gt;几个&lt;/code&gt;甚至&lt;code&gt;一个&lt;/code&gt; OS 线程或 CPU 核心&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(42)-高级函数</title>
-      <link>http://wjinlei.github.io/posts/code-rust-adv_func/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-adv_func/</link>
       <pubDate>Tue, 11 Oct 2022 14:31:51 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-adv_func/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-adv_func/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch19-05-advanced-functions-and-closures.html&#34;&gt;Rust程序设计语言&lt;/a&gt;》第19.4章 &lt;code&gt;高级函数&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(41)-高级类型</title>
-      <link>http://wjinlei.github.io/posts/code-rust-adv_types/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-adv_types/</link>
       <pubDate>Thu, 29 Sep 2022 14:49:46 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-adv_types/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-adv_types/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html&#34;&gt;Rust程序设计语言&lt;/a&gt;》第19.3章 &lt;code&gt;高级类型&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html#%E4%BB%8E%E4%B8%8D%E8%BF%94%E5%9B%9E%E7%9A%84-never-type&#34;&gt;Rust程序设计语言&lt;/a&gt;》第19.3章 &lt;code&gt;从不返回的 never type&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html#%E5%8A%A8%E6%80%81%E5%A4%A7%E5%B0%8F%E7%B1%BB%E5%9E%8B%E5%92%8C-sized-trait&#34;&gt;Rust程序设计语言&lt;/a&gt;》第19.3章 &lt;code&gt;动态大小类型和 Sized trait&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Rust 的类型系统有一些我们曾经提到但没有讨论过的功能。包括 &lt;code&gt;newtype 模式&lt;/code&gt;，&lt;code&gt;类型别名&lt;/code&gt;，&lt;code&gt;!&lt;/code&gt;，和 &lt;code&gt;动态大小类型&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(40)-高级trait</title>
-      <link>http://wjinlei.github.io/posts/code-rust-adv_trait/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-adv_trait/</link>
       <pubDate>Thu, 29 Sep 2022 10:14:03 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-adv_trait/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-adv_trait/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch19-03-advanced-traits.html&#34;&gt;Rust程序设计语言&lt;/a&gt;》第19.2章 &lt;code&gt;高级 trait&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;本节我们将学习 &lt;code&gt;trait&lt;/code&gt; 的一些高级用法，它们包括&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;关联类型&lt;/li&gt;&#xA;&lt;li&gt;默认泛型类型参数&lt;/li&gt;&#xA;&lt;li&gt;运算符重载&lt;/li&gt;&#xA;&lt;li&gt;完全限定语法 &lt;code&gt;&amp;lt;Type as Trait&amp;gt;::function(receiver_if_method, next_arg, ...);&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;在 &lt;code&gt;trait&lt;/code&gt; 中需要用到另一个 &lt;code&gt;trait&lt;/code&gt; 的某个功能，说白了需要能够依赖相关的 &lt;code&gt;trait&lt;/code&gt; 也被实现。&lt;/li&gt;&#xA;&lt;li&gt;newtype &lt;code&gt;模式(注意是模式，不是关键字)&lt;/code&gt;用于在&lt;code&gt;外部crate&lt;/code&gt; 上实现 &lt;code&gt;外部trait&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(39)-unsafe</title>
-      <link>http://wjinlei.github.io/posts/code-rust-unsafe/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-unsafe/</link>
       <pubDate>Fri, 23 Sep 2022 14:41:42 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-unsafe/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-unsafe/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch19-01-unsafe-rust.html&#34;&gt;Rust程序设计语言&lt;/a&gt;》第19.1章 &lt;code&gt;不安全 Rust&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://course.rs/advance/unsafe/superpowers.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.9.1章 &lt;code&gt;五种兵器&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;目前为止讨论过的代码都有 Rust 在&lt;code&gt;编译时&lt;/code&gt;会强制执行的&lt;code&gt;内存安全检查&lt;/code&gt;。然而，Rust 还隐藏有第二种语言，它&lt;code&gt;不会强制执行这类内存安全检查&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;说白了，我们可以让Rust不执行内存安全检查，这被称为 &lt;code&gt;不安全 Rust（unsafe Rust）&lt;/code&gt;。&lt;br&gt;&#xA;此时，你就必须对代码的正确性负责，如果不安全代码出错了，比如解引用空指针，可能会导致不安全的内存使用。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(38)-模式匹配</title>
-      <link>http://wjinlei.github.io/posts/code-rust-pattern/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-pattern/</link>
       <pubDate>Fri, 23 Sep 2022 11:15:33 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-pattern/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-pattern/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch18-03-pattern-syntax.html&#34;&gt;Rust程序设计语言&lt;/a&gt;》第18.3章 &lt;code&gt;模式语法&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;模式是 Rust 中特殊的语法，它用来匹配类型中的结构，无论类型是简单还是复杂。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(37)-Rust的面向对象</title>
-      <link>http://wjinlei.github.io/posts/code-rust-oop/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-oop/</link>
       <pubDate>Thu, 22 Sep 2022 11:51:35 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-oop/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-oop/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch17-01-what-is-oo.html&#34;&gt;Rust程序设计语言&lt;/a&gt;》第17.1章 &lt;code&gt;面向对象语言的特征&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;我们通常认为一门编程语言是否支持面向对象特性一般是看它是否支持&lt;code&gt;封装&lt;/code&gt;，&lt;code&gt;继承&lt;/code&gt;，&lt;code&gt;多态&lt;/code&gt;，这也就是&lt;code&gt;面向对象的三大特性&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(36)-Send与Sync</title>
-      <link>http://wjinlei.github.io/posts/code-rust-send_sync/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-send_sync/</link>
       <pubDate>Wed, 21 Sep 2022 10:46:25 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-send_sync/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-send_sync/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://course.rs/advance/concurrency-with-threads/send-sync.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.6.6章 &lt;code&gt;基于 Send 和 Sync 的线程安全&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(35)-Atomic原子操作</title>
-      <link>http://wjinlei.github.io/posts/code-rust-atomic/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-atomic/</link>
       <pubDate>Tue, 30 Aug 2022 15:45:53 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-atomic/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-atomic/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://course.rs/advance/concurrency-with-threads/sync2.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.6.5章 &lt;code&gt;线程同步：Atomic 原子类型与内存顺序&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(34)-Condvar</title>
-      <link>http://wjinlei.github.io/posts/code-rust-condvar/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-condvar/</link>
       <pubDate>Fri, 26 Aug 2022 12:32:43 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-condvar/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-condvar/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://course.rs/advance/concurrency-with-threads/sync1.html#%E7%94%A8%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8Fcondvar%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.6.4章 &lt;code&gt;用条件变量(Condvar)控制线程的同步&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;如何控制线程执行的顺序?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;锁&lt;/code&gt;可以保证&lt;code&gt;线程安全&lt;/code&gt;，但有时我们想&lt;code&gt;控制线程执行的顺序&lt;/code&gt;该怎么办呢?&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;答: Rust 为我们提供了而 &lt;code&gt;Condvar(Condition Variables)&lt;/code&gt; 条件变量&lt;br&gt;&#xA;它通常和&lt;code&gt;Mutex&amp;lt;T&amp;gt;&lt;/code&gt;一起使用，一般用于&lt;code&gt;生产者消费者模型&lt;/code&gt;，它可以让一个&lt;code&gt;线程进入等待(锁)&lt;/code&gt;，直至被其他线程&lt;code&gt;唤醒&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(33)-Mutex</title>
-      <link>http://wjinlei.github.io/posts/code-rust-mutex/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-mutex/</link>
       <pubDate>Thu, 25 Aug 2022 10:20:57 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-mutex/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-mutex/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch16-03-shared-state.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第16.2章 &lt;code&gt;共享状态并发&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://course.rs/advance/concurrency-with-threads/sync1.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.6.4章 &lt;code&gt;线程同步：锁、Condvar 和信号量&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;除了&lt;/code&gt;上一章的&lt;code&gt;Channel(信道)&lt;/code&gt;以外，Rust也可以通过&lt;code&gt;操作共享内存&lt;/code&gt;的方式在&lt;code&gt;多个线程之间共享数据&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;两种方式有什么区别&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;信道(消息传递方式)&lt;/code&gt;类似于&lt;code&gt;单所有权&lt;/code&gt;，一旦将一个值传送到信道中，将无法再使用这个值。&lt;br&gt;&#xA;&lt;code&gt;共享内存&lt;/code&gt;类似于&lt;code&gt;多所有权&lt;/code&gt;，多个线程可以同时访问相同的内存位置。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;由于&lt;code&gt;共享内存&lt;/code&gt;拥有&lt;code&gt;多所有权&lt;/code&gt;，因此出于&lt;code&gt;线程安全考虑&lt;/code&gt;，我们需要一个&lt;code&gt;机制&lt;/code&gt;来&lt;code&gt;限制同一时刻只能有一个线程能访问这块内存&lt;/code&gt;&lt;br&gt;&#xA;这个&lt;code&gt;机制&lt;/code&gt;就是&lt;code&gt;锁&lt;/code&gt;，&lt;code&gt;锁&lt;/code&gt;有很多种，我们先看看一个在多线程场景中最常用的&lt;code&gt;互斥锁&lt;/code&gt;，也有叫做&lt;code&gt;互斥体&lt;/code&gt;、&lt;code&gt;互斥器&lt;/code&gt;，它们&lt;code&gt;都是指同一个东西&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;我猜&lt;/code&gt;读到这里你肯定有一个疑问&lt;code&gt;如果我们对它做了限制，那和单所有权有什么区别? 那我为什么还要用共享内存的方式?&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这个问题先别着急，我们在本章的最后再来讨论，现在，让我们先看看&lt;code&gt;互斥锁&lt;/code&gt;的用法&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(32)-Channel</title>
-      <link>http://wjinlei.github.io/posts/code-rust-channel/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-channel/</link>
       <pubDate>Wed, 24 Aug 2022 16:02:37 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-channel/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-channel/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch16-02-message-passing.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第16.2章 &lt;code&gt;使用消息传递在线程间传送数据&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;学习&lt;code&gt;线程&lt;/code&gt;的两大难点&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;如何在&lt;code&gt;多个线程之间共享数据&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;如何保证&lt;code&gt;线程安全&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;这一章我们就来看看在Rust中如何在&lt;code&gt;多个线程之间共享数据&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(31)-创建线程</title>
-      <link>http://wjinlei.github.io/posts/code-rust-thread/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-thread/</link>
       <pubDate>Wed, 24 Aug 2022 13:47:53 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-thread/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-thread/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch16-01-threads.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第16.1章 &lt;code&gt;使用线程同时运行代码&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;线程&lt;/code&gt;就是&lt;code&gt;程序内部&lt;/code&gt;，可以同时运行的独立部分。平常我们说的&lt;code&gt;多线程编程&lt;/code&gt;，就是指&lt;code&gt;编写内部有多个任务同时运行的程序&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(30)-循环引用</title>
-      <link>http://wjinlei.github.io/posts/code-rust-circular_reference/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-circular_reference/</link>
       <pubDate>Fri, 19 Aug 2022 13:39:48 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-circular_reference/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-circular_reference/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;这一章我建议结合&lt;code&gt;《Rust 语言圣经(Rust Course)》&lt;/code&gt;这本书一起看&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch15-06-reference-cycles.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第15.6章 &lt;code&gt;引用循环与内存泄漏&lt;/code&gt;&lt;br&gt;&#xA;参考章节《&lt;a href=&#34;https://course.rs/advance/circle-self-ref/intro.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.5章 &lt;code&gt;循环引用与自引用&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;这一章主要是在讲&lt;code&gt;内存泄漏&lt;/code&gt;问题，如果你现在看不明白，&lt;code&gt;暂时跳过&lt;/code&gt;也没关系(因为就算你暂时不了解它，你平常应该也很难写出内存泄漏的代码)&lt;br&gt;&#xA;虽然 &lt;code&gt;Rust&lt;/code&gt; 并 &lt;code&gt;不保证完全地避免内存泄漏&lt;/code&gt;，但你仍然难以写出内存泄漏的代码，除非你故意的，因此你&lt;code&gt;暂时&lt;/code&gt;跳过这一章我认为也是可以的&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;这一章主要在阐述下面两个问题，了解它们，将对你写出&lt;code&gt;更高质量&lt;/code&gt;的代码有很大的帮助。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;什么情况可能会发生内存泄漏&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;如何最大程度的避免内存泄漏&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(29)-RefCell&lt;T&gt;</title>
-      <link>http://wjinlei.github.io/posts/code-rust-refcell/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-refcell/</link>
       <pubDate>Wed, 17 Aug 2022 12:00:04 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-refcell/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-refcell/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch15-05-interior-mutability.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第15.5章 &lt;code&gt;RefCell&amp;lt;T&amp;gt; 和内部可变性模式&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;《Rust 程序设计语言》&lt;/code&gt;上这一章，我实在是&lt;code&gt;懒得吐槽&lt;/code&gt;，举的例子太啰嗦(复杂)，这一章不建议看这本书&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;关于这一章，我推荐看下面这本&lt;code&gt;开源&lt;/code&gt;书&lt;/p&gt;&#xA;&lt;p&gt;参考章节《&lt;a href=&#34;https://course.rs/advance/smart-pointer/cell-refcell.html&#34;&gt;Rust语言圣经(Rust Course)&lt;/a&gt;》第3.4.5章 &lt;code&gt;Cell 和 RefCell 内部可变性&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(28)-Rc&lt;T&gt;</title>
-      <link>http://wjinlei.github.io/posts/code-rust-rc/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-rc/</link>
       <pubDate>Wed, 17 Aug 2022 09:45:45 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-rc/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-rc/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch15-04-rc.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第15.4章 &lt;code&gt;Rc&amp;lt;T&amp;gt; 引用计数智能指针&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Rust 有一个叫做 &lt;code&gt;Rc&amp;lt;T&amp;gt;&lt;/code&gt; 的类型。其名称为 &lt;code&gt;引用计数（reference counting）&lt;/code&gt;的缩写。&lt;br&gt;&#xA;&lt;code&gt;引用计数&lt;/code&gt;意味着&lt;code&gt;记录一个值引用的数量&lt;/code&gt;来知晓这个值是否仍在被使用。如果某个值有&lt;code&gt;0&lt;/code&gt;个引用，就代表没有任何有效引用并可以被清理。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;书上叫它&lt;code&gt;引用计数智能指针&lt;/code&gt;，我更喜欢把它叫做&lt;code&gt;可克隆型智能指针&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;一想到&lt;code&gt;可克隆&lt;/code&gt;就能想到&lt;code&gt;Rc::clone&lt;/code&gt;，就能想到&lt;code&gt;多有权&lt;/code&gt;，就能想到&lt;code&gt;引用计数&lt;/code&gt; (&lt;code&gt;PS:这只是我的叫法，大家可根据自己的理解随意发挥&lt;/code&gt;)&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(27)-Drop trait</title>
-      <link>http://wjinlei.github.io/posts/code-rust-drop/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-drop/</link>
       <pubDate>Tue, 16 Aug 2022 16:24:42 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-drop/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-drop/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch15-03-drop.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第15.3章 &lt;code&gt;使用 Drop Trait 运行清理代码&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;对于智能指针模式来说第二个重要的 &lt;code&gt;trait&lt;/code&gt; 是 &lt;code&gt;Drop&lt;/code&gt;，其允许我们在值要离开作用域时执行一些代码。一些语言也把这个东西叫做 &lt;code&gt;析构函数&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(26)-Deref trait</title>
-      <link>http://wjinlei.github.io/posts/code-rust-deref/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-deref/</link>
       <pubDate>Tue, 16 Aug 2022 15:16:49 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-deref/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-deref/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch15-02-deref.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第15.2章 &lt;code&gt;通过 Deref trait 将智能指针当作常规引用处理&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;我们可以像使用常规引用一样使用 &lt;code&gt;Box&amp;lt;T&amp;gt;&lt;/code&gt;，请看如下代码&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;main&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; x &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; y &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Box&lt;/span&gt;::new(x);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    assert_eq!(&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt;y); &lt;span style=&#34;color:#6272a4&#34;&gt;// 对 y 做解引用, 我们可以像使用常规引用一样使用 Box&amp;lt;T&amp;gt;, Rust 底层实际做了 *(y.deref()) 操作&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在之前的章节中我们说，智能指针就是一个&lt;code&gt;结构体&lt;/code&gt;，那为什么我们可以对&lt;code&gt;结构体&lt;/code&gt;做 &lt;code&gt;*&lt;/code&gt; 解引用运算呢？答案就是 &lt;code&gt;Deref trait&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;实现 &lt;code&gt;Deref trait&lt;/code&gt; 允许我们重载 &lt;code&gt;解引用运算符 *&lt;/code&gt;。通过这种方式实现 &lt;code&gt;Deref trait&lt;/code&gt; 的智能指针可以被当作常规引用来对待，可以编写操作引用的代码并用于智能指针。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(25)-Box&lt;T&gt;</title>
-      <link>http://wjinlei.github.io/posts/code-rust-box/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-box/</link>
       <pubDate>Tue, 16 Aug 2022 13:47:20 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-box/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-box/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch15-01-box.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第15.1章 &lt;code&gt;使用Box &amp;lt;T&amp;gt;指向堆上的数据&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;什么是智能指针？&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;先说说我的一个直观感觉，智能指针就是一个有特殊功能的&lt;code&gt;结构体&lt;/code&gt;，然后感兴趣可以去看看知乎对该问题的&lt;a href=&#34;https://www.zhihu.com/question/20368881&#34;&gt;回答&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(24)-迭代器</title>
-      <link>http://wjinlei.github.io/posts/code-rust-iterator/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-iterator/</link>
       <pubDate>Mon, 15 Aug 2022 15:16:11 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-iterator/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-iterator/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch13-02-iterators.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第13.2章 &lt;code&gt;使用迭代器处理元素序列&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;迭代器是遍历数据的一种方式&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;迭代器模式允许你对一个序列的项进行某些处理。&lt;br&gt;&#xA;迭代器（iterator）负责遍历序列中的每一项和决定序列何时结束的逻辑。当使用迭代器时，我们无需重新实现这些逻辑。&lt;br&gt;&#xA;在 Rust 中，迭代器是 惰性的（lazy），这意味着在调用方法使用迭代器之前它都不会有效果。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;先看一个例子&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;迭代器的第一种使用方法&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;main&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; v1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; vec![&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;];&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; v1_iter &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; v1.iter(); &lt;span style=&#34;color:#6272a4&#34;&gt;// 创建一个迭代器&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 通过 for 循环的方式来使用迭代器&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; val &lt;span style=&#34;color:#ff79c6&#34;&gt;in&lt;/span&gt; v1_iter {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        println!(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Got: &lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&lt;/span&gt;, val);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(23)-闭包</title>
-      <link>http://wjinlei.github.io/posts/code-rust-closures/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-closures/</link>
       <pubDate>Mon, 15 Aug 2022 10:03:36 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-closures/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-closures/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch13-01-closures.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第13.1章 &lt;code&gt;闭包：可以捕获环境的匿名函数&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;闭包是可以保存在一个变量中或作为参数传递给其他函数的匿名函数。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(22)-测试</title>
-      <link>http://wjinlei.github.io/posts/code-rust-tests/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-tests/</link>
       <pubDate>Fri, 12 Aug 2022 10:14:02 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-tests/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-tests/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch11-00-testing.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第11章 &lt;code&gt;编写自动化测试&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;为你的程序编写测试是一个良好的习惯(尽管大部分人不愿意这么做，包括我自己，囧)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(21)-生命周期</title>
-      <link>http://wjinlei.github.io/posts/code-rust-lifetime/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-lifetime/</link>
       <pubDate>Wed, 10 Aug 2022 14:42:31 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-lifetime/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-lifetime/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch10-03-lifetime-syntax.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第10.3章 &lt;code&gt;生命周期确保引用有效&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;生命周期有什么用？答：避免出现&lt;code&gt;悬垂引用&lt;/code&gt;问题，那么问题来了，什么是&lt;code&gt;悬垂引用&lt;/code&gt;？&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;引用的对象已经被释放，但指针依然指向它，这会导致程序引用非预期的数据。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;先说说看完书中这一章我自己的理解&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;生命周期是给谁看的？答：&lt;code&gt;编译器！&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;生命周期就好像一套&lt;code&gt;规则&lt;/code&gt;，告诉编译器以这个规则给我检查代码是否满足要求&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(20)-trait</title>
-      <link>http://wjinlei.github.io/posts/code-rust-trait/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-trait/</link>
       <pubDate>Tue, 09 Aug 2022 13:54:52 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-trait/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-trait/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch10-02-traits.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第10.2章 &lt;code&gt;Trait：定义共同行为&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;trait&lt;/code&gt; 类似其他语言中的 &lt;code&gt;接口&lt;/code&gt; 的概念，我们可以通过 &lt;code&gt;trait&lt;/code&gt; 以一种抽象的方式定义共享的行为。&lt;/p&gt;&#xA;&lt;p&gt;书中这一段解释得很好，建议多读几次&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;一个类型的行为由其可供调用的方法构成。如果可以对不同类型调用相同的方法的话，这些类型就可以共享相同的行为了。&lt;br&gt;&#xA;&lt;code&gt;trait&lt;/code&gt; 定义是一种将方法签名组合起来的方法，目的是定义一个实现某些目的所必需的行为的集合。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(19)-泛型</title>
-      <link>http://wjinlei.github.io/posts/code-rust-generics/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-generics/</link>
       <pubDate>Mon, 08 Aug 2022 17:17:23 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-generics/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-generics/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch10-01-syntax.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第10章 &lt;code&gt;泛型数据类型&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;泛型能够让你写出&lt;code&gt;更通用的代码&lt;/code&gt;，但也会使你的代码&lt;code&gt;更加复杂&lt;/code&gt;，&lt;code&gt;不易读&lt;/code&gt;，一眼看去&lt;code&gt;全是各种符号&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;我们先来看一个在函数中使用泛型的例子&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(18)-错误处理</title>
-      <link>http://wjinlei.github.io/posts/code-rust-result/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-result/</link>
       <pubDate>Mon, 08 Aug 2022 13:43:04 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-result/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-result/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch09-00-error-handling.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第9章 &lt;code&gt;错误处理&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Rust 将错误分为两大类：可恢复的(recoverable)和 不可恢复的(unrecoverable)错误。这一点和Go有点类似&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(17)-HashMap</title>
-      <link>http://wjinlei.github.io/posts/code-rust-hashmap/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-hashmap/</link>
       <pubDate>Thu, 04 Aug 2022 14:28:00 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-hashmap/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-hashmap/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch08-02-strings.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第8.3章 &lt;code&gt;使用 Hash Map 储存键值对&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;HashMap&lt;/code&gt; 是一种&lt;code&gt;键值对&lt;/code&gt;类型的容器，&lt;code&gt;HashMap&amp;lt;K, V&amp;gt;&lt;/code&gt; 储存了一个键类型 &lt;code&gt;K&lt;/code&gt; 对应一个值类型 &lt;code&gt;V&lt;/code&gt; 的映射。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(16)-String</title>
-      <link>http://wjinlei.github.io/posts/code-rust-string/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-string/</link>
       <pubDate>Thu, 04 Aug 2022 10:31:13 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-string/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-string/</guid>
       <description>&lt;p&gt;参考章节《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch08-02-strings.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第8.2章 &lt;code&gt;使用字符串储存 UTF-8 编码的文本&lt;/code&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;在集合章节中讨论字符串的原因是，字符串就是作为字节的集合外加一些方法实现的&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;在之前的章节我门曾了解过字符串 slice：它们是一些储存在别处的 UTF-8 编码字符串数据的引用。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Rust 的核心语言中只有一种字符串类型：str，它通常以被借用的形式出现，&amp;amp;str。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;而&lt;code&gt;String&lt;/code&gt;是由标准库提供的，而没有写进核心语言部分，它是&lt;code&gt;可增长的&lt;/code&gt;、&lt;code&gt;可变的&lt;/code&gt;、&lt;code&gt;有所有权的&lt;/code&gt;、&lt;code&gt;UTF-8 编码的&lt;/code&gt;字符串类型。&lt;br&gt;&#xA;你可以把它理解为&lt;code&gt;Java&lt;/code&gt;中的&lt;code&gt;字符串包装类&lt;/code&gt;，它提供了一系列方便的功能，下面我门就来看看它的大致用法&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(15)-Vector</title>
-      <link>http://wjinlei.github.io/posts/code-rust-vector/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-vector/</link>
       <pubDate>Wed, 03 Aug 2022 14:46:41 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-vector/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-vector/</guid>
       <description>&lt;p&gt;Vector 是《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch08-01-vectors.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第8.1章 &lt;code&gt;使用 Vector 储存列表&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;我想强调是，书中这一章节主要是在讲集合，集合是一种存储数据的容器，&lt;br&gt;&#xA;我把它理解为一种工具，对于这种工具我们不用太过纠结其原理，只要大致了解下它有什么用，怎么用，在适合的时候，能想的起来应该用它就行&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Vector 的特点: 只能储存相同类型的值，Vector 可以理解为一个动态数组&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(14)-模块系统</title>
-      <link>http://wjinlei.github.io/posts/code-rust-mod/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-mod/</link>
       <pubDate>Wed, 03 Aug 2022 10:45:50 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-mod/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-mod/</guid>
       <description>&lt;p&gt;模块系统 是《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第7章的全部内容，啰里八嗦了一整章，人都绕晕了，我相信大家和我一样，哈哈哈&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;什么是包(Packages)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;简单来说，你的项目就是一个包，每一个包(Package)都有一个&lt;code&gt;Cargo.toml&lt;/code&gt;文件&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;用 cargo new xxx 创建出来的项目 xxx 就是一个二进制包  &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;用 cargo new --lib xxx 创建出来的项目 xxx 就是一个类库包&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;什么是箱(Crate)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;箱(Crate)类似一种&lt;code&gt;&amp;quot;看不见，摸不着&amp;quot;&lt;/code&gt;的概念，它是一个模块的树形结构，它形成了库或二进制项目&lt;br&gt;&#xA;Crate 会将一个作用域内的相关功能分组到一起，使得该功能可以很方便地在多个项目之间共享。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;编译生成的可执行文件，你就可以把它看成是一个箱(Crate)，一个库(lib)项目，你也可以把他看成是一个箱(Crate)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;一个包下至少有一个箱(Crate), 可以是类库箱(Crate)，也可以是二进制箱(Crate)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;一个包下可以包含任意多个二进制箱(Crate)，但只能包含 0 或 1个类库箱(Crate)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Rust中的默认箱(crate):&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;src/main.rs // 二进制箱(binary crate)的根文件,该箱(crate)与包(package)同名&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;src/lib.rs  // 类库箱(library crate)的根文件 ,该箱(crate)与包(package)同名&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;多个二进制箱(binary crates):&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;在src/bin目录下创建.rs文件, 每个文件都是一个二进制箱(Crate)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(13)-if-let</title>
-      <link>http://wjinlei.github.io/posts/code-rust-iflet/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-iflet/</link>
       <pubDate>Tue, 02 Aug 2022 15:44:53 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-iflet/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-iflet/</guid>
       <description>&lt;p&gt;&lt;code&gt;if let&lt;/code&gt; 是一个语法糖，它可以简化 &lt;code&gt;match&lt;/code&gt; 的写法&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(12)-match</title>
-      <link>http://wjinlei.github.io/posts/code-rust-match/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-match/</link>
       <pubDate>Tue, 02 Aug 2022 14:19:35 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-match/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-match/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;match&lt;/code&gt; 允许我们将一个值与一系列的模式相比较，并根据相匹配的模式执行相应代码。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;上一节我们学习了&lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;，这一节我们就来学习下，如何处理&lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;我们先看一个简单的例子，处理&lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;main&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; x: &lt;span style=&#34;color:#8be9fd&#34;&gt;i8&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; y: &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Option&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;i8&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Some&lt;/span&gt;(&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 处理`Option`&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; z &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;match&lt;/span&gt; y {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Some&lt;/span&gt;(i) &lt;span style=&#34;color:#ff79c6&#34;&gt;=&amp;gt;&lt;/span&gt; i,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;None&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; sum &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; z;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(11)-Option</title>
-      <link>http://wjinlei.github.io/posts/code-rust-option/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-option/</link>
       <pubDate>Mon, 25 Jul 2022 17:09:02 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-option/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-option/</guid>
       <description>&lt;p&gt;我们之前提到了在Rust中有一个非常常用的枚举 &lt;code&gt;Option&lt;/code&gt;，它的原型是如下的样子&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Option&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;T&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;None&lt;/span&gt;,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Some&lt;/span&gt;(T),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;它代表了有值和没有值的情况，成员 &lt;code&gt;None&lt;/code&gt; 代表没有值，也就是空值的情况，&lt;code&gt;Some(T)&lt;/code&gt; 代表了有值的情况，换句话说 &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt; 代表了一个可能为空的值&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;Option&amp;lt;T&amp;gt;&lt;/code&gt; 枚举是如此有用以至于它甚至被包含在了 &lt;code&gt;prelude&lt;/code&gt; 之中，你不需要将其显式引入作用域。&lt;br&gt;&#xA;另外，它的成员也是如此，可以不需要 Option:: 前缀来直接使用 Some 和 None。即便如此 Some(T) 和 None 仍是 Option&lt;!-- raw HTML omitted --&gt; 的成员。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;这有什么好处或者说什么用处呢？Rust为什么要这么设计它？它和其他语言中的&lt;code&gt;null&lt;/code&gt;有什么不同？下面我说说我的见解&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(10)-枚举</title>
-      <link>http://wjinlei.github.io/posts/code-rust-enum/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-enum/</link>
       <pubDate>Mon, 25 Jul 2022 16:00:57 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-enum/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-enum/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch06-00-enums.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第6.1章 &lt;code&gt;枚举&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;p&gt;枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同，Rust中的枚举允许你通过列举可能的成员（variants）来定义一个类型&lt;/p&gt;&#xA;&lt;p&gt;枚举主要作用是限制传入或传出的类型，避免出现其他类型，这在Rust中有一个著名的枚举 &lt;code&gt;Option&lt;/code&gt; 我们稍后会学习&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(9)-方法</title>
-      <link>http://wjinlei.github.io/posts/code-rust-method/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-method/</link>
       <pubDate>Mon, 25 Jul 2022 15:13:51 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-method/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-method/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch05-03-method-syntax.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第5.3章 &lt;code&gt;方法语法&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;p&gt;之前我们提到过 &lt;code&gt;方法&lt;/code&gt; 就是 &lt;code&gt;函数&lt;/code&gt;，只不过他是定义在结构体上下文中的，这个就是其他语言中的方法的概念一样，没什么好说的&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(8)-结构体</title>
-      <link>http://wjinlei.github.io/posts/code-rust-struct/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-struct/</link>
       <pubDate>Mon, 25 Jul 2022 14:29:56 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-struct/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-struct/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch05-00-structs.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第5.1章 &lt;code&gt;结构体的定义和实例化&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;p&gt;结构体类似其他语言中的 &lt;code&gt;类 class&lt;/code&gt; 的概念，其作用主要是组织和存储相关联的数据或函数(与结构体相关联的函数一般又称为方法)&lt;/p&gt;&#xA;&lt;p&gt;本章我们主要来看下在 &lt;code&gt;Rust&lt;/code&gt; 中定义结构体的语法，比较简单，直接看代码吧&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(7)-Slice</title>
-      <link>http://wjinlei.github.io/posts/code-rust-slice/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-slice/</link>
       <pubDate>Fri, 22 Jul 2022 17:10:59 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-slice/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-slice/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch04-03-slices.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第4.3章 &lt;code&gt;Slice 类型&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;slice 允许你引用集合中一段连续的元素序列，而不用引用整个集合。slice 是一类引用，所以它没有所有权。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;本章比较简单，直接看代码吧&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(6)-引用与借用</title>
-      <link>http://wjinlei.github.io/posts/code-rust-references_and_borrowing/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-references_and_borrowing/</link>
       <pubDate>Fri, 22 Jul 2022 16:03:37 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-references_and_borrowing/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-references_and_borrowing/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch04-02-references-and-borrowing.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第4.2章 &lt;code&gt;引用与借用&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;之前我们说过，当传入的变量发生移动时，函数外部无法再引用这个变量，除非函数将变量返回并且外部重新获取这个返回值&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;如果我们还要接着使用这个变量的话，每次都传进去再返回来就有点麻烦了&lt;/p&gt;&#xA;&lt;p&gt;如果我们只想要函数使用一个变量的值，但不获取其所有权该怎么办呢？ 答: 可以使用 &lt;code&gt;&amp;amp;&lt;/code&gt; 关键字&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(5)-最最最重要的所有权</title>
-      <link>http://wjinlei.github.io/posts/code-rust-ownership/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-ownership/</link>
       <pubDate>Thu, 21 Jul 2022 14:21:58 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-ownership/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-ownership/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch04-01-what-is-ownership.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第4.1章 &lt;code&gt;什么是所有权&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;所有权&lt;/code&gt;是整个&lt;code&gt;Rust&lt;/code&gt;中最重要的知识点，没有之一，理解&lt;code&gt;所有权&lt;/code&gt;才能明白&lt;code&gt;Rust&lt;/code&gt;是如何保证&lt;code&gt;内存安全的&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(4)-函数</title>
-      <link>http://wjinlei.github.io/posts/code-rust-function/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-function/</link>
       <pubDate>Thu, 21 Jul 2022 14:02:46 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-function/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-function/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch03-03-how-functions-work.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第3.3 &lt;code&gt;函数&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;这里说明一下，有些章节，我认为没什么可写的，因此跳过了，例如本次就跳过了书中的3.2数据类型这一章&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;在&lt;code&gt;Rust&lt;/code&gt;中函数使用&lt;code&gt;fn&lt;/code&gt;关键字命名，并且采用&lt;code&gt;snake case&lt;/code&gt;风格，在&lt;code&gt;Rust&lt;/code&gt;中函数的返回值等同于函数体最后一个表达式的值&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(3)-变量与可变性</title>
-      <link>http://wjinlei.github.io/posts/code-rust-mutvar/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-mutvar/</link>
       <pubDate>Wed, 20 Jul 2022 15:13:53 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-mutvar/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-mutvar/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch03-01-variables-and-mutability.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第3.1 &lt;code&gt;变量与可变性&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;变量默认是不可改变的，如果声明一个变量不会变，它就真的不会变&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;所以你不必自己跟踪它，你不必担心它会在其他地方被改变&lt;/code&gt;，因此它能让你的代码更&lt;strong&gt;易于推导&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(2)-猜数字游戏</title>
-      <link>http://wjinlei.github.io/posts/code-rust-guessing_game/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-guessing_game/</link>
       <pubDate>Wed, 20 Jul 2022 14:12:50 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-guessing_game/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-guessing_game/</guid>
       <description>&lt;p&gt;本篇是阅读 《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/ch02-00-guessing-game-tutorial.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》第二章 &lt;code&gt;写个猜数字游戏&lt;/code&gt; 而来的结果&lt;/p&gt;&#xA;&lt;p&gt;下面是项目依赖&lt;code&gt;Cargo.toml&lt;/code&gt;，我们需要用到 &lt;code&gt;rand&lt;/code&gt; 这个 &lt;code&gt;crate&lt;/code&gt;，&lt;code&gt;rand&lt;/code&gt;为我们提供了产生随机数的功能，这在我们的代码中会用到&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;code&gt;crate&lt;/code&gt;你可以把他理解为&lt;code&gt;Java中的包&lt;/code&gt;或者其他语言中的库的概念&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[package]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;name = &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;rs03-guessing_game&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;version = &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0.1.0&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edition = &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;2018&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[dependencies]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rand = &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0.8.3&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Rust 学习笔记(1)-安装Rust</title>
-      <link>http://wjinlei.github.io/posts/code-rust-hello/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-hello/</link>
       <pubDate>Wed, 20 Jul 2022 11:40:57 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-hello/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-hello/</guid>
       <description>&lt;p&gt;21年的时候粗略过了一遍《&lt;a href=&#34;https://kaisery.github.io/trpl-zh-cn/title-page.html&#34;&gt;Rust 程序设计语言&lt;/a&gt;》,觉得&lt;code&gt;Rust&lt;/code&gt;的很多设计理念非常不错，是门不错的语言&lt;/p&gt;&#xA;&lt;p&gt;但当时由于种种原因，没有把学到的用于实践，过了近一年，现在都差不多全忘了，囧&lt;/p&gt;&#xA;&lt;p&gt;而如今我的博客也弄好了，索性就重新开坑，学习下&lt;code&gt;Rust&lt;/code&gt;，今天就先记录下我在&lt;code&gt;Arch&lt;/code&gt;上安装&lt;code&gt;Rust&lt;/code&gt;，并写个&lt;code&gt;Hello World&lt;/code&gt;吧&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux下玩Steam游戏</title>
-      <link>http://wjinlei.github.io/posts/linux-steam/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-steam/</link>
       <pubDate>Mon, 11 Jul 2022 19:36:30 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-steam/</guid>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-steam/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;谁说Linux不能玩游戏，因为我用的是ArchLinux，所以就以它为例子了，需要注意的是&lt;br&gt;&#xA;Steam并没有为ArchLinux提供支持，Steam只对&lt;code&gt;Ubuntu LTS&lt;/code&gt; 提供支持，因此首先你需要开启 &lt;code&gt;multilib&lt;/code&gt; 仓库&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(七)-地图映射</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-7/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-7/</link>
       <pubDate>Sat, 09 Jul 2022 19:44:58 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-7/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;温馨提示，本节代码逻辑比较复杂，里面涉及了一点简单的数学计算，建议分解计算步骤，得出结果，然后在多读几遍代码&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;之前我们加载地图纹理的时候，是将整张图片加载到窗口中，这肯定不是我们想要的结果&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-go-raylib-7/Grass.png&#34; alt=&#34;Grass&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;我们想要的是，让图片按照我们给定的规则，绘制在窗口上，这在游戏开发中，通常叫做地图映射，&lt;/p&gt;&#xA;&lt;p&gt;地图映射最常见的方法，就是利用数组，我们可以用一个二维数组来表示我们的地图，&lt;/p&gt;&#xA;&lt;p&gt;因为我们的地图实际上是一个矩形，所以用二维数组就够了，比如下面的例子&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nMap &lt;span style=&#34;color:#ff79c6&#34;&gt;:=&lt;/span&gt; [][]&lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt;{&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们创建了一个&lt;code&gt;5x5 的二维数组&lt;/code&gt;，其中每一行就对应了我们游戏中地图的一行，这一行有&lt;code&gt;5&lt;/code&gt;个元素&lt;/p&gt;&#xA;&lt;p&gt;每个元素又&lt;code&gt;按一定的规则&lt;/code&gt;映射到了我们实际要绘制的图片，假如&lt;code&gt;0 代表墙壁&lt;/code&gt;,&lt;code&gt;1 代表金币&lt;/code&gt;,&lt;code&gt;2 代表武器&lt;/code&gt;, &lt;code&gt;3 代表防具&lt;/code&gt;, &lt;code&gt;4 代表怪物&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;在使用时，我们将二维数组转换成一维数组来使用，这样比较方便,我们只需要创建一个&lt;code&gt;5x5 的一维数组&lt;/code&gt;就可以了&lt;/p&gt;&#xA;&lt;p&gt;我们就可以遍历这个数组，然后按照对应的关系，在游戏中绘制出我们的地图，这就是地图映射的基本思路&lt;/p&gt;</description>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-7/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;温馨提示，本节代码逻辑比较复杂，里面涉及了一点简单的数学计算，建议分解计算步骤，得出结果，然后在多读几遍代码&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;之前我们加载地图纹理的时候，是将整张图片加载到窗口中，这肯定不是我们想要的结果&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-golang/code-go-raylib-7/Grass.png&#34; alt=&#34;Grass&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;我们想要的是，让图片按照我们给定的规则，绘制在窗口上，这在游戏开发中，通常叫做地图映射，&lt;/p&gt;&#xA;&lt;p&gt;地图映射最常见的方法，就是利用数组，我们可以用一个二维数组来表示我们的地图，&lt;/p&gt;&#xA;&lt;p&gt;因为我们的地图实际上是一个矩形，所以用二维数组就够了，比如下面的例子&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nMap &lt;span style=&#34;color:#ff79c6&#34;&gt;:=&lt;/span&gt; [][]&lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt;{&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;{&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;},&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们创建了一个&lt;code&gt;5x5 的二维数组&lt;/code&gt;，其中每一行就对应了我们游戏中地图的一行，这一行有&lt;code&gt;5&lt;/code&gt;个元素&lt;/p&gt;&#xA;&lt;p&gt;每个元素又&lt;code&gt;按一定的规则&lt;/code&gt;映射到了我们实际要绘制的图片，假如&lt;code&gt;0 代表墙壁&lt;/code&gt;,&lt;code&gt;1 代表金币&lt;/code&gt;,&lt;code&gt;2 代表武器&lt;/code&gt;, &lt;code&gt;3 代表防具&lt;/code&gt;, &lt;code&gt;4 代表怪物&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;在使用时，我们将二维数组转换成一维数组来使用，这样比较方便,我们只需要创建一个&lt;code&gt;5x5 的一维数组&lt;/code&gt;就可以了&lt;/p&gt;&#xA;&lt;p&gt;我们就可以遍历这个数组，然后按照对应的关系，在游戏中绘制出我们的地图，这就是地图映射的基本思路&lt;/p&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(六)-空闲动画</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-6/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-6/</link>
       <pubDate>Thu, 07 Jul 2022 20:52:57 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-6/</guid>
-      <description>&lt;p&gt;空闲动画的实现很简单，我们只需要知道当玩家不移动时，每隔几秒钟改变一次帧即可&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-go-raylib-5/cat.png&#34; alt=&#34;人物图片&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;观察我们的人物图片，我们的空闲动画，将被实现为只会在X轴的第0帧和第1帧之间循环播放&lt;br&gt;&#xA;因为第2帧和第3帧，都有人物移动腿部的效果，这样会造成人物好像在原地行走的样子，这样看起来就比较奇怪&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;本节代码比较简单，没有太多可说的，因此之间看下面源代码即可&lt;/p&gt;</description>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-6/</guid>
+      <description>&lt;p&gt;空闲动画的实现很简单，我们只需要知道当玩家不移动时，每隔几秒钟改变一次帧即可&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-golang/code-go-raylib-5/cat.png&#34; alt=&#34;人物图片&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;观察我们的人物图片，我们的空闲动画，将被实现为只会在X轴的第0帧和第1帧之间循环播放&lt;br&gt;&#xA;因为第2帧和第3帧，都有人物移动腿部的效果，这样会造成人物好像在原地行走的样子，这样看起来就比较奇怪&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;本节代码比较简单，没有太多可说的，因此之间看下面源代码即可&lt;/p&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(五)-动画</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-5/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-5/</link>
       <pubDate>Tue, 05 Jul 2022 21:10:41 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-5/</guid>
-      <description>&lt;p&gt;动画实际就是一帧一帧的图片，然后根据一定的帧率一帧一帧的循环绘制在屏幕上。&lt;/p&gt;&#xA;&lt;p&gt;例如我们的角色图片实际上在系统里是下面这样的&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-go-raylib-5/cat.png&#34; alt=&#34;人物图片&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;图片里的猫咪，实际上宽度是&lt;code&gt;48x48&lt;/code&gt;，一行是4列，我们之前通过 &lt;code&gt;rl.DrawTexturePro&lt;/code&gt; 函数画了这张图片的一部分，&lt;/p&gt;&#xA;&lt;p&gt;也就是第一行的第一列，也就成了我们看到的那个不会动的猫，现在我们需要让它能够动起来，&lt;/p&gt;&#xA;&lt;p&gt;假如我们想让人物向右行走，我们就需要画第四列，每一帧就向右画一个人物图片的宽度偏移量，&lt;/p&gt;&#xA;&lt;p&gt;画到第四张图片的时候，就让它重置，然后又从第一张开始画，这样就达到了动画的效果&lt;/p&gt;</description>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-5/</guid>
+      <description>&lt;p&gt;动画实际就是一帧一帧的图片，然后根据一定的帧率一帧一帧的循环绘制在屏幕上。&lt;/p&gt;&#xA;&lt;p&gt;例如我们的角色图片实际上在系统里是下面这样的&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-golang/code-go-raylib-5/cat.png&#34; alt=&#34;人物图片&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;图片里的猫咪，实际上宽度是&lt;code&gt;48x48&lt;/code&gt;，一行是4列，我们之前通过 &lt;code&gt;rl.DrawTexturePro&lt;/code&gt; 函数画了这张图片的一部分，&lt;/p&gt;&#xA;&lt;p&gt;也就是第一行的第一列，也就成了我们看到的那个不会动的猫，现在我们需要让它能够动起来，&lt;/p&gt;&#xA;&lt;p&gt;假如我们想让人物向右行走，我们就需要画第四列，每一帧就向右画一个人物图片的宽度偏移量，&lt;/p&gt;&#xA;&lt;p&gt;画到第四张图片的时候，就让它重置，然后又从第一张开始画，这样就达到了动画的效果&lt;/p&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(四)-创建相机</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-4/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-4/</link>
       <pubDate>Mon, 04 Jul 2022 21:36:09 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-4/</guid>
-      <description>&lt;p&gt;在之前的小节中，我们创建了一个精灵，并且可以控制精灵的移动，但我们的屏幕并没有随着精灵的移动而移动，这个所谓的屏幕就是&lt;code&gt;相机&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-go-raylib-2/running.gif&#34; alt=&#34;效果&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;所以，这一节，我们将创建一个跟随人物移动而移动的相机&lt;/p&gt;&#xA;&lt;p&gt;首先，我们创建一个变量 &lt;code&gt;cam&lt;/code&gt; 它代表一个相机对象，它的类型是 &lt;code&gt;rl.Camera2D&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;然后我们在 &lt;code&gt;init()&lt;/code&gt; 函数中创建这个相机，然后在 &lt;code&gt;update()&lt;/code&gt; 函数中更新相机的目标位置，最后在 &lt;code&gt;render()&lt;/code&gt; 中2D模式&lt;/p&gt;</description>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-4/</guid>
+      <description>&lt;p&gt;在之前的小节中，我们创建了一个精灵，并且可以控制精灵的移动，但我们的屏幕并没有随着精灵的移动而移动，这个所谓的屏幕就是&lt;code&gt;相机&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/code-golang/code-go-raylib-2/running.gif&#34; alt=&#34;效果&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;所以，这一节，我们将创建一个跟随人物移动而移动的相机&lt;/p&gt;&#xA;&lt;p&gt;首先，我们创建一个变量 &lt;code&gt;cam&lt;/code&gt; 它代表一个相机对象，它的类型是 &lt;code&gt;rl.Camera2D&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;然后我们在 &lt;code&gt;init()&lt;/code&gt; 函数中创建这个相机，然后在 &lt;code&gt;update()&lt;/code&gt; 函数中更新相机的目标位置，最后在 &lt;code&gt;render()&lt;/code&gt; 中2D模式&lt;/p&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(三)-播放音乐</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-3/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-3/</link>
       <pubDate>Mon, 04 Jul 2022 20:09:40 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-3/</guid>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-3/</guid>
       <description>&lt;p&gt;任何一款游戏中，音乐是必不可少的，好的音乐能为游戏带来更好的体验，&lt;/p&gt;&#xA;&lt;p&gt;游戏中的音效分很多种，常见的有战斗音效，环境音效，场景音效等等，今天我们就来学习如何在&lt;code&gt;Raylib&lt;/code&gt;中播放音乐&lt;/p&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(二)-创建精灵</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-2/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-2/</link>
       <pubDate>Sun, 03 Jul 2022 22:20:03 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-2/</guid>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-2/</guid>
       <description>&lt;p&gt;不知你是否意识到，所有的游戏都有 精灵(Sprite) 对象，什么是精灵？&lt;/p&gt;&#xA;&lt;p&gt;引用知乎上&lt;a href=&#34;https://www.zhihu.com/question/435692887/answer/1712676699&#34;&gt;程墨的回答&lt;/a&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;上世纪70年代，在德州电器公司，一个叫Daniel Hillis的前辈最早把Sprite这个词用在计算机图形上，在展示界面上，有一些东西在实现层面并不是和整个画面融为一体的，而是『漂浮』在其他画面之上，像『幽灵』一样，所以被称为Sprite。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Go 游戏开发学习笔记(一)-创建窗口</title>
-      <link>http://wjinlei.github.io/posts/code-go-raylib-1/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-raylib-1/</link>
       <pubDate>Sun, 03 Jul 2022 14:56:46 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-raylib-1/</guid>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-raylib-1/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.raylib.com/&#34;&gt;Raylib&lt;/a&gt;是一个简单易用的跨平台的游戏绘图库，Raylib 有+60多种语言的&lt;a href=&#34;https://github.com/raysan5/raylib/blob/master/BINDINGS.md&#34;&gt;绑定&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux下MAME模拟器的使用</title>
-      <link>http://wjinlei.github.io/posts/linux-kof/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-kof/</link>
       <pubDate>Sat, 02 Jul 2022 16:34:20 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-kof/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/linux-kof/running01.png&#34; alt=&#34;VirtualBox&#34;&gt;&lt;/p&gt;</description>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-kof/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/os/linux/linux-kof/running01.png&#34; alt=&#34;VirtualBox&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux下png图片压缩</title>
-      <link>http://wjinlei.github.io/posts/linux-compression-png/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-compression-png/</link>
       <pubDate>Fri, 01 Jul 2022 12:36:59 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-compression-png/</guid>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-compression-png/</guid>
       <description>&lt;p&gt;平时我在写博客的时候，如果有图片我都会进行压缩，这样可以加快加载速度。&lt;/p&gt;&#xA;&lt;p&gt;我主要是使用 &lt;a href=&#34;http://optipng.sourceforge.net/&#34;&gt;optipng(无损压缩)&lt;/a&gt;, 和 &lt;a href=&#34;https://pngquant.org/&#34;&gt;pngquant(有损压缩)&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>JAVA30-Springboot</title>
-      <link>http://wjinlei.github.io/posts/code-java-day30/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day30/</link>
       <pubDate>Wed, 24 Nov 2021 19:36:28 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day30/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day30/</guid>
       <description>&lt;h2 id=&#34;springboot-security&#34;&gt;Springboot-security&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Springboot-security(鉴权模块)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-boot-starter-security&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA29-Docker</title>
-      <link>http://wjinlei.github.io/posts/code-java-day29/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day29/</link>
       <pubDate>Tue, 23 Nov 2021 06:49:45 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day29/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day29/</guid>
       <description>&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;&#xA;&lt;h3 id=&#34;镜像image&#34;&gt;镜像(image)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一个预先定义好的模板文件&lt;/li&gt;&#xA;&lt;li&gt;Docker引擎可以按照这个模板文件启动无数个一模一样,互不干扰的容器&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;容器container&#34;&gt;容器(container)&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;容器就是一台独立的虚拟机,拥有独立的网络,进程,文件系统等资源,默认和宿主机不发生任何交互&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA28-正则表达式</title>
-      <link>http://wjinlei.github.io/posts/code-java-day28/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day28/</link>
       <pubDate>Mon, 22 Nov 2021 12:52:39 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day28/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day28/</guid>
       <description>&lt;h2 id=&#34;正则表达式&#34;&gt;正则表达式&lt;/h2&gt;&#xA;&lt;h3 id=&#34;常用的元字符&#34;&gt;常用的元字符&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;正则字符&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;解释&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;^&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;匹配开始的位置&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;$&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;匹配结束的位置&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;.&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;匹配单个任意字符&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;\w&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;匹配单个单词&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;\s&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;匹配单个空白字符&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;\d&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;匹配单个数字字符&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;\b&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;开始或结尾一定要是一个单词&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
     </item>
     <item>
       <title>JAVA27-Springboot</title>
-      <link>http://wjinlei.github.io/posts/code-java-day27/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day27/</link>
       <pubDate>Sun, 21 Nov 2021 05:54:12 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day27/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day27/</guid>
       <description>&lt;h2 id=&#34;web后端开发中的三层结构&#34;&gt;WEB后端开发中的三层结构&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Controller &lt;code&gt;只做和HTTP请求响应相关的事情&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Service &lt;code&gt;做的事情最多,处理业务逻辑&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;DAO &lt;code&gt;只做数据库操作相关的事情&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;为springboot添加mybatis模块&#34;&gt;为Springboot添加MyBatis模块&lt;/h2&gt;&#xA;&lt;p&gt;Springboot为我们准备了很多为初学者准备的模块,称为&lt;code&gt;starter&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;添加MyBatis模块&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.mybatis.spring.boot&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;mybatis-spring-boot-starter&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;2.2.0&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA26-Spring</title>
-      <link>http://wjinlei.github.io/posts/code-java-day26/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day26/</link>
       <pubDate>Sat, 20 Nov 2021 06:09:28 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day26/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day26/</guid>
       <description>&lt;h2 id=&#34;spring&#34;&gt;Spring&lt;/h2&gt;&#xA;&lt;p&gt;一个可以自动管理对象之间依赖关系的容器&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Spring &lt;code&gt;一个IoC容器,它是Java世界应用的事实标准(什么是事实标准? 到处都是文档,所有人都在用)&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;SpringMVC &lt;code&gt;一个基于Spring和Servlet的Web应用框架&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;SpringBoot&lt;code&gt;也是一个框架,只不过它的集成度和自动化程度更高&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;spring容器的核心概念&#34;&gt;Spring容器的核心概念&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Bean &lt;code&gt;容器中的最小工作单元,通常为一个Java对象&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;BeanFactory/ApplicationContext &lt;code&gt;容器本身对应的Java对象&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;依赖注入(DI) &lt;code&gt;由容器负责注入所有依赖&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;控制反转(IoC)&lt;code&gt;用户将控制权交给了容器&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA25-MyBatis</title>
-      <link>http://wjinlei.github.io/posts/code-java-day25/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day25/</link>
       <pubDate>Fri, 19 Nov 2021 10:40:50 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day25/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day25/</guid>
       <description>&lt;h2 id=&#34;orm&#34;&gt;ORM&lt;/h2&gt;&#xA;&lt;h3 id=&#34;什么是orm&#34;&gt;什么是ORM&lt;/h3&gt;&#xA;&lt;p&gt;Object Relationship Mapping&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;对象关系映射&#xA;&lt;ul&gt;&#xA;&lt;li&gt;自动完成对象到数据库的映射&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Association&#xA;&lt;ul&gt;&#xA;&lt;li&gt;自动装配对象&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;mybatis&#34;&gt;MyBatis&lt;/h2&gt;&#xA;&lt;h3 id=&#34;mybatis是什么&#34;&gt;MyBatis是什么&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一个ORM框架&lt;/li&gt;&#xA;&lt;li&gt;国内基本都在用&lt;/li&gt;&#xA;&lt;li&gt;简单,方便&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA24-泛型</title>
-      <link>http://wjinlei.github.io/posts/code-java-day24/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day24/</link>
       <pubDate>Thu, 18 Nov 2021 11:20:01 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day24/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day24/</guid>
       <description>&lt;h2 id=&#34;泛型&#34;&gt;泛型&lt;/h2&gt;&#xA;&lt;h3 id=&#34;为什么需要泛型&#34;&gt;为什么需要泛型&lt;/h3&gt;&#xA;&lt;p&gt;主要是为了实现类型安全,以及使用时的一点点方便(不需要再转换类型),元素拿出来就可以直接用&lt;/p&gt;&#xA;&lt;h3 id=&#34;什么是泛型&#34;&gt;什么是泛型&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;规定这个容器只能装什么类型的数据(元素)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;List&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt; list &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; ArrayList&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;(); &lt;span style=&#34;color:#6272a4&#34;&gt;// 只能装String类型的容器&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA23-字符串</title>
-      <link>http://wjinlei.github.io/posts/code-java-day23/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day23/</link>
       <pubDate>Thu, 18 Nov 2021 00:41:46 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day23/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day23/</guid>
       <description>&lt;h2 id=&#34;字符串是不可变的&#34;&gt;字符串是不可变的&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;为什么字符串是不可变的?&#xA;&lt;ul&gt;&#xA;&lt;li&gt;为了线程安全(不可变代表着它是线程安全的)&lt;/li&gt;&#xA;&lt;li&gt;为了存储安全&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;例如 HashMap,我们知道HashMap在存储的时候,会给元素计算一个hashCode值,假如你存储了一个字符串对象,&lt;br&gt;&#xA;如果你修改了它,那么这个hashCode就和原来的值不一致了,这会违反了Object类中关于hashCode的约定,&lt;br&gt;&#xA;因此为了我们能够在哈希桶中安全的使用String,字符串必须不可变&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;不可变也导致了每当修改的时候都需要重复创建新的对象&#xA;&lt;ul&gt;&#xA;&lt;li&gt;因此请不要在循环中创建字符串对象&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA22-算法与数据结构</title>
-      <link>http://wjinlei.github.io/posts/code-java-day22/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day22/</link>
       <pubDate>Wed, 17 Nov 2021 02:34:09 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day22/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day22/</guid>
       <description>&lt;h2 id=&#34;算法&#34;&gt;算法&lt;/h2&gt;&#xA;&lt;h3 id=&#34;关于算法复杂度&#34;&gt;关于算法复杂度&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;O(1) &lt;code&gt;常数时间&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;无论问题的规模有多大,总能在固定次操作后就能解决问题,代表算法有哈希桶,数组的随机寻址&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;O(n) &lt;code&gt;线性时间&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;解决问题的时间和问题规模成正比,问题规模越大,需要的时间越长,代表算法是遍历&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;O(log(n)) &lt;code&gt;对数时间&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;解决问题的时间和问题的对数成正比,每1次操作,解决问题的时间成倍减少,代表算法有二分查找,二叉树&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA21-Stream(流)</title>
-      <link>http://wjinlei.github.io/posts/code-java-day21/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day21/</link>
       <pubDate>Tue, 16 Nov 2021 19:59:52 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day21/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day21/</guid>
       <description>&lt;h2 id=&#34;java-8-stream&#34;&gt;Java 8 Stream&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一个&lt;code&gt;流&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;简化代码&lt;/li&gt;&#xA;&lt;li&gt;不易出错&lt;/li&gt;&#xA;&lt;li&gt;可读性/可维护性++&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;什么是流&#34;&gt;什么是流&lt;/h3&gt;&#xA;&lt;p&gt;你可以把它想象成一条水流,它会把集合中的元素一个一个放入这条水流中&lt;br&gt;&#xA;无论集合是有序的还是无序的,它们在流中都会一个一个的按照顺序被取出&lt;br&gt;&#xA;你可以对取出的每一个元素做&lt;code&gt;无限次数的中间处理&lt;/code&gt;和&lt;code&gt;一次终结操作&lt;/code&gt;&lt;br&gt;&#xA;终结操作后,这个流就被销毁了&lt;/p&gt;</description>
     </item>
     <item>
       <title>JAVA20-函数式编程</title>
-      <link>http://wjinlei.github.io/posts/code-java-day20/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day20/</link>
       <pubDate>Tue, 16 Nov 2021 00:48:47 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day20/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day20/</guid>
       <description>&lt;h2 id=&#34;函数式编程&#34;&gt;函数式编程&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;减少代码量,提高生产力&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA13-爬虫项目</title>
-      <link>http://wjinlei.github.io/posts/code-java-day13/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day13/</link>
       <pubDate>Thu, 11 Nov 2021 20:51:37 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day13/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day13/</guid>
       <description>&lt;h2 id=&#34;从零开始做一个项目的原则&#34;&gt;从零开始做一个项目的原则&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;把每个项目都当作人生中最好的一个项目来精雕细琢&#xA;&lt;ul&gt;&#xA;&lt;li&gt;积累自己的&lt;code&gt;Reputation&lt;/code&gt;(声誉)&lt;/li&gt;&#xA;&lt;li&gt;一丝不苟的写好文档&lt;/li&gt;&#xA;&lt;li&gt;代码质量++&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;使用标准化业,界公认的模式和流程&lt;/li&gt;&#xA;&lt;li&gt;(几乎)没有本地依赖,使用者能够好无障碍的运行&lt;/li&gt;&#xA;&lt;li&gt;小步快跑&#xA;&lt;ul&gt;&#xA;&lt;li&gt;成就感&lt;/li&gt;&#xA;&lt;li&gt;越小的变更越容易&lt;code&gt;debug&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA12-多线程</title>
-      <link>http://wjinlei.github.io/posts/code-java-day12/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day12/</link>
       <pubDate>Mon, 08 Nov 2021 15:07:49 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day12/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day12/</guid>
       <description>&lt;h2 id=&#34;thread&#34;&gt;Thread&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;线程可以提高程序的执行效率&lt;/li&gt;&#xA;&lt;li&gt;Java中只有这么一种东西代表线程(Thread)&lt;/li&gt;&#xA;&lt;li&gt;start方法才能并发执行&lt;/li&gt;&#xA;&lt;li&gt;方法栈是线程私有的(局部变量)&lt;/li&gt;&#xA;&lt;li&gt;静态变量/类变量是被所有线程共享的&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;多线程的适用场景&#34;&gt;多线程的适用场景&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;对于&lt;code&gt;IO&lt;/code&gt;密集型场景及其有用&#xA;&lt;ul&gt;&#xA;&lt;li&gt;网络&lt;code&gt;IO&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;文件&lt;code&gt;IO&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;对于&lt;code&gt;CPU&lt;/code&gt;密集型稍有折扣(说白了就是不太适用)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;因为我们多线程的目的本来就是想不让&lt;code&gt;CPU&lt;/code&gt;闲着，闲着CPU已经在密集运算了，因此提升空间不大&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;性能提升的上线&#xA;&lt;ul&gt;&#xA;&lt;li&gt;单核&lt;code&gt;CPU&lt;/code&gt;达到&lt;code&gt;100%&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA11-SQL</title>
-      <link>http://wjinlei.github.io/posts/code-java-day11/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day11/</link>
       <pubDate>Sun, 07 Nov 2021 16:19:57 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day11/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day11/</guid>
       <description>&lt;h2 id=&#34;sql&#34;&gt;SQL&lt;/h2&gt;&#xA;&lt;h3 id=&#34;常用的sql语句&#34;&gt;常用的SQL语句&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;SELECT * FROM table_name&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;SELECT table_name1.column_name table_name2.column_name FROM table_name1 table_name2&lt;/code&gt; 多表查询&lt;/li&gt;&#xA;&lt;li&gt;WHERE&lt;code&gt;SELECT * FROM table_name WHERE xxx=xxx&lt;/code&gt; 条件查询&lt;/li&gt;&#xA;&lt;li&gt;WHERE&amp;hellip;IN&lt;code&gt;WHERE condition IN (SELECT ...)&lt;/code&gt; 子查询&lt;/li&gt;&#xA;&lt;li&gt;ORDER BY&lt;code&gt;ORDER BY column_name DESC&lt;/code&gt; 排序&lt;/li&gt;&#xA;&lt;li&gt;GROUP BY&lt;code&gt;GROUP BY column_name&lt;/code&gt; 分组&lt;/li&gt;&#xA;&lt;li&gt;LIMIT x&lt;code&gt;LIMIT n&lt;/code&gt; 只显示最后n行&lt;/li&gt;&#xA;&lt;li&gt;LIMIT x OFFSET x&lt;code&gt;LIMIT n OFFSET z&lt;/code&gt; 显示n条,从第z行开始&lt;/li&gt;&#xA;&lt;li&gt;JOIN&lt;code&gt;JOIN table_name alias ON column_name=alias.column_name&lt;/code&gt; 内连接&lt;/li&gt;&#xA;&lt;li&gt;JOIN&lt;code&gt;RIGHT JOIN table_name alias ON column_name=alias.column_name&lt;/code&gt; 右连接&lt;/li&gt;&#xA;&lt;li&gt;JOIN&lt;code&gt;LEFT JOIN table_name alias ON column_name=alias.column_name&lt;/code&gt; 左连接&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;DISTINCT&lt;/code&gt;去重&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;SUM()&lt;/code&gt;求和&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;MAX()&lt;/code&gt;求最大值&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;MIN()&lt;/code&gt;求最小值&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;AVG()&lt;/code&gt;求平均值&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;NOW()&lt;/code&gt;求当前时间&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;COUNT()&lt;/code&gt;求个数&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA10-IO</title>
-      <link>http://wjinlei.github.io/posts/code-java-day10/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day10/</link>
       <pubDate>Sat, 06 Nov 2021 10:23:26 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day10/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day10/</guid>
       <description>&lt;h2 id=&#34;javaio&#34;&gt;Java.io&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;Java.io&lt;/code&gt;是一个基于&lt;code&gt;流&lt;/code&gt;的输入输出包，其中有两大基类&lt;code&gt;字节流&lt;/code&gt;和&lt;code&gt;字符流&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;字节流&#xA;&lt;ul&gt;&#xA;&lt;li&gt;InputStream&lt;/li&gt;&#xA;&lt;li&gt;OutputStream&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;字符流&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Reader&lt;/li&gt;&#xA;&lt;li&gt;Writer&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;code&gt;字节流&lt;/code&gt;可以让我们方便的操作&lt;code&gt;字节&lt;/code&gt;数据，而&lt;code&gt;字符流&lt;/code&gt;可以让我们方便的操作&lt;code&gt;字符&lt;/code&gt;数据&lt;br&gt;&#xA;&lt;code&gt;字节流&lt;/code&gt;操作的最小单元是&lt;code&gt;1个字节&lt;/code&gt;，而&lt;code&gt;字符流&lt;/code&gt;操作的最小单元是&lt;code&gt;1个Unicode字符&lt;/code&gt;&lt;br&gt;&#xA;&lt;code&gt;字符流&lt;/code&gt;还提供了对字节的&lt;code&gt;编码&lt;/code&gt;，&lt;code&gt;解码&lt;/code&gt;的能力&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;FileInputStream&lt;/li&gt;&#xA;&lt;li&gt;FileOutputStream&lt;/li&gt;&#xA;&lt;li&gt;BufferedInputStream&lt;/li&gt;&#xA;&lt;li&gt;BufferedOutputStream&lt;/li&gt;&#xA;&lt;li&gt;FileReader&lt;/li&gt;&#xA;&lt;li&gt;FileWriter&lt;/li&gt;&#xA;&lt;li&gt;BufferedReader&lt;/li&gt;&#xA;&lt;li&gt;BufferedWriter&lt;/li&gt;&#xA;&lt;li&gt;InputStreamReader&lt;/li&gt;&#xA;&lt;li&gt;OutputStreamWriter&lt;/li&gt;&#xA;&lt;li&gt;PrintStream&lt;/li&gt;&#xA;&lt;li&gt;PrintWriter&lt;/li&gt;&#xA;&lt;li&gt;SequenceInputStream&lt;/li&gt;&#xA;&lt;li&gt;ObjectInputStream&lt;/li&gt;&#xA;&lt;li&gt;ObjectOutputStream&lt;/li&gt;&#xA;&lt;li&gt;PipedInputStream&lt;/li&gt;&#xA;&lt;li&gt;PipedOutputStream&lt;/li&gt;&#xA;&lt;li&gt;DataInputStream&lt;/li&gt;&#xA;&lt;li&gt;DataOutputStream&lt;/li&gt;&#xA;&lt;li&gt;ByteArrayInputStream&lt;/li&gt;&#xA;&lt;li&gt;ByteArrayOutputStream&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;可以看到&lt;code&gt;java.io&lt;/code&gt;包中关于流的类一大堆，下面只演示几个基本的使用方法，实际生产中不建议使用这些东西&lt;br&gt;&#xA;而是应该使用别人已经写好的经过检验的&lt;code&gt;第三方库&lt;/code&gt;，记住&lt;code&gt;不要重复造轮子&lt;/code&gt;，这些只作为了解即可&lt;/p&gt;</description>
     </item>
     <item>
       <title>JAVA09-Http协议与爬虫</title>
-      <link>http://wjinlei.github.io/posts/code-java-day9/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day9/</link>
       <pubDate>Fri, 05 Nov 2021 07:53:50 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day9/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day9/</guid>
       <description>&lt;h2 id=&#34;http&#34;&gt;HTTP&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP&#34;&gt;https://developer.mozilla.org/zh-CN/docs/Web/HTTP&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cisco CCNA学习笔记</title>
-      <link>http://wjinlei.github.io/posts/common-ccna/</link>
+      <link>http://wjinlei.github.io/posts/sundry/sundry-ccna/</link>
       <pubDate>Fri, 05 Nov 2021 07:00:49 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/common-ccna/</guid>
+      <guid>http://wjinlei.github.io/posts/sundry/sundry-ccna/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;这是我学习&lt;code&gt;Cisco CCNA&lt;/code&gt;的笔记，虽然现在思科在国内应该说应用不多了，但对于学习网络基础知识还是非常有帮助的。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;小小的请求，转载请注明出处，谢谢。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;重点摘要&#34;&gt;重点摘要&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;OSI、TCP/IP&#xA;封装的详细过程&#xA;交换机&#xA;研究网络层报头&#xA;研究传输橙报头&#xA;研究数据链路层帧头&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;网络的定义&#34;&gt;网络的定义&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;介质:一般指双绞线&#xA;中间系统:网络设备&#xA;终端系统:一般指PC和服务器&#xA;1).一组使用介质(线缆)互联的中间系统(网络设备)以及终端系统(PC和服务器)&#xA;2).工作组(Network Group),微软定义的最早期的网络雏形,可以理解为它是一个局域网范畴.是最简单的,范围最小的局域网&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;网络的意义&#34;&gt;网络的意义&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;通过让应用程序之间彼此传递信息,从而实现资源共享.&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;一些网络术语&#34;&gt;一些网络术语&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;speed(速度):物理特性,例如10Mbit/s&#xA;cost(开销):计算某种协议到达目标的最短距离称之为开销&#xA;security(安全性):IPSEC VPN,MPLS VPN,SSH,...&#xA;availability(可用性):衡量设备在投入使用后实际使用的效能&#xA;reliability(可靠性):系统在一定时间内,在一定条件下无故障的执行指定功能的能力&#xA;10Base2:使用提供10M带宽基带传输的同轴电缆中的细缆&#xA;10Base5:使用提供10M带宽基带传输的同轴电缆中的粗缆&#xA;10BaseT:使用提供10M带宽基带传输的双绞线&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     <item>
       <title>JAVA08-Maven</title>
-      <link>http://wjinlei.github.io/posts/code-java-day8/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day8/</link>
       <pubDate>Thu, 04 Nov 2021 09:19:55 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day8/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day8/</guid>
       <description>&lt;h2 id=&#34;maven&#34;&gt;Maven&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Maven的约定&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;groupId&lt;/code&gt; 组织&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;artifactId&lt;/code&gt; 功能(jar包)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;version&lt;/code&gt; 版本&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Maven 通过以上3个属性就能唯一定位一个&lt;code&gt;jar&lt;/code&gt;包&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.apache.commons&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;commons-lang3&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.12.0&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>使用hugo来写博客</title>
-      <link>http://wjinlei.github.io/posts/common-hugo-write-blog/</link>
+      <link>http://wjinlei.github.io/posts/sundry/sundry-hugo-write-blog/</link>
       <pubDate>Thu, 04 Nov 2021 03:52:01 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/common-hugo-write-blog/</guid>
+      <guid>http://wjinlei.github.io/posts/sundry/sundry-hugo-write-blog/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;关于&lt;code&gt;hugo&lt;/code&gt;的一切,你都可以查看其 &lt;a href=&#34;https://gohugo.io/&#34;&gt;官网&lt;/a&gt; 来了解&#xA;，我建议是跟着它的 &lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;quick-start&lt;/a&gt; 一步一步来操作&lt;/p&gt;&#xA;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;hugo&lt;/code&gt;通过&lt;code&gt;Github&lt;/code&gt;发布，这里我推荐你 &lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;下载&lt;/a&gt; &lt;code&gt;extended&lt;/code&gt;版本，而且最好是&lt;code&gt;.tar.gz&lt;/code&gt;或&lt;code&gt;.zip&lt;/code&gt;版本的&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;设置环境变量&lt;/code&gt;，将目录添加到你的&lt;code&gt;Path&lt;/code&gt;变量中，以便&lt;code&gt;命令行&lt;/code&gt;能够找到&lt;code&gt;hugo&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
       <title>JAVA07-内部类</title>
-      <link>http://wjinlei.github.io/posts/code-java-day7/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day7/</link>
       <pubDate>Thu, 04 Nov 2021 02:30:15 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day7/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day7/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 内部类&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;内部类提供了更精细的封装&lt;/li&gt;&#xA;&lt;li&gt;内部类是和外部类的实例相绑定的，它可以调用外部类的实例方法，包括被private修饰的方法或成员 内部类之所以能访问外部类的成员，是因为编译器帮你的内部类注入了一个&lt;code&gt;this$0&lt;/code&gt;的外部类实例成员&lt;/li&gt;&#xA;&lt;li&gt;外部类也可以调用内部类中被private修饰的方法或成员变量&lt;/li&gt;&#xA;&lt;li&gt;内部类不一定非要定义在类中，也可以定义在接口，枚举中&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 静态内部类&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;静态内部类不和实例绑定，因此它不能调用外部类的实例方法或成员变量&lt;/li&gt;&#xA;&lt;li&gt;静态内部类只能调用外部类中的静态变量或静态方法 不过还是有办法访问外部类中的非静态方法或成员，就是通过构造器将外部类的实例传进来&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 什么时候使用内部类，什么时候使用静态内部类？&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;永远优先使用静态内部类，除非编译报错。 因为编译器偷偷帮你注入的外部类实例可能你用不到，造成浪费空间&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 匿名内部类&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;new 一个接口并提供实现体，就相当于创建一个实现该接口的匿名内部类&lt;/li&gt;&#xA;&lt;li&gt;new 一个抽象类提供实现体，就相当于创建一个覆盖了对应方法的子类(匿名内部类)&lt;/li&gt;&#xA;&lt;li&gt;匿名内部类可以变为lambda表达式&lt;/li&gt;&#xA;&lt;li&gt;匿名内部类虽然没有名字，但在字节码的表示中是以外围类的名字+$数字来命名的&lt;/li&gt;&#xA;&lt;li&gt;匿名内部类也可以访问外围类中的实例变量或方法(类似其他语言中的闭包的概念)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA06-接口(Interface)</title>
-      <link>http://wjinlei.github.io/posts/code-java-day6/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day6/</link>
       <pubDate>Thu, 04 Nov 2021 02:26:20 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day6/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day6/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 抽象类&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;抽象类不能被实例化，可以包含抽象方法(非private/static)，并且可以包含普通类的任何东西&lt;/li&gt;&#xA;&lt;li&gt;抽象方法必须被覆盖，抽象方法必须在抽象类中，换句话说一个方法被抽象，那么这个类也必须抽象&lt;/li&gt;&#xA;&lt;li&gt;一个抽象类里如果所有方法都是抽象方法，那么它就可以用接口表示&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 接口&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;接口中方法都是抽象的&lt;/li&gt;&#xA;&lt;li&gt;接口中不能有实例变量&lt;/li&gt;&#xA;&lt;li&gt;接口用来描述一套功能&lt;/li&gt;&#xA;&lt;li&gt;接口能继承另一个接口&lt;/li&gt;&#xA;&lt;li&gt;要实现一个接口必须实现这个接口中的所有方法&lt;/li&gt;&#xA;&lt;li&gt;一个类可以同时实现多个接口，这侧面解决了C++中多继承调用方法歧义的问题 因为接口中没有方法体，具体的实现是在实现了这些接口的类中的，实现只有一份，不会产生歧义&lt;/li&gt;&#xA;&lt;li&gt;接口中的方法默认是public的&lt;/li&gt;&#xA;&lt;li&gt;接口中的成员默认是public static final的&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA05-多态</title>
-      <link>http://wjinlei.github.io/posts/code-java-day5/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day5/</link>
       <pubDate>Thu, 04 Nov 2021 02:19:51 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day5/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day5/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 什么是多态，多态时面向对象的灵魂，是最重要的特性&#xA;&lt;ol&gt;&#xA;&lt;li&gt;什么是多态 ?&#xA;&lt;ol&gt;&#xA;&lt;li&gt;在运行时根据&lt;code&gt;this&lt;/code&gt;是谁，来决定调用谁的方法&lt;/li&gt;&#xA;&lt;li&gt;实例方法默认是多态的&lt;/li&gt;&#xA;&lt;li&gt;静态方法没有多态特性&lt;/li&gt;&#xA;&lt;li&gt;参数也没有多态特性&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>JAVA04-单例设计模式与组合设计模式</title>
-      <link>http://wjinlei.github.io/posts/code-java-day4/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day4/</link>
       <pubDate>Thu, 04 Nov 2021 02:14:56 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day4/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day4/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 向上/向下转型&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;一个子类类型的对象永远是一个父类类型的对象&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;   例如，有如下继承关系: &#xA;       蓝猫 -&amp;gt; 猫 -&amp;gt; 动物&#xA;   因此我们可以说，一只蓝猫肯定是猫，同时它也是动物&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;&lt;code&gt;instanceof&lt;/code&gt; 可以判断一个对象是不是指定类的实例&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;   null instanceof ? == false // null instanceof 任何东西，结果都是false&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;&#xA;&lt;li&gt;当你需要一个父类对象的时候，你总是可以传递一个子类对象给它，它会发生自动&lt;code&gt;向上转型&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;当你需要一个子类对象的时候，你不一定能够传递父类对象，要看这个对象是不是该子类对象的实例，并且你需要强制类型转换，向下转型是不安全的&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; final&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;final&lt;/code&gt;可以修饰变量，变量只能被赋值一次，它是线程安全的&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;final&lt;/code&gt;可以修饰对象，对象的地址不能改变，但对象的数据是可以改变的&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;final&lt;/code&gt;可以修饰参数&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;final&lt;/code&gt;可以修饰方法，该方法将不能被覆盖&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;final&lt;/code&gt;还可以修饰类，被修饰类不能被继承&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 设计模式之单例模式&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;/**&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 单例设计模式之饿汉式&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 1. 私有化构造器&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 2. 提供实例常量&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 3. 提供工厂方法getInstance方法返回实例常量&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; */&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;World&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;final&lt;/span&gt; World SINGLETON_INSTANCE &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; World();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; World &lt;span style=&#34;color:#50fa7b&#34;&gt;getInstance&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; SINGLETON_INSTANCE;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;World&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA03-Builder设计模式和模板模式</title>
-      <link>http://wjinlei.github.io/posts/code-java-day3/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day3/</link>
       <pubDate>Thu, 04 Nov 2021 02:13:02 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day3/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day3/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 设计模式之Builder模式(解决了一个类参数过多，而导致的构造器参数 太长，或构造器太多的问题)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Person&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; String name;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; age;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#50fa7b&#34;&gt;getName&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; name;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;setName&lt;/span&gt;(String name) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; name;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;getAge&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; age;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;setAge&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; age) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;age&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; age;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Person&lt;/span&gt;(String name) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;(name, 19);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Person&lt;/span&gt;(String name, &lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; age) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; name;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;age&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; age;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;/**&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * Builder模式&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 1. 和目标类同样的属性&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 2. 私有构造器(不是必须)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 3. 静态工厂方法(不是必须)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 4. 一个属性一个设置方法,该方法返回自身this&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; * 5. 通过build方法将收集到的方法都设置到目标类中,并返回目标类&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt; */&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;PersonBuilder&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; age;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; String name;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;PersonBuilder&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 静态工厂方法&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; PersonBuilder &lt;span style=&#34;color:#50fa7b&#34;&gt;aPerson&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; PersonBuilder();&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; PersonBuilder &lt;span style=&#34;color:#50fa7b&#34;&gt;withAge&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; age) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;age&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; age;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;; &lt;span style=&#34;color:#6272a4&#34;&gt;// Builder模式的要点是返回自己 this&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; PersonBuilder &lt;span style=&#34;color:#50fa7b&#34;&gt;withName&lt;/span&gt;(String name) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; name;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;; &lt;span style=&#34;color:#6272a4&#34;&gt;// Builder模式的要点是返回自己 this&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 最后通过build方法将参数设置到Person类中并返回&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; Person &lt;span style=&#34;color:#50fa7b&#34;&gt;build&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Person person &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Person(name);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        person.&lt;span style=&#34;color:#50fa7b&#34;&gt;setAge&lt;/span&gt;(age);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; person;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA02-面向对象</title>
-      <link>http://wjinlei.github.io/posts/code-java-day2/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day2/</link>
       <pubDate>Thu, 04 Nov 2021 02:07:47 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day2/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day2/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 如果没有任何构造函数，编译器会偷偷帮你生成一个无参数的构造器&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 重载时，如果一个方法调用可以匹配多个方法声明时，类型最匹配的最优先调用&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Main&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 默认会调用这个方法，因为1这个常量是int类型&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;foo&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd&#34;&gt;int&lt;/span&gt; i) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#50fa7b&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;println&lt;/span&gt;(i);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 如果注释以上所有的方法，则会调用这个方法，因为int能被自动装箱成Integer&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;foo&lt;/span&gt;(Integer i) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#50fa7b&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;println&lt;/span&gt;(i);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 如果注释以上所有的方法，则会调用这个方法，因为Integer继承了Number&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;foo&lt;/span&gt;(Number i) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#50fa7b&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;println&lt;/span&gt;(i);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// 如果注释以上所有的方法，则会调用这个方法，因为Number继承了Object&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;foo&lt;/span&gt;(Object i) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#50fa7b&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;println&lt;/span&gt;(i);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;foo&lt;/span&gt;(List list) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#50fa7b&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#50fa7b&#34;&gt;println&lt;/span&gt;(i);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;main&lt;/span&gt;(String&lt;span style=&#34;color:#ff79c6&#34;&gt;[]&lt;/span&gt; args) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;// 请问以下代码，会调用哪个签名的方法？&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        foo(1);&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        foo(&lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;); &lt;span style=&#34;color:#6272a4&#34;&gt;// 这行代码会报错？ 为什么？ 怎么解决？&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;/*&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        因为null没有类型，下面的方法和List签名的方法冲突，编译器不知道该调用哪个&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        因此你需要告诉编译器到底该调用哪个方法，可以用强制转换来解决&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        &#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        foo((List)null)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        */&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;/*&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        如果把List签名的方法注释掉，程序又不报错了，为什么？&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        答：因为根据类型匹配规则，null没有类型，因此int签名的方法被排除，接下来&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        考虑对象类型，又因为Integer是Number的子类Number又是Object的子类，&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        因此Integer最先匹配，所以它会调用Integer签名的方法&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        &#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        那么为什么加上List签名的方法会编译器会找不到而报错呢？&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        答：因为List和Integer都是Object的子类，List和Integer之间不构成父子类型&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        它们到Object类之间的距离相同，因此编译器不知道该调用哪个方法&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;        */&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>JAVA01-避坑</title>
-      <link>http://wjinlei.github.io/posts/code-java-day1/</link>
+      <link>http://wjinlei.github.io/posts/code-java/code-java-day1/</link>
       <pubDate>Thu, 04 Nov 2021 02:03:13 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-java-day1/</guid>
+      <guid>http://wjinlei.github.io/posts/code-java/code-java-day1/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 浮点数不能通过 &lt;code&gt;==&lt;/code&gt; 进行比较，因为Java中浮点数是一个近似值而不是一个绝对值，应该用两个数的差,的绝对值来判断是否小于一个较小的数&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 判断两个double是否相等&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Main&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;doubleEquals&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd&#34;&gt;double&lt;/span&gt; a, &lt;span style=&#34;color:#8be9fd&#34;&gt;double&lt;/span&gt; b) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;// 应该用两个数的差,的绝对值来判断是否小于一个较小的数&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#50fa7b&#34;&gt;abs&lt;/span&gt;(a &lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; b) &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; 0.&lt;span style=&#34;color:#50fa7b&#34;&gt;0000001&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>设计模式之适配器模式(Go实现)</title>
-      <link>http://wjinlei.github.io/posts/code-go-adapter/</link>
+      <link>http://wjinlei.github.io/posts/code-golang/code-go-adapter/</link>
       <pubDate>Thu, 04 Nov 2021 01:42:38 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-go-adapter/</guid>
+      <guid>http://wjinlei.github.io/posts/code-golang/code-go-adapter/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;设计模式之适配器模式(Go实现)&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>设计模式之适配器模式(rust实现)</title>
-      <link>http://wjinlei.github.io/posts/code-rust-adapter/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rust-adapter/</link>
       <pubDate>Thu, 04 Nov 2021 01:41:53 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rust-adapter/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rust-adapter/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;设计模式之适配器模式(Rust实现)&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>几行docker命令</title>
-      <link>http://wjinlei.github.io/posts/common-docker/</link>
+      <link>http://wjinlei.github.io/posts/sundry/sundry-docker/</link>
       <pubDate>Thu, 04 Nov 2021 01:40:42 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/common-docker/</guid>
+      <guid>http://wjinlei.github.io/posts/sundry/sundry-docker/</guid>
       <description></description>
     </item>
     <item>
       <title>rust读写ini</title>
-      <link>http://wjinlei.github.io/posts/code-rustini/</link>
+      <link>http://wjinlei.github.io/posts/code-rust/code-rustini/</link>
       <pubDate>Thu, 04 Nov 2021 01:39:54 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/code-rustini/</guid>
+      <guid>http://wjinlei.github.io/posts/code-rust/code-rustini/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;代码示例(需要 configparser 库)&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>简单制作rpm包的方法</title>
-      <link>http://wjinlei.github.io/posts/linux-rpmbuild/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-rpmbuild/</link>
       <pubDate>Thu, 04 Nov 2021 01:38:02 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-rpmbuild/</guid>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-rpmbuild/</guid>
       <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;&#xA;&lt;p&gt;还是用 &lt;a href=&#34;https://github.com/Wjinlei/lanmp_rpmbuild&#34;&gt;主机大师&lt;/a&gt; 的脚本来举个例子&lt;!-- raw HTML omitted --&gt;&#xA;&lt;code&gt;rpm&lt;/code&gt;包的制作就没有&lt;code&gt;deb&lt;/code&gt;包那么轻松了，你不能像&lt;code&gt;debian&lt;/code&gt;系列一样将软件编译好后再打包进&lt;code&gt;rpm&lt;/code&gt;包中&lt;!-- raw HTML omitted --&gt;&#xA;而是需要编写&lt;code&gt;.spec&lt;/code&gt;文件，来让&lt;code&gt;rpm-build&lt;/code&gt;为我们编译并生成&lt;code&gt;rpm&lt;/code&gt;包&lt;/p&gt;</description>
     </item>
     <item>
       <title>简单制作deb包的方法</title>
-      <link>http://wjinlei.github.io/posts/linux-debbuild/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-debbuild/</link>
       <pubDate>Thu, 04 Nov 2021 01:37:11 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-debbuild/</guid>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-debbuild/</guid>
       <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;&#xA;&lt;p&gt;这里用 &lt;a href=&#34;https://github.com/Wjinlei/lanmp_debbuild&#34;&gt;主机大师&lt;/a&gt; 的脚本来举个例子&lt;!-- raw HTML omitted --&gt;&#xA;想要制作&lt;code&gt;deb&lt;/code&gt;包，有多种方法，这里只说我认为最简单的方法&lt;code&gt;dpkg-deb -b&lt;/code&gt;来生成&lt;code&gt;deb&lt;/code&gt;包&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>pyenv Python多版本管理工具的使用</title>
-      <link>http://wjinlei.github.io/posts/linux-pyenv/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-pyenv/</link>
       <pubDate>Thu, 04 Nov 2021 01:33:25 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-pyenv/</guid>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-pyenv/</guid>
       <description>&lt;h3 id=&#34;介绍&#34;&gt;介绍&lt;/h3&gt;&#xA;&lt;p&gt;&lt;code&gt;pyenv&lt;/code&gt;是一个&lt;code&gt;python&lt;/code&gt;多版本管理工具&lt;!-- raw HTML omitted --&gt;&#xA;&lt;a href=&#34;https://github.com/pyenv/pyenv&#34;&gt;https://github.com/pyenv/pyenv&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;code&gt;pyenv-virtualenv&lt;/code&gt;是一个&lt;code&gt;pyenv&lt;/code&gt;的插件，它提供了管理&lt;code&gt;Python&lt;/code&gt;环境的功能&lt;!-- raw HTML omitted --&gt;&#xA;你可以启用一个&lt;code&gt;Python&lt;/code&gt;环境，在这个环境中的&lt;code&gt;Python&lt;/code&gt;版本和依赖都是独立的&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>rcm配置文件管理工具的使用</title>
-      <link>http://wjinlei.github.io/posts/linux-rcm/</link>
+      <link>http://wjinlei.github.io/posts/os/linux/linux-rcm/</link>
       <pubDate>Thu, 04 Nov 2021 01:24:49 +0800</pubDate>
-      <guid>http://wjinlei.github.io/posts/linux-rcm/</guid>
+      <guid>http://wjinlei.github.io/posts/os/linux/linux-rcm/</guid>
       <description>&lt;h3 id=&#34;介绍&#34;&gt;介绍&lt;/h3&gt;&#xA;&lt;p&gt;&lt;code&gt;rcm&lt;/code&gt;是一个&lt;code&gt;dotfile&lt;/code&gt;(配置文件)管理工具&lt;!-- raw HTML omitted --&gt;&#xA;&lt;a href=&#34;https://github.com/thoughtbot/rcm&#34;&gt;https://github.com/thoughtbot/rcm&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -636,7 +636,7 @@
       <link>http://wjinlei.github.io/posts/readme/</link>
       <pubDate>Thu, 04 Nov 2021 00:59:33 +0800</pubDate>
       <guid>http://wjinlei.github.io/posts/readme/</guid>
-      <description>&lt;h3 id=&#34;关于我&#34;&gt;关于我&lt;/h3&gt;&#xA;&lt;p&gt;我喜欢&lt;code&gt;骑行&lt;/code&gt;，也是一个&lt;code&gt;Linux&lt;/code&gt;用户，也是一个&lt;code&gt;程序猿&lt;/code&gt; 我喜欢&lt;code&gt;简单实用&lt;/code&gt;的东西，当然&lt;code&gt;不简单但是实用&lt;/code&gt;的东西我也喜欢，哈哈哈&lt;br&gt;&#xA;我&lt;code&gt;除了玩游戏使用 Windows&lt;/code&gt;以外，&lt;code&gt;其他情况下几乎都使用 Linux&lt;/code&gt;，我的编辑器是 &lt;code&gt;neovim&lt;/code&gt; 你可以在这里找到我的&lt;a href=&#34;https://github.com/Wjinlei/nvim&#34;&gt;配置&lt;/a&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;PS: 我偶尔会在B站发一些&lt;a href=&#34;https://space.bilibili.com/393271893&#34;&gt;视频教程&lt;/a&gt;，欢迎关注我，哈哈哈&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;我最常使用的语言是&lt;code&gt;Golang&lt;/code&gt;，当然我有时也会写&lt;code&gt;vue&lt;/code&gt;和&lt;code&gt;C&lt;/code&gt;，我还比较看好&lt;code&gt;Rust&lt;/code&gt;，目前也正在学习它&lt;br&gt;&#xA;我希望在这里能够和大家分享关于&lt;code&gt;Linux&lt;/code&gt;或&lt;code&gt;编程语言&lt;/code&gt;等方面的知识，&lt;code&gt;希望我的文章能够帮助到你&lt;/code&gt;。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;PS: 秀一张我的&lt;code&gt;Linux&lt;/code&gt;桌面截图，哈哈哈哈&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://wjinlei.github.io/images/readme/dwm-preview.png&#34; alt=&#34;我的Linux桌面&#34;&gt;&lt;/p&gt;</description>
+      <description>&lt;h3 id=&#34;关于我&#34;&gt;关于我&lt;/h3&gt;&#xA;&lt;p&gt;我是一个爱折腾的人，我喜欢玩各种&lt;code&gt;游戏&lt;/code&gt;，折腾各种&lt;code&gt;Mod&lt;/code&gt;，我会用&lt;code&gt;Linux&lt;/code&gt;但我也不排斥&lt;code&gt;Windows&lt;/code&gt;。&lt;br&gt;&#xA;我有一套基于&lt;code&gt;Neovim&lt;/code&gt;的配置，你可以在这里找到我的&lt;a href=&#34;https://github.com/Wjinlei/nvim&#34;&gt;Config&lt;/a&gt;，我偶尔会在B站发一些&lt;a href=&#34;https://space.bilibili.com/393271893&#34;&gt;视频教程&lt;/a&gt;，欢迎关注我。&lt;br&gt;&#xA;目前我正在学习&lt;code&gt;C#游戏开发&lt;/code&gt;，博客的文章记录我学习的一些&lt;code&gt;笔记心得&lt;/code&gt;，如果也能帮到你，我也会很开心，^-^。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
