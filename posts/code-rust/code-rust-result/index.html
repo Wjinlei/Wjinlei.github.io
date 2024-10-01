@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(18)-错误处理</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(18)-错误处理</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 470 字，阅读约 3 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-08-08">2022-08-08 13:43:04</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-08 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch09-00-error-handling.html">Rust 程序设计语言</a>》第9章 <code>错误处理</code></p>
+<blockquote>
+<p>Rust 将错误分为两大类：可恢复的(recoverable)和 不可恢复的(unrecoverable)错误。这一点和Go有点类似</p>
+</blockquote>
+<p><strong>对于一个不可恢复的错误，我们一般认为是一个<code>bug</code>，因此我们要立即停止程序。</strong></p>
+<p>一种是我们自己<code>手动触发的painc</code>，可以使用 <code>painc!</code> 宏</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    panic!(<span style="color:#f1fa8c">&#34;crash and burn&#34;</span>); <span style="color:#6272a4">// 手动触发一个painc，panic会终止程序,和golang的panic类似
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>运行程序将会出现类似这样的输出：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cargo run
+</span></span><span style="display:flex;"><span>   Compiling panic v0.1.0 <span style="color:#ff79c6">(</span>file:///projects/panic<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>    Finished dev <span style="color:#ff79c6">[</span>unoptimized + debuginfo<span style="color:#ff79c6">]</span> target<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span> in 0.25s
+</span></span><span style="display:flex;"><span>     Running <span style="color:#f1fa8c">`</span>target/debug/panic<span style="color:#f1fa8c">`</span>
+</span></span><span style="display:flex;"><span>thread <span style="color:#f1fa8c">&#39;main&#39;</span> panicked at <span style="color:#f1fa8c">&#39;crash and burn&#39;</span>, src/main.rs:2:5
+</span></span><span style="display:flex;"><span>note: run with <span style="color:#f1fa8c">`</span><span style="color:#8be9fd;font-style:italic">RUST_BACKTRACE</span><span style="color:#ff79c6">=</span>1<span style="color:#f1fa8c">`</span> environment variable to display a backtrace
+</span></span></code></pre></div><p>还有一种是程序 <code>bug</code> 引起的 <code>painc</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> v <span style="color:#ff79c6">=</span> vec![<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>];
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, v[<span style="color:#bd93f9">99</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>小小的总结一下</p>
+<ol>
+<li>说白了，<code>painc</code> 的目的是终止程序，</li>
+<li><code>painc</code> 默认会清理堆栈，可参考书中这一小节 <a href="https://kaisery.github.io/trpl-zh-cn/ch09-01-unrecoverable-errors-with-panic.html#%E5%AF%B9%E5%BA%94-panic-%E6%97%B6%E7%9A%84%E6%A0%88%E5%B1%95%E5%BC%80%E6%88%96%E7%BB%88%E6%AD%A2">对应 panic 时的栈展开或终止</a></li>
+<li>通过设置环境变量 <code>RUST_BACKTRACE=1</code>(非0就行) 打印堆栈的详细调用过程</li>
+</ol>
+<p><strong>对于一个可恢复的错误，我们很可能只想向用户报告问题并重试操作。</strong></p>
+<blockquote>
+<p>大部分错误并没有严重到需要程序完全停止执行。有时，一个函数可能会让我们对某种预期的错误做出反应</p>
+</blockquote>
+<p>Rust为我们提供了一个 <code>Result&lt;T, E&gt;</code> 枚举</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">enum</span> <span style="color:#8be9fd;font-style:italic">Result</span><span style="color:#ff79c6">&lt;</span>T, E<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">Ok</span>(T),
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">Err</span>(E),
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>T</code> 和 <code>E</code> 是<code>泛型类型参数</code>；后面会学习到它。现在你需要知道的就是 <code>T</code> 代表成功时返回的 <code>Ok</code> 成员中的数据的类型，而 <code>E</code> 代表失败时返回的 <code>Err</code> 成员中的错误的类型。</p>
+<ul>
+<li>我们来看一个简单的处理 <code>Result&lt;T, E&gt;</code> 的例子</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::fs::File;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> File::open(<span style="color:#f1fa8c">&#34;hello.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">match</span> f {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(file) <span style="color:#ff79c6">=&gt;</span> file,
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(error) <span style="color:#ff79c6">=&gt;</span> panic!(<span style="color:#f1fa8c">&#34;Problem opening the file: </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, error), <span style="color:#6272a4">// 发生错误时，终止程序并打印错误消息
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>File::open</code> 函数的返回值类型是 <code>Result&lt;T, E&gt;</code>。<br>
+这里泛型参数 <code>T</code> 放入了成功值的类型 <code>std::fs::File</code>，它是一个文件句柄。<br>
+<code>E</code> 被用在失败值上时 <code>E</code> 的类型是 <code>std::io::Error</code>。</p>
+<ul>
+<li>有时你需要更具体的错误</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::fs::File;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::io::ErrorKind;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> File::open(<span style="color:#f1fa8c">&#34;hello.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">match</span> f {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(file) <span style="color:#ff79c6">=&gt;</span> file,
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(error) <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">match</span> error.kind() {
+</span></span><span style="display:flex;"><span>            ErrorKind::NotFound <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">match</span> File::create(<span style="color:#f1fa8c">&#34;hello.txt&#34;</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 我们感兴趣的成员是 ErrorKind::NotFound，它代表尝试打开的文件并不存在。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#8be9fd;font-style:italic">Ok</span>(fc) <span style="color:#ff79c6">=&gt;</span> fc,
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd;font-style:italic">Err</span>(e) <span style="color:#ff79c6">=&gt;</span> panic!(<span style="color:#f1fa8c">&#34;Problem creating the file: </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, e),
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            other_error <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                panic!(<span style="color:#f1fa8c">&#34;Problem opening the file: </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, other_error)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>io::Error</code> 有一个返回 <code>io::ErrorKind</code> 值的 <code>kind</code> 方法可供调用。<br>
+<code>io::ErrorKind</code> 是一个标准库提供的枚举，它的成员对应 <code>io</code> 操作可能导致的不同错误类型。</p>
+<blockquote>
+<p>我们可以通过 <code>unwrap_or_else</code> 方法并传递一个<code>闭包</code>，来稍微简化上面的写法，虽然我知道<code>闭包</code>是什么，但我不想在这一节写上它，因为它超出了这一节的范畴</p>
+</blockquote>
+<ul>
+<li>失败时 <code>panic</code> 的简写：<code>unwrap</code> 和 <code>expect</code></li>
+</ul>
+<blockquote>
+<p>如果 Result 值是成员 Ok，unwrap 会返回 Ok 中的值。如果 Result 是成员 Err，unwrap 会为我们调用 panic!</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::fs::File;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> File::open(<span style="color:#f1fa8c">&#34;text.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">match</span> f {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(file) <span style="color:#ff79c6">=&gt;</span> file,
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(error) <span style="color:#ff79c6">=&gt;</span> panic!(<span style="color:#f1fa8c">&#34;Problem opening the file: </span><span style="color:#f1fa8c">{:?}</span><span style="color:#f1fa8c">&#34;</span>, error), <span style="color:#6272a4">// 发生错误时，终止程序并打印错误消息
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 上面的可以简写成下面的格式
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    File::open(<span style="color:#f1fa8c">&#34;text.txt&#34;</span>).unwrap();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 还有另一个类似于 unwrap 的方法它还允许我们选择 panic! 的错误信息：
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    File::open(<span style="color:#f1fa8c">&#34;text.txt&#34;</span>).expect(<span style="color:#f1fa8c">&#34;Problem opening the file&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>接下来我们来看一下，我们自己如何返回一个 <code>Result</code></li>
+</ul>
+<blockquote>
+<p>我们在编写函数或方法时，我们明确知道，我们这个函数或方法可能会发生一个错误，而这个错误是调用者可以处理的，它不是一个无法处理的错误<br>
+那么我们就可以让函数或方法返回 Result 类型，这样调用者就知道，你这个函数或方法可能会发生错误，需要他来处理</p>
+</blockquote>
+<p><strong>第一种方法，最苯的方法，不推荐</strong>
+通过 <code>match</code> 关键字匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">read_username_from_file</span>() -&gt; <span style="color:#8be9fd;font-style:italic">Result</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd;font-style:italic">String</span>, io::Error<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> f <span style="color:#ff79c6">=</span> File::open(<span style="color:#f1fa8c">&#34;hello.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> f <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">match</span> f {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(file) <span style="color:#ff79c6">=&gt;</span> file,
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(e) <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">Err</span>(e), <span style="color:#6272a4">// 失败返回io::Error，可以通过 return语句 提前返回
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> s <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::new();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">match</span> f.read_to_string(<span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> s) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(_) <span style="color:#ff79c6">=&gt;</span> <span style="color:#8be9fd;font-style:italic">Ok</span>(s),
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(e) <span style="color:#ff79c6">=&gt;</span> <span style="color:#8be9fd;font-style:italic">Err</span>(e), <span style="color:#6272a4">// 失败返回io::Error
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>第二种方法，<code>?</code> 号元算符简化</strong>
+需要注意的是 <code>?</code> 运算符只能在 <code>返回Result</code> 的函数中使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">read_username_from_file</span>() -&gt; <span style="color:#8be9fd;font-style:italic">Result</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd;font-style:italic">String</span>, io::Error<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// File::open 调用结尾的 ? 将会把 Ok 中的值返回给变量 f。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 如果出现了错误，? 运算符会提早返回整个函数并将一些 Err 值传播给调用者。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> f <span style="color:#ff79c6">=</span> File::open(<span style="color:#f1fa8c">&#34;hello.txt&#34;</span>)<span style="color:#ff79c6">?</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> s <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::new();
+</span></span><span style="display:flex;"><span>    f.read_to_string(<span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> s)<span style="color:#ff79c6">?</span>; <span style="color:#6272a4">// 同理也适用于 read_to_string 调用结尾的 ?。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">Ok</span>(s) <span style="color:#6272a4">// 把s包装到Ok成员中返回，因为返回值类型是 Result，这句话要是看不懂的话，你可以去面壁思过了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>上面的例子，当 <code>?</code> 号运算符所在的语句发生错误时，<code>Err</code> 中的值将作为整个函数的返回值，就好像使用了 <code>return</code> 关键字一样，这样错误值就被传播给了调用者。</p>
+<p><strong>还可以再简化一下</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">read_username_from_file</span>() -&gt; <span style="color:#8be9fd;font-style:italic">Result</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd;font-style:italic">String</span>, io::Error<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> s <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::new();
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 我们甚至可以在 ? 之后直接使用链式方法调用来进一步缩短代码
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    File::open(<span style="color:#f1fa8c">&#34;hello.txt&#34;</span>)<span style="color:#ff79c6">?</span>.read_to_string(<span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> s)<span style="color:#ff79c6">?</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">Ok</span>(s)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="总结一下">总结一下</h4>
+<ol>
+<li><code>painc</code> 代表不可恢复错误，这通常是程序发生了<code>bug</code>, 发生 <code>painc</code> 时程序会终止，通过 <code>painc!</code> 宏可以手动触发 <code>painc</code></li>
+<li><code>Result&lt;T, E&gt;</code> 代表可恢复的错误，其中 <code>T</code> 代表成功时返回的 <code>Ok</code> 成员中的数据的类型，而 <code>E</code> 代表失败时返回的 <code>Err</code> 成员中的错误的类型。</li>
+<li><code>io::Error</code> 有一个返回 <code>io::ErrorKind</code> 值的 <code>kind</code> 方法可供调用，为我们提供了获取<code>更具体的错误类型的能力</code></li>
+<li><code>unwrap</code> 如果 <code>Result</code> 值是成员 <code>Ok</code>，<code>unwrap</code> 会返回 <code>Ok</code> 中的值。如果 <code>Result</code> 是成员 <code>Err</code>，<code>unwrap</code> 会为我们调用 <code>panic!</code></li>
+<li><code>expect</code> 和 <code>unwrap</code> 功能一样，只不过 <code>expect</code> 可以提供<code>自定义信息</code></li>
+<li><code>?</code> 号运算符可以简化代码，<code>?</code> 号运算符只能在 <code>返回Result</code> 的函数中使用</li>
+<li><code>?</code> 号运算符可以链式调用</li>
+</ol>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

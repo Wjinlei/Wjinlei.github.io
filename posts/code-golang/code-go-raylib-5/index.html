@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Go 游戏开发学习笔记(五)-动画</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Go 游戏开发学习笔记(五)-动画</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 408 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-07-05">2022-07-05 21:10:41</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/golang">golang</a>
+
+
+<a href="http://wjinlei.github.io/tags/raylib">raylib</a>
+
+
+<a href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E">游戏引擎</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-07-05 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>动画实际就是一帧一帧的图片，然后根据一定的帧率一帧一帧的循环绘制在屏幕上。</p>
+<p>例如我们的角色图片实际上在系统里是下面这样的</p>
+<p><img src="/images/code-golang/code-go-raylib-5/cat.png" alt="人物图片"></p>
+<p>图片里的猫咪，实际上宽度是<code>48x48</code>，一行是4列，我们之前通过 <code>rl.DrawTexturePro</code> 函数画了这张图片的一部分，</p>
+<p>也就是第一行的第一列，也就成了我们看到的那个不会动的猫，现在我们需要让它能够动起来，</p>
+<p>假如我们想让人物向右行走，我们就需要画第四列，每一帧就向右画一个人物图片的宽度偏移量，</p>
+<p>画到第四张图片的时候，就让它重置，然后又从第一张开始画，这样就达到了动画的效果</p>
+<h2 id="回到代码逻辑">回到代码逻辑</h2>
+<p>我们创建几个变量 <code>playerMoving</code> 用于表示人物是否在行走</p>
+<p><code>playerUp</code> <code>playerRight</code> <code>playerDown</code> <code>playerLeft</code> 分别表示人物行走的4个方向，</p>
+<p><code>playerDirection</code> 也用于表示人物的方向，但它还有其他的用处，我们可以通过它确定将要绘制的图片的Y轴</p>
+<blockquote>
+<p>我们仔细观察上面的图片，发现每一行实际上都是相同的方向的动作，比如第一行都是向下，第二行都是向上<br>
+因此我们就可以利用这个变量来确定你要准备绘制的图片在第几行也就是Y轴</p>
+</blockquote>
+<p><code>playerFrame</code> 用于表示人物现在绘制到第几帧了，<code>playerCount</code> 用于控制帧率，</p>
+<blockquote>
+<p>因为屏幕绘制的速度很快，我们要是每一帧都换图片，你就会发现人物行走的非常快(鬼畜)</p>
+</blockquote>
+<p>我们在 <code>handleInput()</code> 中现在不再直接更改 <code>playerDest</code> 的坐标，而是修改 <code>playerMoving</code> 以表示人物正在移动</p>
+<p>同时修改 <code>playerDirection</code> 和 <code>playerUp</code> 或 <code>playerDown</code> 或 <code>playerRight</code> 或 <code>playerLeft</code> 以表示人物移动的方向</p>
+<p>然后我们在 <code>update()</code> 函数中，修改 <code>playerDest</code> 使我们的图片向对应方向移动 <code>playerSpeed</code> 像素，</p>
+<p>接着我们修改 <code>playerSrc</code> 指向下一帧的图片(就是换人物图片)</p>
+<p>我们用人物的宽度，乘以当前的帧数 <code>playerSrc.Width * playerFrame</code>，就可以确定将要绘制的图片的X轴</p>
+<p>然后我们 用人物的高度，乘以 <code>playerDirection (表示行的索引)</code>，就能确定准备绘制的图片的Y轴</p>
+<p>然后我们在 <code>drawScene()</code> 函数中就会重新绘制人物了，最后，我们在每次绘制屏幕后，将人物的行走状态，还有方向等信息重置</p>
+<h2 id="下面是本节的代码">下面是本节的代码</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Create a animation
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#34;github.com/gen2brain/raylib-go/raylib&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">const</span> (
+</span></span><span style="display:flex;"><span>	screenWidth  = <span style="color:#bd93f9">1000</span>
+</span></span><span style="display:flex;"><span>	screenHeight = <span style="color:#bd93f9">400</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">var</span> (
+</span></span><span style="display:flex;"><span>	running         = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>	bkgColor        = rl.<span style="color:#50fa7b">NewColor</span>(<span style="color:#bd93f9">147</span>, <span style="color:#bd93f9">211</span>, <span style="color:#bd93f9">196</span>, <span style="color:#bd93f9">255</span>)
+</span></span><span style="display:flex;"><span>	grassSprite     rl.Texture2D
+</span></span><span style="display:flex;"><span>	playerSprite    rl.Texture2D
+</span></span><span style="display:flex;"><span>	playerSrc       rl.Rectangle
+</span></span><span style="display:flex;"><span>	playerDest      rl.Rectangle
+</span></span><span style="display:flex;"><span>	playerSpeed     <span style="color:#8be9fd">float32</span> = <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>	playerMoving    <span style="color:#8be9fd">bool</span>
+</span></span><span style="display:flex;"><span>	playerDirection <span style="color:#8be9fd">int</span>
+</span></span><span style="display:flex;"><span>	playerUp,
+</span></span><span style="display:flex;"><span>	playerDown,
+</span></span><span style="display:flex;"><span>	playerRight,
+</span></span><span style="display:flex;"><span>	playerLeft <span style="color:#8be9fd">bool</span>
+</span></span><span style="display:flex;"><span>	playerFrame <span style="color:#8be9fd">int</span>
+</span></span><span style="display:flex;"><span>	frameCount  <span style="color:#8be9fd">int</span>
+</span></span><span style="display:flex;"><span>	musicPaused <span style="color:#8be9fd">bool</span>
+</span></span><span style="display:flex;"><span>	music       rl.Music
+</span></span><span style="display:flex;"><span>	cam         rl.Camera2D
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">handleInput</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyW) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyUp) {
+</span></span><span style="display:flex;"><span>		playerMoving = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>		playerDirection = <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>		playerUp = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyD) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyRight) {
+</span></span><span style="display:flex;"><span>		playerMoving = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>		playerDirection = <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>		playerRight = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyS) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyDown) {
+</span></span><span style="display:flex;"><span>		playerMoving = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>		playerDirection = <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>		playerDown = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyA) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyLeft) {
+</span></span><span style="display:flex;"><span>		playerMoving = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>		playerDirection = <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>		playerLeft = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyPressed</span>(rl.KeyQ) {
+</span></span><span style="display:flex;"><span>		musicPaused = !musicPaused
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">update</span>() {
+</span></span><span style="display:flex;"><span>	running = !rl.<span style="color:#50fa7b">WindowShouldClose</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6272a4">// X轴置0，让每次屏幕开始绘制时，人物都在第一帧上
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>	playerSrc.X = <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> playerMoving {
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">if</span> playerUp {
+</span></span><span style="display:flex;"><span>			playerDest.Y <span style="color:#ff79c6">-=</span> playerSpeed
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">if</span> playerDown {
+</span></span><span style="display:flex;"><span>			playerDest.Y <span style="color:#ff79c6">+=</span> playerSpeed
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">if</span> playerLeft {
+</span></span><span style="display:flex;"><span>			playerDest.X <span style="color:#ff79c6">-=</span> playerSpeed
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">if</span> playerRight {
+</span></span><span style="display:flex;"><span>			playerDest.X <span style="color:#ff79c6">+=</span> playerSpeed
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#6272a4">// 每隔8帧，向下绘制一帧
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">if</span> frameCount<span style="color:#ff79c6">%</span><span style="color:#bd93f9">8</span> <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span> {
+</span></span><span style="display:flex;"><span>			playerFrame<span style="color:#ff79c6">++</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#6272a4">// 准备绘制X轴的第几帧图片，这时候还不能确定要绘制哪张，需要下面确定Y轴
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>		playerSrc.X = playerSrc.Width <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">float32</span>(playerFrame)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	frameCount<span style="color:#ff79c6">++</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6272a4">// 人物图片到第四帧时就重置
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">if</span> playerFrame &gt; <span style="color:#bd93f9">3</span> {
+</span></span><span style="display:flex;"><span>		playerFrame = <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6272a4">// 确定Y轴，这样就能确定要绘制图片上的哪一个格子上的图片了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>	<span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	关于Y轴定义
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	上用1表示，我们可以看到图片上，猫咪向上的方向是在第二行， 从0开始，因此我们给他定义为1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	下用0表示，我们可以看到图片上，猫咪向下的方向是在第一行， 从0开始，因此我们给他定义为0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	左用2表示，我们可以看到图片上，猫咪向左的方向是在第三行， 从0开始，因此我们给他定义为2
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	右用3表示，我们可以看到图片上，猫咪向右的方向是在第四行， 从0开始，因此我们给他定义为3
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">	*/</span>
+</span></span><span style="display:flex;"><span>	playerSrc.Y = playerSrc.Height <span style="color:#ff79c6">*</span> <span style="color:#8be9fd;font-style:italic">float32</span>(playerDirection)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">UpdateMusicStream</span>(music)
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> !musicPaused {
+</span></span><span style="display:flex;"><span>		rl.<span style="color:#50fa7b">ResumeMusicStream</span>(music)
+</span></span><span style="display:flex;"><span>	} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>		rl.<span style="color:#50fa7b">PauseMusicStream</span>(music)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	cam.Target = rl.<span style="color:#50fa7b">NewVector2</span>(<span style="color:#8be9fd;font-style:italic">float32</span>(playerDest.X<span style="color:#ff79c6">-</span>(playerDest.Width<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>)), <span style="color:#8be9fd;font-style:italic">float32</span>(playerDest.Y<span style="color:#ff79c6">-</span>(playerDest.Height<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	playerMoving = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>	playerUp, playerDown, playerRight, playerLeft = <span style="color:#ff79c6">false</span>, <span style="color:#ff79c6">false</span>, <span style="color:#ff79c6">false</span>, <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">drawScene</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">DrawTexture</span>(grassSprite, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">50</span>, rl.White)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">DrawTexturePro</span>(playerSprite, playerSrc, playerDest,
+</span></span><span style="display:flex;"><span>		rl.<span style="color:#50fa7b">NewVector2</span>(playerDest.Width, playerDest.Height), <span style="color:#bd93f9">0</span>, rl.White)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">render</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">BeginDrawing</span>()
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">ClearBackground</span>(bkgColor)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">BeginMode2D</span>(cam)
+</span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">drawScene</span>()
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">EndMode2D</span>()
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">EndDrawing</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">init</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">InitWindow</span>(screenWidth, screenHeight, <span style="color:#f1fa8c">&#34;learn-raylib-go&#34;</span>)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">SetTargetFPS</span>(<span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">SetExitKey</span>(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>	grassSprite = rl.<span style="color:#50fa7b">LoadTexture</span>(<span style="color:#f1fa8c">&#34;./res/Tilesets/Grass.png&#34;</span>)
+</span></span><span style="display:flex;"><span>	playerSprite = rl.<span style="color:#50fa7b">LoadTexture</span>(<span style="color:#f1fa8c">&#34;./res/Characters/Basic Charakter Spritesheet.png&#34;</span>)
+</span></span><span style="display:flex;"><span>	playerSrc = rl.<span style="color:#50fa7b">NewRectangle</span>(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">48</span>, <span style="color:#bd93f9">48</span>)
+</span></span><span style="display:flex;"><span>	playerDest = rl.<span style="color:#50fa7b">NewRectangle</span>(<span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">InitAudioDevice</span>()
+</span></span><span style="display:flex;"><span>	music = rl.<span style="color:#50fa7b">LoadMusicStream</span>(<span style="color:#f1fa8c">&#34;./res/Avery&#39;s Farm Loopable.mp3&#34;</span>)
+</span></span><span style="display:flex;"><span>	musicPaused = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">PlayMusicStream</span>(music)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	cam = rl.<span style="color:#50fa7b">NewCamera2D</span>(
+</span></span><span style="display:flex;"><span>		rl.<span style="color:#50fa7b">NewVector2</span>(<span style="color:#8be9fd;font-style:italic">float32</span>(screenWidth<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>), <span style="color:#8be9fd;font-style:italic">float32</span>(screenHeight<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>)),
+</span></span><span style="display:flex;"><span>		rl.<span style="color:#50fa7b">NewVector2</span>(<span style="color:#8be9fd;font-style:italic">float32</span>(playerDest.X<span style="color:#ff79c6">-</span>(playerDest.Width<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>)), <span style="color:#8be9fd;font-style:italic">float32</span>(playerDest.Y<span style="color:#ff79c6">-</span>(playerDest.Height<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>))),
+</span></span><span style="display:flex;"><span>		<span style="color:#bd93f9">0.0</span>, <span style="color:#bd93f9">1.0</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">quit</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">UnloadTexture</span>(grassSprite)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">UnloadTexture</span>(playerSprite)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">UnloadMusicStream</span>(music)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">CloseAudioDevice</span>()
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">CloseWindow</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">for</span> running {
+</span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">handleInput</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">update</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">render</span>()
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">quit</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>本节没有涉及到新的API</li>
+</ul>
+<p>运行上面的代码</p>
+<p><img src="/images/code-golang/code-go-raylib-5/running.gif" alt="运行效果"></p>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

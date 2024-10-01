@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(41)-高级类型</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(41)-高级类型</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 83 字，阅读约 1 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-09-29">2022-09-29 14:49:46</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-09-29 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html">Rust程序设计语言</a>》第19.3章 <code>高级类型</code><br>
+参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html#%E4%BB%8E%E4%B8%8D%E8%BF%94%E5%9B%9E%E7%9A%84-never-type">Rust程序设计语言</a>》第19.3章 <code>从不返回的 never type</code><br>
+参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html#%E5%8A%A8%E6%80%81%E5%A4%A7%E5%B0%8F%E7%B1%BB%E5%9E%8B%E5%92%8C-sized-trait">Rust程序设计语言</a>》第19.3章 <code>动态大小类型和 Sized trait</code></p>
+<blockquote>
+<p>Rust 的类型系统有一些我们曾经提到但没有讨论过的功能。包括 <code>newtype 模式</code>，<code>类型别名</code>，<code>!</code>，和 <code>动态大小类型</code></p>
+</blockquote>
+<p><strong>为了类型安全和抽象而使用 newtype 模式</strong></p>
+<blockquote>
+<p>这里，书上说了一堆理论，我看的也是云里雾里，参考<a href="https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html#%E4%B8%BA%E4%BA%86%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E5%92%8C%E6%8A%BD%E8%B1%A1%E8%80%8C%E4%BD%BF%E7%94%A8-newtype-%E6%A8%A1%E5%BC%8F">为了类型安全和抽象而使用 newtype 模式</a>这一小节</p>
+</blockquote>
+<p>总的来说它提供了以下能力</p>
+<ol>
+<li>静态的确保某值不被混淆</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>比如我函数接收一个 u32 类型的值，但我把它当作&#34;毫秒值&#34;来计算，此时，如果我传u32的值1是允许的，传u32的值1000也是允许的  
+</span></span><span style="display:flex;"><span>这就容易不小心发生歧义，如果你没注意参数的含义，你可能就会传递一个&#34;秒值&#34;进去，这样的话，结果自然不是我们想要的  
+</span></span><span style="display:flex;"><span>这时候我们就可以通过 newtype 模式，把 u32 封装到一个元祖结构体中，而参数类型使用这个结构体类型，此时你再使用普通的 u32 值来调用该函数的程序是不能编译的。
+</span></span></code></pre></div><ol start="2">
+<li>抽象掉一些类型的实现细节</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>例如，A类型有一些它自己的方法，此时我们可以通过newtype模式，封装一个包含A的MyTypes(A)结构体，然后提供我们自己的公有方法，从而隐藏A类型自身的方法
+</span></span></code></pre></div><ol start="3">
+<li>隐藏其内部的泛型类型</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>例如，我们有一个 HashMap&lt;i32, String&gt; 用来存储一个人名和其对应的身份证id，此时我们就可以利用newtype模式，封装一个 People(HashMap&lt;i32, String&gt;) 的结构体
+</span></span><span style="display:flex;"><span>我们可以为 People 提供一个API，你只需要提供一个名字，它就会在内部为这个名字生成一个对应的ID，并一同增加到内部的 HashMap 中
+</span></span><span style="display:flex;"><span>使用 People 的代码只需与我们提供的公有 API 交互即可，这样这些代码就无需知道在内部我们将一个 i32 ID 赋予了这个名字了。
+</span></span></code></pre></div><p><strong>类型别名用来创建类型同义词</strong></p>
+<p>这里书上说的非常清楚，我觉得我没有必要再写一遍了，参考-&gt; <a href="https://kaisery.github.io/trpl-zh-cn/ch19-04-advanced-types.html#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%E7%94%A8%E6%9D%A5%E5%88%9B%E5%BB%BA%E7%B1%BB%E5%9E%8B%E5%90%8C%E4%B9%89%E8%AF%8D">类型别名用来创建类型同义词</a></p>
+<blockquote>
+<p>总结一下就是，通过 <code>type</code> 关键字声明<code>类型别名</code>，它主要可以为我们<code>减少重复</code></p>
+</blockquote>
+<p>总结一下就是，Rust 有一个特定的 <code>trait</code> 来决定一个类型的大小是否在编译时可知，这就是 <code>Sized trait</code>。这个 <code>trait</code> 自动为编译器在编译时就知道大小的类型实现。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// &lt;T: Sized&gt;表示，T 是在编译时就能确定大小的类型
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">generic</span><span style="color:#ff79c6">&lt;</span>T: <span style="color:#8be9fd;font-style:italic">Sized</span><span style="color:#ff79c6">&gt;</span>(t: <span style="color:#50fa7b">T</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// --snip--
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

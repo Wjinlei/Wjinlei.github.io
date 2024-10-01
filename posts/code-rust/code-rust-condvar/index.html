@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(34)-Condvar</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(34)-Condvar</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 220 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-08-26">2022-08-26 12:32:43</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-26 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://course.rs/advance/concurrency-with-threads/sync1.html#%E7%94%A8%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8Fcondvar%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5">Rust语言圣经(Rust Course)</a>》第3.6.4章 <code>用条件变量(Condvar)控制线程的同步</code></p>
+<p><strong>如何控制线程执行的顺序?</strong></p>
+<blockquote>
+<p><code>锁</code>可以保证<code>线程安全</code>，但有时我们想<code>控制线程执行的顺序</code>该怎么办呢?</p>
+</blockquote>
+<p>答: Rust 为我们提供了而 <code>Condvar(Condition Variables)</code> 条件变量<br>
+它通常和<code>Mutex&lt;T&gt;</code>一起使用，一般用于<code>生产者消费者模型</code>，它可以让一个<code>线程进入等待(锁)</code>，直至被其他线程<code>唤醒</code></p>
+<p>话不多说，我们来看看下面的代码</p>
+<blockquote>
+<p>我们有一个生产者线程(铁匠)，他生产(打造)一件装备后，通知消费者线程(玩家)消费(购买)<br>
+消费者线程(玩家)消费(购买)后，通知生产者线程(铁匠)继续生产(打造)，直到生产者线程退出</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::{
+</span></span><span style="display:flex;"><span>    sync::{Arc, Condvar, Mutex},
+</span></span><span style="display:flex;"><span>    thread,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 条件变量，它可以让一个线程进入等待(锁)，直至被其他线程唤醒
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> cond <span style="color:#ff79c6">=</span> Arc::new(Condvar::new());
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> cond_clone <span style="color:#ff79c6">=</span> cond.clone();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 互斥锁和条件变量组合使用时，一般用于条件判断依据
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> mutex_lock <span style="color:#ff79c6">=</span> Arc::new(Mutex::new(<span style="color:#ff79c6">false</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> mutex_lock_clone <span style="color:#ff79c6">=</span> mutex_lock.clone();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> total_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    thread::spawn(<span style="color:#ff79c6">move</span> <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">loop</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 这里利用作用域获取了锁(MutexGuard&lt;T&gt;)的值后直接让它释放
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> lock <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">*</span>mutex_lock_clone.lock().unwrap() };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果 lock == false 表示铁匠(生产者)还没有打造出装备，因此进入等待，等待铁匠(生产者)打造装备
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">while</span> lock <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">false</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 这里进入等待前一定要释放 lock，否则你拿着锁进入等待，其他线程就无法获得锁了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#6272a4">// 这就是为什么上面要用作用域释放 lock 的原因
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            lock <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>cond_clone.wait(mutex_lock_clone.lock().unwrap()).unwrap(); <span style="color:#6272a4">// 进入等待
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果 lock == true 表示铁匠(生产者)已经打造出了一件装备，因此我们就可以购买(消费)了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        println!(<span style="color:#f1fa8c">&#34;玩家(消费者)，购买了一件装备&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 这里用用作用域包起来的原因，也是为了释放 lock
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 因为如果你拿着锁去唤醒铁匠(生产者)线程，它也肯定无法获得锁
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 消费完后，把 lock 的值改成 false
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">*</span>mutex_lock_clone.lock().unwrap() <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 唤醒生产者线程(其实这里是唤醒一个等待中的线程，只不过此时只有一个线程在等待，就是我们的生产者线程)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        cond_clone.notify_one();
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> total_count <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 这里利用作用域获取了锁(MutexGuard&lt;T&gt;)的值后直接让它释放
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">let</span> <span style="color:#ff79c6">mut</span> lock <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">*</span>mutex_lock.lock().unwrap() };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果 lock == true 表示已经打造了一件装备，因此暂停生产，等待玩家(消费者)购买(消费)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">while</span> lock <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">true</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 这里进入等待前一定要释放 lock，否则你拿着锁进入等待，其他线程就无法获得锁了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#6272a4">// 这就是为什么上面要用作用域释放 lock 的原因
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            lock <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>cond.wait(mutex_lock.lock().unwrap()).unwrap(); <span style="color:#6272a4">// 进入等待
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 否则如果 lock == false 表示还没有打造装备，因此需要打造一件装备
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        total_count <span style="color:#ff79c6">-=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        println!(
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;铁匠(生产者)，打造了一件装备，剩余材料总数: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>,
+</span></span><span style="display:flex;"><span>            total_count
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 这里用用作用域包起来的原因，也是为了释放 lock
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 因为如果你拿着锁去唤醒玩家(消费者)线程，它也肯定无法获得锁
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 打造完后，把 lock 的值改成 true
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">*</span>mutex_lock.lock().unwrap() <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 唤醒消费者线程(其实这里是唤醒一个等待中的线程，只不过此时只有一个线程在等待，就是我们的消费者线程)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        cond.notify_one();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行这段代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 9
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 8
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 7
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 6
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 5
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 4
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 3
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 2
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 1
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span><span style="display:flex;"><span>铁匠(生产者)，打造了一件装备，剩余材料总数: 0
+</span></span><span style="display:flex;"><span>玩家(消费者)，购买了一件装备
+</span></span></code></pre></div><h4 id="总结一下">总结一下</h4>
+<ol>
+<li><code>Condvar</code> 可以让一个线程进入等待，直至被另一个线程唤醒</li>
+<li><code>进入等待前</code>，一定要<code>释放</code>持有的<code>锁</code>，否则其他线程无法获取</li>
+</ol>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(14)-模块系统</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(14)-模块系统</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 352 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-08-03">2022-08-03 10:45:50</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-03 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>模块系统 是《<a href="https://kaisery.github.io/trpl-zh-cn/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Rust 程序设计语言</a>》第7章的全部内容，啰里八嗦了一整章，人都绕晕了，我相信大家和我一样，哈哈哈</p>
+<ol>
+<li>什么是包(Packages)</li>
+</ol>
+<blockquote>
+<p>简单来说，你的项目就是一个包，每一个包(Package)都有一个<code>Cargo.toml</code>文件</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>用 cargo new xxx 创建出来的项目 xxx 就是一个二进制包  
+</span></span><span style="display:flex;"><span>用 cargo new --lib xxx 创建出来的项目 xxx 就是一个类库包
+</span></span></code></pre></div><ol start="2">
+<li>什么是箱(Crate)</li>
+</ol>
+<blockquote>
+<p>箱(Crate)类似一种<code>&quot;看不见，摸不着&quot;</code>的概念，它是一个模块的树形结构，它形成了库或二进制项目<br>
+Crate 会将一个作用域内的相关功能分组到一起，使得该功能可以很方便地在多个项目之间共享。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>编译生成的可执行文件，你就可以把它看成是一个箱(Crate)，一个库(lib)项目，你也可以把他看成是一个箱(Crate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>一个包下至少有一个箱(Crate), 可以是类库箱(Crate)，也可以是二进制箱(Crate)
+</span></span><span style="display:flex;"><span>一个包下可以包含任意多个二进制箱(Crate)，但只能包含 0 或 1个类库箱(Crate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Rust中的默认箱(crate):
+</span></span><span style="display:flex;"><span>src/main.rs // 二进制箱(binary crate)的根文件,该箱(crate)与包(package)同名
+</span></span><span style="display:flex;"><span>src/lib.rs  // 类库箱(library crate)的根文件 ,该箱(crate)与包(package)同名
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>多个二进制箱(binary crates):
+</span></span><span style="display:flex;"><span>在src/bin目录下创建.rs文件, 每个文件都是一个二进制箱(Crate)
+</span></span></code></pre></div><ol start="3">
+<li>什么是模块(Modules)</li>
+</ol>
+<blockquote>
+<p>模块就是实际能<code>&quot;看得见，摸得着&quot;</code>的东西了，在Rust中用 <code>mod</code> 关键字来声明一个模块，我们来看一个简单的例子</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// 模块通过关键字mod加模块定义, 例如:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// 文件src/main.rs和src/lib.rs, 对应的箱是crate,
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// 箱(crate)的模块结构(module structure), 也叫做模块树(module tree):
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// crate // crate是一个关键字，它代表了当前Crate
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// └── front_of_house
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">//     ├── hosting
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">//         ├── add_to_waitlist
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> front_of_house {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">mod</span> hosting {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add_to_waitlist</span>() {}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>你可能会问，我直接定义函数不行吗？和这个有什么区别？<br>
+答案是，直接定义函数没办法分组，比如上面例子的，我们可以用类似前缀 <code>front_of_house::hosting::add_to_waitlist()</code> 的方式来调用函数</p>
+<blockquote>
+<p><code>模块</code>让我们可以将一个 <code>crate</code> 中的代码进行分组，以提高可读性与重用性。<br>
+模块还可以控制项的<code>私有性</code>，即项是可以被外部代码使用的<code>(public)</code>，还是作为一个内部实现的内容，不能被外部代码使用<code>(private)</code>。</p>
+</blockquote>
+<ul>
+<li>接下来我们来看一下模块的路径和引用</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> front_of_house {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">mod</span> hosting {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add_to_waitlist</span>() {}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">run_it_works</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 引用模块的两种方式
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 绝对路径（absolute path）从 crate 根开始，以 crate 名或者字面值 crate 开头。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 相对路径（relative path）从当前模块开始，以 self、super 或当前模块的标识符开头。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">crate</span>::front_of_house::hosting::add_to_waitlist(); <span style="color:#6272a4">// 绝对路径，由于front_of_house模块被定义在本Crate中，因此可以用crate关键字作为起始的绝对路径，当然也可以用当前Crate的名字作为起始路径
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    front_of_house::hosting::add_to_waitlist(); <span style="color:#6272a4">// 相对路径，模块定义在本Crate中，也可以省略crate关键字
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><ul>
+<li>模块的权限系统</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> front_of_house {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// pub 关键字使模块变为公有的，否则下面就引用不了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> hosting {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add_to_waitlist</span>() {} <span style="color:#6272a4">// pub 关键字使模块中的函数变为公有的，否则下面就引用不了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">run_it_works</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">crate</span>::front_of_house::hosting::add_to_waitlist();
+</span></span><span style="display:flex;"><span>    front_of_house::hosting::add_to_waitlist();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>super</code> 关键字</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">serve_order</span>() {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> back_of_house {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fix_incorrect_order</span>() {
+</span></span><span style="display:flex;"><span>        cook_order(); <span style="color:#6272a4">// 调用自己的私有函数是可以的，这个不用说也知道吧
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">super</span>::serve_order(); <span style="color:#6272a4">// super 关键字可以从父目录开始调用函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">cook_order</span>() {}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>use</code> 关键字将路径引入作用域</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> front_of_house {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> hosting {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add_to_waitlist</span>() {}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> serving {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">take_order</span>() {}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">server_order</span>() {}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">take_payment</span>() {}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> self::front_of_house::hosting::add_to_waitlist; <span style="color:#6272a4">// 相对路径引入
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">use</span> <span style="color:#ff79c6">crate</span>::front_of_house::hosting; <span style="color:#6272a4">// 绝对路径引入
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">use</span> <span style="color:#ff79c6">crate</span>::front_of_house::hosting <span style="color:#ff79c6">as</span> h; <span style="color:#6272a4">// 引入时，通过 as 关键字给它一个新的名字
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 使用 use 关键字，将某个名称导入当前作用域后，这个名称在此作用域中就可以使用了，但它对此作用域之外还是私有的。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// 如果想让其他人调用我们的代码时，也能够正常使用这个名称，就好像它本来就在当前作用域一样，那我们可以将 pub 和 use 合起来使用。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// 这种技术被称为 “重导出（re-exporting）”：我们不仅将一个名称导入了当前作用域，还允许别人把它导入他们自己的作用域。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">use</span> <span style="color:#ff79c6">crate</span>::front_of_house::hosting <span style="color:#ff79c6">as</span> hi; <span style="color:#6272a4">// 重导出
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> front_of_house::serving::<span style="color:#ff79c6">*</span>; <span style="color:#6272a4">// 如果希望将一个路径下所有公有项引入作用域，可以指定路径后跟 *，glob 运算符
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">use</span> front_of_house::serving::{server_order, take_payment}; <span style="color:#6272a4">// 部分引入
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">eat_at_restaurant</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 引入后调用就比较简单了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    hosting::add_to_waitlist();
+</span></span><span style="display:flex;"><span>    add_to_waitlist();
+</span></span><span style="display:flex;"><span>    h::add_to_waitlist();
+</span></span><span style="display:flex;"><span>    hi::add_to_waitlist();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    take_order();
+</span></span><span style="display:flex;"><span>    server_order();
+</span></span><span style="display:flex;"><span>    take_payment();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    eat_at_restaurant();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>将模块拆分成多个文件</li>
+</ul>
+<p>例如，我们要将如下代码拆分到一个单独文件中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> front_of_house {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> hosting {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add_to_waitlist</span>() {}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li>第一步我们需要创建一个和模块名同名的文件 <code>src/front_of_house.rs</code></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> hosting {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add_to_waitlist</span>() {}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li>在 <code>src/lib.rs</code> 中引入</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">mod</span> front_of_house; <span style="color:#6272a4">// 在 mod front_of_house 后使用分号，而不是代码块，这将告诉 Rust 在另一个与模块同名的文件中加载模块的内容。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">use</span> <span style="color:#ff79c6">crate</span>::front_of_house::hosting;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">eat_at_restaurant</span>() {
+</span></span><span style="display:flex;"><span>    hosting::add_to_waitlist();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>在书中还介绍了，你还可以再拆分，把 <code>add_to_waitlist()</code> 函数的实现也拆分到一个文件中，不过我认为那种方法很少用到<br>
+通常情况下我们把同类函数拆分到一个文件中就行了，没必要再多出一个目录，感兴趣的可以去看<a href="https://kaisery.github.io/trpl-zh-cn/ch07-05-separating-modules-into-different-files.html">将模块拆分成多个文件</a>章节</p>
+</blockquote>
+<h4 id="总结一下">总结一下</h4>
+<ol>
+<li><code>src/main.rs</code> 和 <code>src/lib.rs</code> 有一个默认的和包同名的Crate</li>
+<li><code>src/bin</code> 目录下创建的 <code>.rs</code> 文件, 每个文件都是一个二进制箱(Crate)</li>
+<li>你可以在<code>当前 Crate</code> 中使用 <code>crate</code> 关键字作为起始的绝对路径，来引用<code>当前 Crate</code> 中的模块</li>
+<li><code>mod</code> 关键字用来定义一个模块</li>
+<li><code>pub</code> 关键字用来导出一个模块</li>
+</ol>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

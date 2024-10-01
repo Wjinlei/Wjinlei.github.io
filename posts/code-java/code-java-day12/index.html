@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>JAVA12-多线程</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>JAVA12-多线程</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 2168 字，阅读约 11 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2021-11-08">2021-11-08 15:07:49</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/java">java</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2021-11-08 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<h2 id="thread">Thread</h2>
+<ul>
+<li>线程可以提高程序的执行效率</li>
+<li>Java中只有这么一种东西代表线程(Thread)</li>
+<li>start方法才能并发执行</li>
+<li>方法栈是线程私有的(局部变量)</li>
+<li>静态变量/类变量是被所有线程共享的</li>
+</ul>
+<h3 id="多线程的适用场景">多线程的适用场景</h3>
+<ul>
+<li>对于<code>IO</code>密集型场景及其有用
+<ul>
+<li>网络<code>IO</code></li>
+<li>文件<code>IO</code></li>
+</ul>
+</li>
+<li>对于<code>CPU</code>密集型稍有折扣(说白了就是不太适用)
+<ul>
+<li>因为我们多线程的目的本来就是想不让<code>CPU</code>闲着，闲着CPU已经在密集运算了，因此提升空间不大</li>
+</ul>
+</li>
+<li>性能提升的上线
+<ul>
+<li>单核<code>CPU</code>达到<code>100%</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="开启线程的简单方法">开启线程的简单方法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> Thread(<span style="color:#ff79c6">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Thread is run...&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Main is run...&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="run--start">run &amp; start</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> Thread(<span style="color:#ff79c6">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(Thread.<span style="color:#50fa7b">currentThread</span>() <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; is run...&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    Thread.<span style="color:#50fa7b">sleep</span>(5000);
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }).<span style="color:#50fa7b">run</span>(); <span style="color:#6272a4">// run 方法会等待当前线程执行结束后才会执行下面的操作</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> Thread(<span style="color:#ff79c6">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(Thread.<span style="color:#50fa7b">currentThread</span>() <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; is run...&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }).<span style="color:#50fa7b">start</span>(); <span style="color:#6272a4">// start方法才能并发执行</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Main is run...&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="多线程问题的来源数据共享">多线程问题的来源(数据共享)</h3>
+<ul>
+<li>线程难的本质原因是：你要看着同一份代码，想象不同的人在疯狂以乱序执行它</li>
+</ul>
+<h4 id="例子1">例子1</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 1000; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(Main::modifySharedVariable).<span style="color:#50fa7b">start</span>(); <span style="color:#6272a4">// 这也是一种简化写法,叫做方法引用,貌似是Java8 + 引入的特性</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 11
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 21
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 21
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        i = 21
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        从上面可以看出，有些数被+了多次，并不是按照我们想象的每次给i+1，这是为什么呢?
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        那是因为i++不是原子操作，假如现在i=0，多个线程同时获得了执行权，这时候他们拿
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        到的i的值都是0，因此才发生了上面的情况，某个值被打印了多次
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        */</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        i<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;i = &#34;</span> <span style="color:#ff79c6">+</span> i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="例子2-hashmap不是线程安全的">例子2 HashMap不是线程安全的</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Map<span style="color:#ff79c6">&lt;</span>Integer, Integer<span style="color:#ff79c6">&gt;</span> hashMap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 1000; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(Main::putIfAbsent).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 6
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 5
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 9
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 3
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 4
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 2
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        Put 7
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        可以看到，0被添加了多次，这是为什么呢?，请看下面截图
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        */</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 生成一个1到10的随机数,看看map中是否存在这个数，如果不存在则添加进去
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 我们的期望是每个数只可能添加1次
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">putIfAbsent</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> rNumber <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Random().<span style="color:#50fa7b">nextInt</span>(10);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>hashMap.<span style="color:#50fa7b">containsKey</span>(rNumber)) {
+</span></span><span style="display:flex;"><span>            hashMap.<span style="color:#50fa7b">put</span>(rNumber, rNumber);
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Put &#34;</span> <span style="color:#ff79c6">+</span> rNumber);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>说白了，某个线程获得了执行权，此时它判断map中没有0，于是它准备向map中添加0，但好巧不巧<br>
+CPU此时将执行权给了另一个线程，此时它也判断map中没有0，于是它向map中添加了一个0，等到<br>
+之前的线程获得了执行权的时候，它继续之前没有完成的操作，向map中添加了0，因此0被向map中<br>
+添加了两次，这就是这个问题的原因</p>
+</blockquote>
+<p><img src="/images/code-java/code-java-day12/thread-safe-02.png" alt="thread-safe"></p>
+<h4 id="例子3-死锁问题">例子3 死锁问题</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 一般来说new Object都是用来当成锁用的</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Object lock1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Object(); <span style="color:#6272a4">// Java中任何对象都可以当成锁</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Object lock2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Object(); <span style="color:#6272a4">// Java中任何对象都可以当成锁</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> Thread1().<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> Thread2().<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        运行这个程序就被卡主了，这是为什么? 请看下面截图
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 创建线程的第二种方式，继承Thread类，重写run方法
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Thread1</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">             synchronized 语句表示同步，说白了就是获取锁
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">             只有获取到锁的线程才能执行里面的代码
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">             */</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock1) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    Thread.<span style="color:#50fa7b">sleep</span>(500);
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 获取锁2</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock2) {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 创建线程的第二种方式，继承Thread类，重写run方法
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Thread2</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock2) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    Thread.<span style="color:#50fa7b">sleep</span>(100);
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock1) {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>线程1，先拿到了锁1，然后休眠500毫秒，线程2，先拿到锁2，然后休眠100毫秒，线程2先醒过来，此时它想要获得锁1<br>
+而锁1正被线程1拿到，因此它只能进入等待，此时线程1醒来，它想要获得锁2，但锁2此时正被线程2拿着，于是它也只<br>
+进入等待，此时，两个线程都等待在那了，因此进入了所谓的死锁状态</p>
+</blockquote>
+<p><img src="/images/code-java/code-java-day12/thread-safe-03.png" alt="thread-safe"></p>
+<h4 id="如何排查死锁问题">如何排查死锁问题</h4>
+<ol>
+<li>先用<code>jps</code>查找到发生死锁的<code>进程id</code></li>
+<li>再用<code>jstack</code>查看该进程的堆栈</li>
+</ol>
+<h4 id="预防死锁产生的原则">预防死锁产生的原则</h4>
+<ul>
+<li>所有线程都按照相同的顺序获得资源锁</li>
+</ul>
+<blockquote>
+<p>上面的代码之所以产生死锁问题就是，线程1先获得锁1，再获得锁2，而线程2先获得锁2，再获得锁1</p>
+</blockquote>
+<h3 id="如何写出线程安全的代码">如何写出线程安全的代码</h3>
+<ul>
+<li>利用<code>synchronized</code>解决<code>例子1</code>中的问题</li>
+</ul>
+<h4 id="synchronized-代码块">synchronized 代码块</h4>
+<ul>
+<li>synchronized 锁住的是指定的对象</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Object lock <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Object();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 1000; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(Main::modifySharedVariable).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock) {
+</span></span><span style="display:flex;"><span>            i <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;i = &#34;</span> <span style="color:#ff79c6">+</span> i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="synchronized-静态方法">synchronized 静态方法</h4>
+<ul>
+<li>synchronized 静态方法锁住的是Class对象</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 1000; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(Main::modifySharedVariable).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">synchronized</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        i <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;i = &#34;</span> <span style="color:#ff79c6">+</span> i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="synchronized-实例方法">synchronized 实例方法</h4>
+<ul>
+<li>synchronized 实例方法锁住的是this</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 1000; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            Main main <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Main();
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(main::modifySharedVariable).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">synchronized</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        i <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;i = &#34;</span> <span style="color:#ff79c6">+</span> i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 这个方法等价于上面的方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable2</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">synchronized</span> (<span style="color:#ff79c6">this</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            i <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>            System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;i = &#34;</span> <span style="color:#ff79c6">+</span> i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="collectionssynchronizedxxx">Collections.synchronizedXXX</h3>
+<p>它可以将集合转换成线程安全的</p>
+<ul>
+<li>ArrayList</li>
+<li>HashSet</li>
+<li>TreeSet</li>
+<li>HashMap</li>
+<li>LinkedHashMap</li>
+<li>&hellip;.</li>
+</ul>
+<h3 id="juc包javautilconcurrent">JUC包(java.util.concurrent)</h3>
+<ul>
+<li>ConcurrentHashMap</li>
+<li>AtomicBoolean</li>
+<li>AtomicLong</li>
+<li>AtomicInteger</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> AtomicInteger i <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AtomicInteger(0);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 1000; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(Main::modifySharedVariable).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(i.<span style="color:#50fa7b">addAndGet</span>(1));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>ReentrantLock</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> ReentrantLock reentrantLock <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ReentrantLock();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 1000; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">new</span> Thread(Main::modifySharedVariable).<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">modifySharedVariable</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#50fa7b">sleep</span>(1);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        reentrantLock.<span style="color:#50fa7b">lock</span>();
+</span></span><span style="display:flex;"><span>        i <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;i = &#34;</span> <span style="color:#ff79c6">+</span> i);
+</span></span><span style="display:flex;"><span>        reentrantLock.<span style="color:#50fa7b">unlock</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="为什么任何对象都可以当成锁">为什么任何对象都可以当成锁?</h3>
+<ul>
+<li>wait</li>
+</ul>
+<blockquote>
+<p>当前线程将进入等待，并释放锁，直到另一个线程调用notify或notifyAll方法</p>
+</blockquote>
+<ul>
+<li>notify</li>
+</ul>
+<blockquote>
+<p>唤醒等待中的线程，如果有多个线程同时在等待，那么将会随机挑选一个唤醒</p>
+</blockquote>
+<ul>
+<li>notifyAll</li>
+</ul>
+<blockquote>
+<p>唤醒所有等待中的线程，唤醒后，它们将重新竞争锁，这个竞争是没有特权的，<br>
+和平常一样，谁运气好，谁就能获得锁，没能获得锁的线程，将重新陷入等待</p>
+</blockquote>
+<h3 id="生产者消费者模型的多种实现方法">生产者消费者模型的多种实现方法</h3>
+<h4 id="waitnotify">wait/notify</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Optional;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Random;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ProducerConsumer1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        Container container <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Container();
+</span></span><span style="display:flex;"><span>        Object o <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Object();
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Producer(container, o);
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Consumer(container, o);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Producer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Container container;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Object lock;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Producer</span>(Container container, Object lock) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">lock</span> <span style="color:#ff79c6">=</span> lock;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                            lock.<span style="color:#50fa7b">wait</span>();
+</span></span><span style="display:flex;"><span>                        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd">int</span> r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Random().<span style="color:#50fa7b">nextInt</span>();
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Producing &#34;</span> <span style="color:#ff79c6">+</span> r);
+</span></span><span style="display:flex;"><span>                    container.<span style="color:#50fa7b">setValue</span>(Optional.<span style="color:#50fa7b">of</span>(r));
+</span></span><span style="display:flex;"><span>                    lock.<span style="color:#50fa7b">notify</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Consumer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Container container;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Object lock;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Consumer</span>(Container container, Object lock) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">lock</span> <span style="color:#ff79c6">=</span> lock;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd;font-style:italic">synchronized</span> (lock) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                            lock.<span style="color:#50fa7b">wait</span>();
+</span></span><span style="display:flex;"><span>                        } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                            e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Consuming &#34;</span> <span style="color:#ff79c6">+</span> container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>                    container.<span style="color:#50fa7b">setValue</span>(Optional.<span style="color:#50fa7b">empty</span>());
+</span></span><span style="display:flex;"><span>                    lock.<span style="color:#50fa7b">notify</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Container</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getValue</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> value;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setValue</span>(Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">value</span> <span style="color:#ff79c6">=</span> value;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">empty</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="lockcondition">Lock/Condition</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Optional;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Random;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.concurrent.locks.Condition;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.concurrent.locks.ReentrantLock;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ProducerConsumer2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        Container container <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Container();
+</span></span><span style="display:flex;"><span>        ReentrantLock reentrantLock <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ReentrantLock();
+</span></span><span style="display:flex;"><span>        Condition isProduce <span style="color:#ff79c6">=</span> reentrantLock.<span style="color:#50fa7b">newCondition</span>();
+</span></span><span style="display:flex;"><span>        Condition isConsume <span style="color:#ff79c6">=</span> reentrantLock.<span style="color:#50fa7b">newCondition</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Producer(container, reentrantLock, isProduce, isConsume);
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Consumer(container, reentrantLock, isProduce, isConsume);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Producer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Container container;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> ReentrantLock reentrantLock;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Condition isProduce;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Condition isConsume;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Producer</span>(Container container, ReentrantLock reentrantLock, Condition isProduce, Condition isConsume) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">reentrantLock</span> <span style="color:#ff79c6">=</span> reentrantLock;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">isProduce</span> <span style="color:#ff79c6">=</span> isProduce;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">isConsume</span> <span style="color:#ff79c6">=</span> isConsume;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                reentrantLock.<span style="color:#50fa7b">lock</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                        isProduce.<span style="color:#50fa7b">await</span>();
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Random().<span style="color:#50fa7b">nextInt</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Producing &#34;</span> <span style="color:#ff79c6">+</span> r);
+</span></span><span style="display:flex;"><span>                container.<span style="color:#50fa7b">setValue</span>(Optional.<span style="color:#50fa7b">of</span>(r));
+</span></span><span style="display:flex;"><span>                isConsume.<span style="color:#50fa7b">signal</span>();
+</span></span><span style="display:flex;"><span>                reentrantLock.<span style="color:#50fa7b">unlock</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Consumer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Container container;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> ReentrantLock reentrantLock;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Condition isProduce;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Condition isConsume;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Consumer</span>(Container container, ReentrantLock reentrantLock, Condition isProduce, Condition isConsume) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">reentrantLock</span> <span style="color:#ff79c6">=</span> reentrantLock;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">isProduce</span> <span style="color:#ff79c6">=</span> isProduce;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">isConsume</span> <span style="color:#ff79c6">=</span> isConsume;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                reentrantLock.<span style="color:#50fa7b">lock</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                        isConsume.<span style="color:#50fa7b">await</span>();
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Consuming &#34;</span> <span style="color:#ff79c6">+</span> container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>                container.<span style="color:#50fa7b">setValue</span>(Optional.<span style="color:#50fa7b">empty</span>());
+</span></span><span style="display:flex;"><span>                isProduce.<span style="color:#50fa7b">signal</span>();
+</span></span><span style="display:flex;"><span>                reentrantLock.<span style="color:#50fa7b">unlock</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Container</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getValue</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> value;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setValue</span>(Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">value</span> <span style="color:#ff79c6">=</span> value;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">empty</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="blockingqueue">BlockingQueue</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Random;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.concurrent.BlockingQueue;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.concurrent.LinkedBlockingQueue;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ProducerConsumer3</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> blockingQueue <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> LinkedBlockingQueue<span style="color:#ff79c6">&lt;&gt;</span>(1);
+</span></span><span style="display:flex;"><span>        BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> single <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> LinkedBlockingQueue<span style="color:#ff79c6">&lt;&gt;</span>(1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Producer(blockingQueue, single);
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Consumer(blockingQueue, single);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Producer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> container;
+</span></span><span style="display:flex;"><span>        BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> single;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Producer</span>(BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> container, BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> single) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">single</span> <span style="color:#ff79c6">=</span> single;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Random().<span style="color:#50fa7b">nextInt</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Producing &#34;</span> <span style="color:#ff79c6">+</span> r);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    container.<span style="color:#50fa7b">put</span>(r);
+</span></span><span style="display:flex;"><span>                    single.<span style="color:#50fa7b">take</span>(); <span style="color:#6272a4">// 等待Consumer通知我再生产</span>
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Consumer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> container;
+</span></span><span style="display:flex;"><span>        BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> single;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Consumer</span>(BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> container, BlockingQueue<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> single) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">single</span> <span style="color:#ff79c6">=</span> single;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Consuming &#34;</span> <span style="color:#ff79c6">+</span> container.<span style="color:#50fa7b">take</span>());
+</span></span><span style="display:flex;"><span>                    single.<span style="color:#50fa7b">put</span>(0); <span style="color:#6272a4">// 通知Producer再次生产</span>
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="semaphore">Semaphore</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ProducerConsumer4</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        Container container <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Container();
+</span></span><span style="display:flex;"><span>        Semaphore semaphore <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Semaphore(1, <span style="color:#ff79c6">true</span>); <span style="color:#6272a4">// 创建公平锁，当两个线程同时具备竞争锁的条件时，一人一次</span>
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Producer(container, semaphore);
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Consumer(container, semaphore);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Producer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Container container;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Semaphore semaphore;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Producer</span>(Container container, Semaphore semaphore) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">semaphore</span> <span style="color:#ff79c6">=</span> semaphore;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    semaphore.<span style="color:#50fa7b">acquire</span>();
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#8be9fd">int</span> r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Random().<span style="color:#50fa7b">nextInt</span>();
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Producing &#34;</span> <span style="color:#ff79c6">+</span> r);
+</span></span><span style="display:flex;"><span>                        container.<span style="color:#50fa7b">setValue</span>(Optional.<span style="color:#50fa7b">of</span>(r));
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">finally</span> {
+</span></span><span style="display:flex;"><span>                    semaphore.<span style="color:#50fa7b">release</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Consumer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Container container;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> Semaphore semaphore;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Consumer</span>(Container container, Semaphore semaphore) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">container</span> <span style="color:#ff79c6">=</span> container;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">semaphore</span> <span style="color:#ff79c6">=</span> semaphore;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    semaphore.<span style="color:#50fa7b">acquire</span>();
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Consuming &#34;</span> <span style="color:#ff79c6">+</span> container.<span style="color:#50fa7b">getValue</span>().<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>                        container.<span style="color:#50fa7b">setValue</span>(Optional.<span style="color:#50fa7b">empty</span>());
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">finally</span> {
+</span></span><span style="display:flex;"><span>                    semaphore.<span style="color:#50fa7b">release</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Container</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">getValue</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> value;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setValue</span>(Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">value</span> <span style="color:#ff79c6">=</span> value;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">private</span> Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">empty</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="exchanger">Exchanger</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ProducerConsumer5</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        Exchanger<span style="color:#ff79c6">&lt;</span>Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;&gt;</span> exchanger <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Exchanger<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        Exchanger<span style="color:#ff79c6">&lt;</span>Boolean<span style="color:#ff79c6">&gt;</span> single <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Exchanger<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Producer(exchanger, single);
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Consumer(exchanger, single);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#50fa7b">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#50fa7b">join</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Producer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> container <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">empty</span>();
+</span></span><span style="display:flex;"><span>        Exchanger<span style="color:#ff79c6">&lt;</span>Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;&gt;</span> exchanger;
+</span></span><span style="display:flex;"><span>        Exchanger<span style="color:#ff79c6">&lt;</span>Boolean<span style="color:#ff79c6">&gt;</span> single;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Producer</span>(Exchanger<span style="color:#ff79c6">&lt;</span>Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;&gt;</span> exchanger, Exchanger<span style="color:#ff79c6">&lt;</span>Boolean<span style="color:#ff79c6">&gt;</span> single) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">exchanger</span> <span style="color:#ff79c6">=</span> exchanger;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">single</span> <span style="color:#ff79c6">=</span> single;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>container.<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd">int</span> r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Random().<span style="color:#50fa7b">nextInt</span>();
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Producing &#34;</span> <span style="color:#ff79c6">+</span> r);
+</span></span><span style="display:flex;"><span>                    container <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">of</span>(r);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    container <span style="color:#ff79c6">=</span> exchanger.<span style="color:#50fa7b">exchange</span>(container); <span style="color:#6272a4">// 交换容器，如果对方没有到达交换点则阻塞</span>
+</span></span><span style="display:flex;"><span>                    single.<span style="color:#50fa7b">exchange</span>(<span style="color:#ff79c6">true</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Consumer</span> <span style="color:#8be9fd;font-style:italic">extends</span> Thread {
+</span></span><span style="display:flex;"><span>        Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> container <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">empty</span>();
+</span></span><span style="display:flex;"><span>        Exchanger<span style="color:#ff79c6">&lt;</span>Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;&gt;</span> exchanger;
+</span></span><span style="display:flex;"><span>        Exchanger<span style="color:#ff79c6">&lt;</span>Boolean<span style="color:#ff79c6">&gt;</span> single;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Consumer</span>(Exchanger<span style="color:#ff79c6">&lt;</span>Optional<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;&gt;</span> exchanger, Exchanger<span style="color:#ff79c6">&lt;</span>Boolean<span style="color:#ff79c6">&gt;</span> single) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">exchanger</span> <span style="color:#ff79c6">=</span> exchanger;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">single</span> <span style="color:#ff79c6">=</span> single;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 10; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                    container <span style="color:#ff79c6">=</span> exchanger.<span style="color:#50fa7b">exchange</span>(container); <span style="color:#6272a4">// 交换容器，如果对方没有到达交换点则阻塞</span>
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                    e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (container.<span style="color:#50fa7b">isPresent</span>()) {
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Consuming &#34;</span> <span style="color:#ff79c6">+</span> container.<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>                    container <span style="color:#ff79c6">=</span> Optional.<span style="color:#50fa7b">empty</span>();
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                        single.<span style="color:#50fa7b">exchange</span>(<span style="color:#ff79c6">false</span>);
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        e.<span style="color:#50fa7b">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="线程池与callablefuture">线程池与Callable/Future</h3>
+<ul>
+<li>线程池是预先定义好的若干个线程</li>
+<li>Java中线程池的实现是通过<code>Executors</code></li>
+<li><code>Runable</code>和<code>Callable</code>
+<ul>
+<li><code>Runable</code> 没有返回值</li>
+<li><code>Runable</code> 没有声明抛出的异常(这意味着你要实现它的话，必须把异常吞掉，这是非常不爽的)</li>
+</ul>
+</li>
+</ul>
+<h4 id="executors的简单使用">Executors的简单使用</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> ExecutionException, InterruptedException {
+</span></span><span style="display:flex;"><span>        ExecutorService threadPool <span style="color:#ff79c6">=</span> Executors.<span style="color:#50fa7b">newFixedThreadPool</span>(10);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * return Future 表示一个未来才会有结果的东西
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        Future<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> future1 <span style="color:#ff79c6">=</span> threadPool.<span style="color:#50fa7b">submit</span>(<span style="color:#ff79c6">new</span> Callable<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span>() {
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> Integer <span style="color:#50fa7b">call</span>() <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#50fa7b">sleep</span>(1000);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> 0;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * return Future 表示一个未来才会有结果的东西
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        Future<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> future2 <span style="color:#ff79c6">=</span> threadPool.<span style="color:#50fa7b">submit</span>(<span style="color:#ff79c6">new</span> Callable<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span>() {
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">call</span>() <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#50fa7b">sleep</span>(1000);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;Hello Thread.&#34;</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * return Future 表示一个未来才会有结果的东西
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        Future<span style="color:#ff79c6">&lt;</span>Object<span style="color:#ff79c6">&gt;</span> future3 <span style="color:#ff79c6">=</span> threadPool.<span style="color:#50fa7b">submit</span>(<span style="color:#ff79c6">new</span> Callable<span style="color:#ff79c6">&lt;</span>Object<span style="color:#ff79c6">&gt;</span>() {
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">call</span>() <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#50fa7b">sleep</span>(1000);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> RuntimeException();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 当调用get方法时，如果结果还没有被返回，则会阻塞</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(future1.<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(future2.<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(future3.<span style="color:#50fa7b">get</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="线程池实战-word-count">线程池实战 Word Count</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.BufferedReader;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.File;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.FileNotFoundException;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.FileReader;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.HashMap;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.List;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Map;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.concurrent.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">MultiThreadWordCount1</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/* 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">    使用threadNum个线程，并发统计文件中各单词的数量
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">count</span>(<span style="color:#8be9fd">int</span> threadNum, List<span style="color:#ff79c6">&lt;</span>File<span style="color:#ff79c6">&gt;</span> files) <span style="color:#8be9fd;font-style:italic">throws</span> FileNotFoundException,
+</span></span><span style="display:flex;"><span>            ExecutionException, InterruptedException {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ExecutorService threadPool <span style="color:#ff79c6">=</span> Executors.<span style="color:#50fa7b">newFixedThreadPool</span>(threadNum);
+</span></span><span style="display:flex;"><span>        Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> finalResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (File file : files) {
+</span></span><span style="display:flex;"><span>            BufferedReader bufferedReader <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> BufferedReader(<span style="color:#ff79c6">new</span> FileReader(file));
+</span></span><span style="display:flex;"><span>            List<span style="color:#ff79c6">&lt;</span>Future<span style="color:#ff79c6">&lt;</span>Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;&gt;&gt;</span> futures <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> threadNum; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                futures.<span style="color:#50fa7b">add</span>(threadPool.<span style="color:#50fa7b">submit</span>(<span style="color:#ff79c6">new</span> Worker(bufferedReader)));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> eachResult <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (Future<span style="color:#ff79c6">&lt;</span>Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;&gt;</span> future : futures) {
+</span></span><span style="display:flex;"><span>                Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> workResult <span style="color:#ff79c6">=</span> future.<span style="color:#50fa7b">get</span>();
+</span></span><span style="display:flex;"><span>                meargeWorkerResultToFinalResult(workResult, eachResult);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            meargeWorkerResultToFinalResult(eachResult, finalResult);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> finalResult;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">meargeWorkerResultToFinalResult</span>(Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> workResult,
+</span></span><span style="display:flex;"><span>                                                        Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> finalResult) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (Map.<span style="color:#50fa7b">Entry</span><span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> entry : workResult.<span style="color:#50fa7b">entrySet</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> count <span style="color:#ff79c6">=</span> finalResult.<span style="color:#50fa7b">getOrDefault</span>(entry.<span style="color:#50fa7b">getKey</span>(), 0) <span style="color:#ff79c6">+</span> entry.<span style="color:#50fa7b">getValue</span>();
+</span></span><span style="display:flex;"><span>            finalResult.<span style="color:#50fa7b">put</span>(entry.<span style="color:#50fa7b">getKey</span>(), count);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Worker</span> <span style="color:#8be9fd;font-style:italic">implements</span> Callable<span style="color:#ff79c6">&lt;</span>Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;&gt;</span> {
+</span></span><span style="display:flex;"><span>        BufferedReader bufferedReader;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Worker(BufferedReader bufferedReader) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">bufferedReader</span> <span style="color:#ff79c6">=</span> bufferedReader;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        @Override
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">call</span>() <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>            String line;
+</span></span><span style="display:flex;"><span>            Map<span style="color:#ff79c6">&lt;</span>String, Integer<span style="color:#ff79c6">&gt;</span> result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">while</span> ((line <span style="color:#ff79c6">=</span> bufferedReader.<span style="color:#50fa7b">readLine</span>()) <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+</span></span><span style="display:flex;"><span>                String<span style="color:#ff79c6">[]</span> words <span style="color:#ff79c6">=</span> line.<span style="color:#50fa7b">split</span>(<span style="color:#f1fa8c">&#34; &#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (String word : words) {
+</span></span><span style="display:flex;"><span>                    result.<span style="color:#50fa7b">put</span>(word, result.<span style="color:#50fa7b">getOrDefault</span>(word, 0) <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

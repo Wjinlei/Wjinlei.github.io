@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(32)-Channel</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(32)-Channel</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 227 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-08-24">2022-08-24 16:02:37</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-24 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch16-02-message-passing.html">Rust 程序设计语言</a>》第16.2章 <code>使用消息传递在线程间传送数据</code></p>
+<p>学习<code>线程</code>的两大难点</p>
+<ol>
+<li>如何在<code>多个线程之间共享数据</code></li>
+<li>如何保证<code>线程安全</code></li>
+</ol>
+<p>这一章我们就来看看在Rust中如何在<code>多个线程之间共享数据</code></p>
+<blockquote>
+<p><code>Rust</code>中在<code>线程之间共享数据</code>采用的方式是<code>Channel(信道)</code>，它实现了<code>生产者</code>与<code>消费者</code>模型，它由两部分组成，一个<code>发送者(transmitter)</code>和一个<code>接收者(receiver)</code>。</p>
+</blockquote>
+<p>我们来看看下面这个简单的例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::sync::mpsc; <span style="color:#6272a4">// mpsc 是多个生产者，单个消费者 (multiple producer, single consumer) 的缩写。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">use</span> std::thread;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> (tx, rx) <span style="color:#ff79c6">=</span> mpsc::channel(); <span style="color:#6272a4">// 创建一个信道
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    thread::spawn(<span style="color:#ff79c6">move</span> <span style="color:#ff79c6">||</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> val <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;hi&#34;</span>);
+</span></span><span style="display:flex;"><span>        tx.send(val).unwrap(); <span style="color:#6272a4">// 发送消息
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> received <span style="color:#ff79c6">=</span> rx.recv().unwrap(); <span style="color:#6272a4">// 接收消息
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;Got: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, received);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>我们可以通过调用 <code>mpsc::channel</code> 方法来创建一个信道 <code>mpsc::channel</code> 函数返回一个<code>元组</code>：第一个元素是<code>发送端</code>，而第二个元素是<code>接收端</code>。<br>
+<code>发送端</code>有一个 <code>send</code> 方法用来获取需要放入信道的值。<code>send</code> 方法返回一个 <code>Result&lt;T, E&gt;</code> 类型，如果<code>接收端</code>已经被丢弃了，发送操作将会返回错误。<br>
+<code>接收端</code>有两个有用的方法：<code>recv</code> 和 <code>try_recv</code>。<code>recv</code>方法会<code>阻塞主线程</code>执行直到从信道中拿到一个值。当<code>发送端</code>关闭，<code>recv</code> 会返回一个错误表明不会再有新的值到来了。<br>
+<code>try_recv</code>方法<code>不会阻塞</code>，相反它立刻返回一个 <code>Result&lt;T, E&gt;</code> 来表示当前时刻下<code>信道</code>中的值，<code>Ok</code> 值包含<code>可用的信息</code>，而 <code>Err</code> 值代表<code>此时没有任何消息</code>。</p>
+</blockquote>
+<p>运行这个程序</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Got: hi
+</span></span></code></pre></div><p><strong>信道与所有权转移</strong></p>
+<p>我们来看看如下代码，我们将尝试在新建线程中的信道中发送完 <code>val</code> 值 之后再次使用它。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::sync::mpsc;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::thread;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> (tx, rx) <span style="color:#ff79c6">=</span> mpsc::channel();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    thread::spawn(<span style="color:#ff79c6">move</span> <span style="color:#ff79c6">||</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> val <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;hi&#34;</span>);
+</span></span><span style="display:flex;"><span>        tx.send(val).unwrap();
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;val is </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, val); <span style="color:#6272a4">// 再次打印val
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> received <span style="color:#ff79c6">=</span> rx.recv().unwrap();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;Got: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, received);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这段代码不能通过编译，原因是<code>send</code>方法<code>获取了参数的所有权</code>，那么问题来了，为什么要获取所有权？<br>
+答：如果不获取所有权，那么很可能我们在使用这个值时，它已经被另一个线程修改或丢弃</p>
+<p>引用书上的话说就是</p>
+<blockquote>
+<p>一旦将值发送到另一个线程后，那个线程可能会在我们再次使用它之前就将其修改或者丢弃。</p>
+</blockquote>
+<p><strong>通过克隆发送者来创建多个生产者</strong></p>
+<p>在上面的代码中，我们提到了 <code>mpsc</code> 是 <code>multiple producer, single consumer(多生产者单消费者)</code>的缩写。所以我们可以克隆信道的<code>发送端</code>，来向同一个<code>接收端</code>发送数据</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::sync::mpsc;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::thread;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::time::Duration;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> (tx, rx) <span style="color:#ff79c6">=</span> mpsc::channel();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> tx2 <span style="color:#ff79c6">=</span> tx.clone(); <span style="color:#6272a4">// 克隆一个发送端
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    thread::spawn(<span style="color:#ff79c6">move</span> <span style="color:#ff79c6">||</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> vals <span style="color:#ff79c6">=</span> vec![
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;more&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;messages&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;for&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;you&#34;</span>),
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> val <span style="color:#ff79c6">in</span> vals {
+</span></span><span style="display:flex;"><span>            tx.send(val).unwrap(); <span style="color:#6272a4">// 发送数据
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            thread::sleep(Duration::from_secs(<span style="color:#bd93f9">1</span>)); <span style="color:#6272a4">// 暂停1秒
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    thread::spawn(<span style="color:#ff79c6">move</span> <span style="color:#ff79c6">||</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> vals <span style="color:#ff79c6">=</span> vec![
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;hi&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;from&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;the&#34;</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;thread&#34;</span>),
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> val <span style="color:#ff79c6">in</span> vals {
+</span></span><span style="display:flex;"><span>            tx2.send(val).unwrap(); <span style="color:#6272a4">// 发送数据
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            thread::sleep(Duration::from_secs(<span style="color:#bd93f9">1</span>)); <span style="color:#6272a4">// 暂停1秒
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 将 rx 当作一个迭代器。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span> received <span style="color:#ff79c6">in</span> rx {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;Got: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, received);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这代码真的很简单，没有什么难度或不能理解的</p>
+<h4 id="总结一下">总结一下</h4>
+<ol>
+<li><code>mpsc::channel</code> 函数返回一个<code>元组</code>第一个元素是<code>发送端</code>，而第二个元素是<code>接收端</code></li>
+<li><code>send</code> 方法会<code>获取参数的所有权</code></li>
+<li><code>recv</code> 方法会<code>阻塞主线程</code>直到从<code>信道</code>中拿到一个值，而相反 <code>try_recv 则不会阻塞</code>，它立刻返回一个<code>Result&lt;T, E&gt;</code>，来表示此时<code>信道</code>中的值</li>
+<li>可以通过<code>克隆</code>信道的<code>发送端</code>，来向同一个<code>接收端</code>发送数据</li>
+<li><code>接收端</code>可以当作一个<code>迭代器</code>来使用</li>
+</ol>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

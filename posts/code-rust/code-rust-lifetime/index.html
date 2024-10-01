@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(21)-生命周期</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(21)-生命周期</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 418 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-08-10">2022-08-10 14:42:31</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-08-10 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch10-03-lifetime-syntax.html">Rust 程序设计语言</a>》第10.3章 <code>生命周期确保引用有效</code></p>
+<p>生命周期有什么用？答：避免出现<code>悬垂引用</code>问题，那么问题来了，什么是<code>悬垂引用</code>？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>引用的对象已经被释放，但指针依然指向它，这会导致程序引用非预期的数据。
+</span></span></code></pre></div><p>先说说看完书中这一章我自己的理解</p>
+<ol>
+<li>生命周期是给谁看的？答：<code>编译器！</code></li>
+<li>生命周期就好像一套<code>规则</code>，告诉编译器以这个规则给我检查代码是否满足要求</li>
+</ol>
+<p><strong>我们先来看这么一个例子</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> r;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> x <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>;
+</span></span><span style="display:flex;"><span>        r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;r: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, r);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这段代码不能通过编译，原因是 <code>r</code> 引用的值(<code>x</code>)在尝试使用之前就离开了作用域。<br>
+那么Rust是怎么知道的呢？答：这得益于Rust的<code>借用检查器</code></p>
+<p><strong>我们来看看借用检查器都做了什么</strong></p>
+<p>还是上面的代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> r;                <span style="color:#6272a4">// ---------+-- &#39;a
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                          <span style="color:#6272a4">//          |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {                     <span style="color:#6272a4">//          |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">let</span> x <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>;        <span style="color:#6272a4">// -+-- &#39;b  |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>x;           <span style="color:#6272a4">//  |       |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }                     <span style="color:#6272a4">// -+       |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                          <span style="color:#6272a4">//          |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;r: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, r); <span style="color:#6272a4">//          |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                          <span style="color:#6272a4">// ---------+
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}   
+</span></span></code></pre></div><p>书中这一段解释的非常清楚，所以我就抄过来了</p>
+<blockquote>
+<p>这里将 <code>r</code> 的生命周期标记为 <code>'a</code> 并将 <code>x</code> 的生命周期标记为 <code>'b</code>。如你所见，内部的 <code>'b</code> 块要比外部的生命周期 <code>'a</code> 小得多。<br>
+在编译时，Rust 比较这两个生命周期的大小，并发现 <code>r</code> 拥有生命周期 <code>'a</code>，不过它引用了一个拥有生命周期 <code>'b</code> 的对象。<br>
+但因为生命周期 <code>'b</code> 比生命周期 <code>'a</code> 要小：被引用的对象比它的引用者存在的时间更短。所以程序被拒绝编译，</p>
+</blockquote>
+<p>让我们来看一个没有产生悬垂引用且可以正确编译的例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> x <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>;            <span style="color:#6272a4">// ----------+-- &#39;b
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                          <span style="color:#6272a4">//           |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> r <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>x;           <span style="color:#6272a4">// --+-- &#39;a  |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                          <span style="color:#6272a4">//   |       |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    println!(<span style="color:#f1fa8c">&#34;r: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, r); <span style="color:#6272a4">//   |       |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                          <span style="color:#6272a4">// --+       |
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}                         <span style="color:#6272a4">// ----------+
+</span></span></span></code></pre></div><p>这里 <code>x</code> 拥有生命周期 <code>'b</code>，比 <code>'a</code> 要大。这就意味着 <code>r</code> 可以引用 <code>x</code>：Rust 知道 <code>r</code> 中的引用在 <code>x</code> 有效的时候也总是有效的。</p>
+<p><strong>当借用检查器无法帮助我们分析检查时</strong></p>
+<blockquote>
+<p>某些情况下，借用检查器无法帮助我们分析代码，这时候就需要我们手动<code>标记</code>一下，好让借用检查器按照我们的规则进行检查</p>
+</blockquote>
+<p>那么什么情况下借用检查器无法帮助我们呢？</p>
+<ol>
+<li>函数采用引用做参数，并且返回该引用，请看如下代码</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">longest</span>(x: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span>, y: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span>) -&gt; <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> x.len() <span style="color:#ff79c6">&gt;</span> y.len() {
+</span></span><span style="display:flex;"><span>        x
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        这里你可以想象成
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        let r = &amp;x;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        r
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        */</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>        y
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        这里你可以想象成
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        let r = &amp;y;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        r
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        */</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>借用检查器不知道传入的引用的具体生命周期，因为 <code>x</code> 和 <code>y</code> 在哪定义的不清楚嘛<br>
+由于不清楚 <code>x</code> 和 <code>y</code> 的生命周期，因此借用检查器就无法让它们和 <code>r</code> 的生命周期进行比较，所以这段代码不允许编译</p>
+<p>好了，我们知道了原因，接下来看看如何解决它</p>
+<p><strong>函数中的泛型生命周期</strong></p>
+<p>我们可以通过一个叫作<code>生命周期注解</code>的东西，来手动<code>标记</code>一下，注意，它并<code>不会改变生命周期</code>，而是告诉<code>借用检查器</code>，我<code>要求的生命周期</code></p>
+<blockquote>
+<p><code>生命周期注解</code>有着一个不太常见的语法：生命周期参数名称必须以撇号（<code>'</code>）开头，其<code>名称通常全是小写</code>，类似于泛型其名称非常短。<br>
+<code>'a</code> 是大多数人默认使用的名称。生命周期参数注解位于引用的 <code>&amp;</code> 之后，并有一个<code>空格</code>来将引用类型与生命周期注解分隔开。</p>
+</blockquote>
+<p>下面的代码，修复了上面的问题</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">longest</span><span style="color:#ff79c6">&lt;</span><span style="color:#50fa7b">&#39;a</span><span style="color:#ff79c6">&gt;</span>(x: <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">&#39;a</span> <span style="color:#8be9fd">str</span>, y: <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">&#39;a</span> <span style="color:#8be9fd">str</span>) -&gt; <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">&#39;a</span> <span style="color:#8be9fd">str</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> x.len() <span style="color:#ff79c6">&gt;</span> y.len() {
+</span></span><span style="display:flex;"><span>        x
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>        y
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> string1 <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;abcd&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> string2 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;xyz&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> result <span style="color:#ff79c6">=</span> longest(string1.as_str(), string2);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;The longest string is </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, result);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这段代码，指明了 <code>x</code> 必须拥有生命周期 <code>'a</code>，并且 <code>y</code> 也必须拥有生命周期 <code>'a</code>，这也就意味着，<code>x</code> 和 <code>y</code> 必须处在同一个生命周期<br>
+然后是返回值也指明了必须拥有生命周期 <code>'a</code>，也就意味着，返回值必须是 <code>x</code> 或 <code>y</code> 中的一个<br>
+这样的话，当传入的 <code>x</code> 和 <code>y</code> 不在同一个生命周期中时，编译将不被通过</p>
+<p><strong>深入理解生命周期</strong></p>
+<p>指定生命周期参数的正确方式依赖函数实现的具体功能。</p>
+<p>书中这一小节也讲的非常清楚，所以我就直接抄过来了</p>
+<blockquote>
+<p>例如，如果将 <code>longest</code> 函数的实现修改为总是返回第一个参数而不是最长的字符串 <code>slice</code>，就不需要为参数 <code>y</code> 指定一个生命周期。</p>
+</blockquote>
+<p>例如，如下代码将能够编译：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">longest</span><span style="color:#ff79c6">&lt;</span><span style="color:#50fa7b">&#39;a</span><span style="color:#ff79c6">&gt;</span>(x: <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">&#39;a</span> <span style="color:#8be9fd">str</span>, y: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span>) -&gt; <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">&#39;a</span> <span style="color:#8be9fd">str</span> {
+</span></span><span style="display:flex;"><span>    x
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>在这个例子中，我们为参数 <code>x</code> 和返回值指定了生命周期参数 <code>'a</code>，不过没有为参数 <code>y</code> 指定，因为 <code>y</code> 的生命周期与参数 <code>x</code> 和返回值的生命周期没有任何关系。</p>
+</blockquote>
+<p><strong>当从函数返回一个引用，返回值的生命周期参数需要与一个参数的生命周期参数相匹配。</strong></p>
+<p>如果返回的引用没有指向任何一个参数，那么唯一的可能就是它指向一个函数内部创建的值，那么它将会是一个悬垂引用，因为它将会在函数结束时离开作用域。<br>
+<del>如果你非要返回一个没有指向任何一个参数的引用，那么你需要指明 <code>'static</code> 生命周期，这个后面我们会讲到</del><br>
+如果你非要返回一个没有指向任何一个参数的引用，那么你必须返回一个<code>具有静态生命周期</code>的引用，光指明 <code>'static</code> 是没有用的，因为生命周期注解<code>不改变实际的生命周期</code></p>
+<p><strong>结构体定义中的生命周期注解</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">ImportantExcerpt</span><span style="color:#ff79c6">&lt;</span><span style="color:#50fa7b">&#39;a</span><span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    part: <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">&#39;a</span> <span style="color:#8be9fd">str</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> novel <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Call me Ishmael. Some years ago...&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> first_sentence <span style="color:#ff79c6">=</span> novel.split(<span style="color:#f1fa8c">&#39;.&#39;</span>).next().expect(<span style="color:#f1fa8c">&#34;Could not find a &#39;.&#39;&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> ImportantExcerpt {
+</span></span><span style="display:flex;"><span>        part: <span style="color:#50fa7b">first_sentence</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>这个注解意味着 <code>ImportantExcerpt</code> 的实例不能比其 <code>part</code> 字段中的引用存在的更久，所以 <code>ImportantExcerpt</code> 实例中的引用总是有效的。</p>
+</blockquote>
+<p>这一节，书中我认为没有讲清楚，为什么注解字段后，实例就不能比字段存在的久了？<br>
+它们是怎么比较的，难道指明了生命周期注解后字段的生命周期就比实例的生命周期大？<br>
+那么如果没有显示指明字段生命周期，是不是字段的生命周期就比实例的生命周期小？</p>
+<p>我是这么理解的，如果字段没有显示的指明生命周期，那么字段是属于实例的，它和实例属于同一个生命周期<br>
+如果显示指明了生命周期，则字段的生命周期就会套在实例的生命周期外面，这里就<code>死记硬背</code>吧</p>
+<p><strong>生命周期省略（Lifetime Elision）</strong></p>
+<p>关于生命周期省略，我个人是不建议省略写法的，第一是记规则比较麻烦，第二是省略了会造成代码不明确，不过感兴趣你可以参考这一节<a href="https://kaisery.github.io/trpl-zh-cn/ch10-03-lifetime-syntax.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9C%81%E7%95%A5lifetime-elision">生命周期省略</a></p>
+<p><strong>在方法中定义生命周期</strong></p>
+<p>在方法中也可以定义生命周期，只需要在 <code>impl</code> 关键词和 <code>类型</code> 后面声明生命周期即可，因为这些生命周期是结构体类型的一部分</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">impl</span><span style="color:#ff79c6">&lt;</span><span style="color:#50fa7b">&#39;a</span><span style="color:#ff79c6">&gt;</span> ImportantExcerpt<span style="color:#ff79c6">&lt;</span><span style="color:#50fa7b">&#39;a</span><span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">level</span>(<span style="color:#ff79c6">&amp;</span>self) -&gt; <span style="color:#8be9fd">i32</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>静态生命周期</strong></p>
+<p>所有的字符串字面值都是 <code>'static</code> 的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// 返回一个静态生命周期的字符串 slice
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">hello</span>() -&gt; <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd;font-style:italic">&#39;static</span> <span style="color:#8be9fd">str</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// &#39;static，其生命周期能够存活于整个程序期间。所有的字符串字面值都拥有 &#39;static 生命周期，我们也可以选择像下面这样标注出来
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 这个字符串的文本被直接储存在程序的二进制文件中而这个文件总是可用的。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> hello: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd;font-style:italic">&#39;static</span> <span style="color:#8be9fd">str</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Hello World.&#34;</span>;
+</span></span><span style="display:flex;"><span>    hello
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> hello <span style="color:#ff79c6">=</span> hello();
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, hello)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

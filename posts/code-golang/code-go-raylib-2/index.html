@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Go 游戏开发学习笔记(二)-创建精灵</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Go 游戏开发学习笔记(二)-创建精灵</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 234 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-07-03">2022-07-03 22:20:03</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/golang">golang</a>
+
+
+<a href="http://wjinlei.github.io/tags/raylib">raylib</a>
+
+
+<a href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E">游戏引擎</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-07-03 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>不知你是否意识到，所有的游戏都有 精灵(Sprite) 对象，什么是精灵？</p>
+<p>引用知乎上<a href="https://www.zhihu.com/question/435692887/answer/1712676699">程墨的回答</a></p>
+<blockquote>
+<p>上世纪70年代，在德州电器公司，一个叫Daniel Hillis的前辈最早把Sprite这个词用在计算机图形上，在展示界面上，有一些东西在实现层面并不是和整个画面融为一体的，而是『漂浮』在其他画面之上，像『幽灵』一样，所以被称为Sprite。</p>
+</blockquote>
+<p>精灵是您在屏幕上能移动的对象，它能被控制，你喜欢玩的游戏中主角就是一个精灵。</p>
+<p>我知道你在想是不是每个图形对象都是一个精灵？</p>
+<p>不是的，为什么? 因为如果你能控制它，它才是一个精灵，如果无法控制，那就只是一个节点(Node)。</p>
+<h2 id="接着上节的代码">接着上节的代码</h2>
+<p>接上节的代码，我们继续重构一下</p>
+<p>我们创建两个精灵<code>grassSprite</code> 和 <code>playerSprite</code> 它的类型是 <code>Texture2D</code> 纹理</p>
+<blockquote>
+<p>纹理你可以理解为物体表面的贴图，当把纹理按照特定的方式映射到物体表面上的时候能使物体看上去更加真实。</p>
+</blockquote>
+<p>我们在 <code>init()</code> 函数中加载我们的纹理 <code>Grass.png</code> 和 <code>Basic Charakter Spritesheet.png</code></p>
+<p>然后在 <code>drawScene()</code> 函数中绘制我们的纹理，然后在 <code>render()</code> 函数中被渲染</p>
+<p><code>handleInput()</code> 函数用于处理用户输入，<code>rl.IsKeyDown()</code> 用于判断是否按下了某个键，如果按下了对应的 <code>上下左右</code> 或 <code>WASD</code>，则移动我们的人物精灵</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Create sprite and handle input
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#34;github.com/gen2brain/raylib-go/raylib&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">const</span> (
+</span></span><span style="display:flex;"><span>	screenWidth  = <span style="color:#bd93f9">1000</span>
+</span></span><span style="display:flex;"><span>	screenHeight = <span style="color:#bd93f9">400</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">var</span> (
+</span></span><span style="display:flex;"><span>	running      = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>	bkgColor     = rl.<span style="color:#50fa7b">NewColor</span>(<span style="color:#bd93f9">147</span>, <span style="color:#bd93f9">211</span>, <span style="color:#bd93f9">196</span>, <span style="color:#bd93f9">255</span>)
+</span></span><span style="display:flex;"><span>	grassSprite  rl.Texture2D
+</span></span><span style="display:flex;"><span>	playerSprite rl.Texture2D
+</span></span><span style="display:flex;"><span>	playerSrc    rl.Rectangle
+</span></span><span style="display:flex;"><span>	playerDest   rl.Rectangle
+</span></span><span style="display:flex;"><span>	playerSpeed  <span style="color:#8be9fd">float32</span> = <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">handleInput</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyW) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyUp) {
+</span></span><span style="display:flex;"><span>		playerDest.Y <span style="color:#ff79c6">-=</span> playerSpeed
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyD) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyRight) {
+</span></span><span style="display:flex;"><span>		playerDest.X <span style="color:#ff79c6">+=</span> playerSpeed
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyS) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyDown) {
+</span></span><span style="display:flex;"><span>		playerDest.Y <span style="color:#ff79c6">+=</span> playerSpeed
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyA) <span style="color:#ff79c6">||</span> rl.<span style="color:#50fa7b">IsKeyDown</span>(rl.KeyLeft) {
+</span></span><span style="display:flex;"><span>		playerDest.X <span style="color:#ff79c6">-=</span> playerSpeed
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">update</span>() {
+</span></span><span style="display:flex;"><span>	running = !rl.<span style="color:#50fa7b">WindowShouldClose</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">drawScene</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">DrawTexture</span>(grassSprite, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">50</span>, rl.White)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">DrawTexturePro</span>(playerSprite, playerSrc, playerDest, rl.<span style="color:#50fa7b">NewVector2</span>(playerDest.Width, playerDest.Height), <span style="color:#bd93f9">0</span>, rl.White)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">render</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">BeginDrawing</span>()
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">ClearBackground</span>(bkgColor)
+</span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">drawScene</span>()
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">EndDrawing</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">init</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">InitWindow</span>(screenWidth, screenHeight, <span style="color:#f1fa8c">&#34;learn-raylib-go&#34;</span>)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">SetTargetFPS</span>(<span style="color:#bd93f9">60</span>)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">SetExitKey</span>(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>	grassSprite = rl.<span style="color:#50fa7b">LoadTexture</span>(<span style="color:#f1fa8c">&#34;./res/Tilesets/Grass.png&#34;</span>)
+</span></span><span style="display:flex;"><span>	playerSprite = rl.<span style="color:#50fa7b">LoadTexture</span>(<span style="color:#f1fa8c">&#34;./res/Characters/Basic Charakter Spritesheet.png&#34;</span>)
+</span></span><span style="display:flex;"><span>	playerSrc = rl.<span style="color:#50fa7b">NewRectangle</span>(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">48</span>, <span style="color:#bd93f9">48</span>)
+</span></span><span style="display:flex;"><span>	playerDest = rl.<span style="color:#50fa7b">NewRectangle</span>(<span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">100</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">quit</span>() {
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">UnloadTexture</span>(grassSprite)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">UnloadTexture</span>(playerSprite)
+</span></span><span style="display:flex;"><span>	rl.<span style="color:#50fa7b">CloseWindow</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">for</span> running {
+</span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">handleInput</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">update</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">render</span>()
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">quit</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>rl.NewRectangle(x, y, width, height float32) Rectangle 返回一个矩形</li>
+<li>rl.DrawTexture(texture Texture2D, posX int32, posY int32, tint color.RGBA) 绘制整个纹理图片</li>
+<li>rl.DrawTexturePro(texture Texture2D, sourceRec, destRec Rectangle, origin Vector2, &hellip;) 绘制部分纹理图片</li>
+<li>rl.UnloadTexture(texture Texture2D) 卸载某个纹理</li>
+<li>rl.IsKeyDown(key int32) bool 是否按下了某个键</li>
+</ul>
+<p>运行上面的代码</p>
+<p><img src="/images/code-golang/code-go-raylib-2/running.gif" alt="效果"></p>
+<p>我们可以控制我们的人物移动</p>
+<p>下一节我将学习如何<code>播放音乐</code></p>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

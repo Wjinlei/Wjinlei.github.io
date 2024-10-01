@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(40)-高级trait</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(40)-高级trait</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 876 字，阅读约 5 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-09-29">2022-09-29 10:14:03</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-09-29 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch19-03-advanced-traits.html">Rust程序设计语言</a>》第19.2章 <code>高级 trait</code></p>
+<p>本节我们将学习 <code>trait</code> 的一些高级用法，它们包括</p>
+<ol>
+<li>关联类型</li>
+<li>默认泛型类型参数</li>
+<li>运算符重载</li>
+<li>完全限定语法 <code>&lt;Type as Trait&gt;::function(receiver_if_method, next_arg, ...);</code></li>
+<li>在 <code>trait</code> 中需要用到另一个 <code>trait</code> 的某个功能，说白了需要能够依赖相关的 <code>trait</code> 也被实现。</li>
+<li>newtype <code>模式(注意是模式，不是关键字)</code>用于在<code>外部crate</code> 上实现 <code>外部trait</code></li>
+</ol>
+<p><strong>关联类型</strong></p>
+<blockquote>
+<p>关联类型是一个将类型占位符与 <code>trait</code> 相关联的方式，这样 <code>trait</code> 的方法签名中就可以使用这些占位符类型。<br>
+<code>trait</code> 的实现者会针对特定的实现在这个类型的位置指定相应的具体类型。</p>
+</blockquote>
+<p>一个带有关联类型的 <code>trait</code> 的例子是标准库提供的 <code>Iterator trait</code>。它有一个叫做 <code>Item</code> 的关联类型来替代遍历的值的类型。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">trait</span> <span style="color:#8be9fd;font-style:italic">Iterator</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">type</span> <span style="color:#50fa7b">Item</span>; <span style="color:#6272a4">// Item 是一个占位类型，这个 trait 的实现者会指定 Item 的具体类型
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">next</span>(<span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> self) -&gt; <span style="color:#8be9fd;font-style:italic">Option</span><span style="color:#ff79c6">&lt;</span>Self::Item<span style="color:#ff79c6">&gt;</span>; <span style="color:#6272a4">// next 方法定义表明它返回 Option&lt;Self::Item&gt; 类型的值。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>在实现时，当实现者指定了关联类型时，方法的返回值就是其指定的类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> <span style="color:#8be9fd;font-style:italic">Iterator</span> <span style="color:#ff79c6">for</span> Counter {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">type</span> <span style="color:#50fa7b">Item</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">u32</span>; <span style="color:#6272a4">// 指定关联类型为 u32
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">next</span>(<span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> self) -&gt; <span style="color:#8be9fd;font-style:italic">Option</span><span style="color:#ff79c6">&lt;</span>Self::Item<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// --省略部分代码--
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这类似于<code>泛型</code>，那为什么不这么定义呢？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">trait</span> <span style="color:#8be9fd;font-style:italic">Iterator</span><span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">next</span>(<span style="color:#ff79c6">&amp;</span><span style="color:#ff79c6">mut</span> self) -&gt; <span style="color:#8be9fd;font-style:italic">Option</span><span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>它和泛型有什么区别呢？感兴趣可以参考 <a href="https://kaisery.github.io/trpl-zh-cn/ch19-03-advanced-traits.html#%E5%85%B3%E8%81%94%E7%B1%BB%E5%9E%8B%E5%9C%A8-trait-%E5%AE%9A%E4%B9%89%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%B1%BB%E5%9E%8B">Rust程序设计语言</a> <code>示例 19-13: 一个使用泛型的 Iterator trait 假想定义</code></p>
+<p>简单总结一下，<code>关联类型</code>，通常用于指定 <code>trait 方法的返回值类型</code></p>
+<p><strong>默认泛型类型参数</strong></p>
+<blockquote>
+<p>当使用泛型类型参数时，可以为泛型指定一个<code>默认</code>的具体类型。为泛型类型指定默认类型的语法是在声明泛型类型时使用 <code>&lt;类型占位符名称=实际的类型&gt;</code>。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// 定义泛型类型默认参数 Rhs=Self
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// 如果实现 Add trait 时不指定 Rhs 的具体类型，Rhs 的类型将是默认的 Self 类型
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">trait</span> Add<span style="color:#ff79c6">&lt;</span>Rhs<span style="color:#ff79c6">=</span>Self<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">type</span> <span style="color:#50fa7b">Output</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add</span>(self, rhs: <span style="color:#50fa7b">Rhs</span>) -&gt; <span style="color:#50fa7b">Self</span>::Output;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>运算符重载</strong></p>
+<blockquote>
+<p>运算符重载是指在特定情况下自定义运算符<code>（比如 +）</code>行为的操作。 例如，我们想通过 <code>+</code> 运算符让两个 <code>Point</code> 结构体相加生成一个新的<code>Point</code></p>
+</blockquote>
+<p>上面的 <code>Add trait</code> 就是一个用于实现运算符重载的 <code>trait</code>，它可以重新定义特定情况下 <code>+</code> 运算符的行为，它位于 <code>std::ops</code> 包中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::ops::Add;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[derive(Debug, Copy, Clone, PartialEq)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Point</span> {
+</span></span><span style="display:flex;"><span>    x: <span style="color:#8be9fd">i32</span>,
+</span></span><span style="display:flex;"><span>    y: <span style="color:#8be9fd">i32</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 实现 Add trait，实现时没有指定Rhs的具体类型，因此它是Self，因为我们希望将两个 Point 实例相加。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">impl</span> Add <span style="color:#ff79c6">for</span> Point {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">type</span> <span style="color:#50fa7b">Output</span> <span style="color:#ff79c6">=</span> Point; <span style="color:#6272a4">// 指定关联类型为 Point 类型
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add</span>(self, other: <span style="color:#50fa7b">Point</span>) -&gt; <span style="color:#50fa7b">Point</span> {
+</span></span><span style="display:flex;"><span>        Point {
+</span></span><span style="display:flex;"><span>            x: <span style="color:#50fa7b">self</span>.x <span style="color:#ff79c6">+</span> other.x,
+</span></span><span style="display:flex;"><span>            y: <span style="color:#50fa7b">self</span>.y <span style="color:#ff79c6">+</span> other.y,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    assert_eq!(
+</span></span><span style="display:flex;"><span>        Point { x: <span style="color:#bd93f9">1</span>, y: <span style="color:#bd93f9">0</span> } <span style="color:#ff79c6">+</span> Point { x: <span style="color:#bd93f9">2</span>, y: <span style="color:#bd93f9">3</span> }, <span style="color:#6272a4">// 实现了 Add trait 后，就可以两个 Point 相加
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        Point { x: <span style="color:#bd93f9">3</span>, y: <span style="color:#bd93f9">3</span> }
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>让我们看看一个实现 <code>Add trait</code> 时希望自定义 <code>Rhs</code> 类型而不是使用默认类型的例子。</p>
+<p>下面这段程序，实现了 <code>Millimeters</code> 类型(代表毫米值) 和 <code>Meters</code> 类型(代表米值)相加，并让 <code>Add</code> 的实现正确处理转换。</p>
+<blockquote>
+<p>你不用管什么米值毫米值什么意思，因为这不重要，重要的是要知道如何<code>自定义Rhs</code></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::ops::Add;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Millimeters</span>(<span style="color:#8be9fd">u32</span>); <span style="color:#6272a4">// 这种将现有类型简单封装进另一个结构体的方式被称为 newtype 模式，这个后面再说，现在不用管
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Meters</span>(<span style="color:#8be9fd">u32</span>); <span style="color:#6272a4">// 这种将现有类型简单封装进另一个结构体的方式被称为 newtype 模式，这个后面再说，现在不用管
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 实现 Add trait, 为 Rhs 提供类型值 Meters
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">impl</span> Add<span style="color:#ff79c6">&lt;</span>Meters<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">for</span> Millimeters {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">type</span> <span style="color:#50fa7b">Output</span> <span style="color:#ff79c6">=</span> Millimeters;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">add</span>(self, other: <span style="color:#50fa7b">Meters</span>) -&gt; <span style="color:#50fa7b">Millimeters</span> {
+</span></span><span style="display:flex;"><span>        Millimeters(self.<span style="color:#bd93f9">0</span> <span style="color:#ff79c6">+</span> (other.<span style="color:#bd93f9">0</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>为了使 <code>Millimeters</code> 和 <code>Meters</code> 能够相加，我们指定 <code>impl Add&lt;Meters&gt;</code> 来设定 <code>Rhs</code> 类型参数的值而不是使用默认的 <code>Self</code>。</p>
+<p><strong>完全限定语法</strong></p>
+<p>完全限定语法用于<code>消除歧义</code>，我认为应该尽量避免写出有<code>歧义</code>的代码，不过有时，可能实在没有更好的办法只能这样，我们来看看下面的代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">trait</span> Pilot {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fly</span>(<span style="color:#ff79c6">&amp;</span>self);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">trait</span> Wizard {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fly</span>(<span style="color:#ff79c6">&amp;</span>self);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Human</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Human {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Human 自己的 fly 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fly</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;*waving arms furiously*&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Pilot <span style="color:#ff79c6">for</span> Human {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 实现了 Pilot trait 的 flay 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fly</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;This is your captain speaking.&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Wizard <span style="color:#ff79c6">for</span> Human {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 实现了 Wizard trait 的 flay 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fly</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;Up!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>调用时，默认执行的是 <code>Human</code> 自己的 <code>fly</code> 方法</p>
+<p>运行这段代码会打印出 <code>*waving arms furiously*</code>，这表明 Rust 调用了直接实现在 <code>Human</code> 上的 <code>fly</code> 方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>fn main() {
+</span></span><span style="display:flex;"><span>    let person = Human;
+</span></span><span style="display:flex;"><span>    person.fly();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>为了能够调用 <code>Pilot trait</code> 或 <code>Wizard trait</code> 的 <code>fly</code> 方法，我们需要使用更明显的语法以便能指定我们指的是哪个 <code>fly</code> 方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> person <span style="color:#ff79c6">=</span> Human;
+</span></span><span style="display:flex;"><span>    Pilot::fly(<span style="color:#ff79c6">&amp;</span>person);
+</span></span><span style="display:flex;"><span>    Wizard::fly(<span style="color:#ff79c6">&amp;</span>person);
+</span></span><span style="display:flex;"><span>    person.fly(); <span style="color:#6272a4">// 等同于 Human::fly(&amp;person)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>运行这段代码会打印出</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cargo run
+</span></span><span style="display:flex;"><span>   Compiling traits-example v0.1.0 (file:///projects/traits-example)
+</span></span><span style="display:flex;"><span>    Finished dev [unoptimized + debuginfo] target(s) in 0.46s
+</span></span><span style="display:flex;"><span>     Running `target/debug/traits-example`
+</span></span><span style="display:flex;"><span>This is your captain speaking.
+</span></span><span style="display:flex;"><span>Up!
+</span></span><span style="display:flex;"><span>*waving arms furiously*
+</span></span></code></pre></div><blockquote>
+<p>因为 <code>fly</code> 方法获取一个 <code>self</code> 参数，而 <code>方法</code> 第一个参数就是 <code>self</code>，Rust 可以根据 <code>self</code> 的类型计算出应该使用哪一个 <code>trait</code> 实现。</p>
+</blockquote>
+<p>但我们知道 <code>关联函数没有self参数</code>，我们来看看下面的代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">trait</span> Animal {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">baby_name</span>() -&gt; <span style="color:#8be9fd;font-style:italic">String</span>; <span style="color:#6272a4">// 关联函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Dog</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Dog {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Dog 自己的关联函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">baby_name</span>() -&gt; <span style="color:#8be9fd;font-style:italic">String</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Spot&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Animal <span style="color:#ff79c6">for</span> Dog {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 实现 Animal 的关联函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">baby_name</span>() -&gt; <span style="color:#8be9fd;font-style:italic">String</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;puppy&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;A baby dog is called a </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, Dog::baby_name());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行这段代码会打印出</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cargo run
+</span></span><span style="display:flex;"><span>   Compiling traits-example v0.1.0 (file:///projects/traits-example)
+</span></span><span style="display:flex;"><span>    Finished dev [unoptimized + debuginfo] target(s) in 0.54s
+</span></span><span style="display:flex;"><span>     Running `target/debug/traits-example`
+</span></span><span style="display:flex;"><span>A baby dog is called a Spot
+</span></span></code></pre></div><p>可以看到它直接调用了定义于 <code>Dog</code> 之上的关联函数。那如果我们想调用 <code>Animal</code> 上的 <code>baby_name</code> 呢</p>
+<p>我们可以使用<code>完全限定语法</code>，它的语法是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;Type as Trait&gt;::function(receiver_if_method, next_arg, ...);
+</span></span></code></pre></div><blockquote>
+<p>对于关联函数，其没有一个 <code>receiver</code>，故只会有其他参数的列表。可以选择在任何函数或方法调用处使用完全限定语法。<br>
+然而，允许省略任何 Rust 能够从程序中的其他信息中计算出的部分。<br>
+只有当存在多个同名实现而 Rust 需要帮助以便知道我们希望调用哪个实现时，才需要使用这个较为冗长的语法。</p>
+</blockquote>
+<p>我们在尖括号中向 Rust 提供了类型注解，并通过在此函数调用中将 <code>Dog</code> 类型当作 <code>Animal</code> 对待，指定希望调用的是 <code>Dog</code> 上 <code>Animal trait</code> 实现中的 <code>baby_name</code> 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;A baby dog is called a </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, <span style="color:#ff79c6">&lt;</span>Dog <span style="color:#ff79c6">as</span> Animal<span style="color:#ff79c6">&gt;</span>::baby_name());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行这段代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cargo run
+</span></span><span style="display:flex;"><span>   Compiling traits-example v0.1.0 (file:///projects/traits-example)
+</span></span><span style="display:flex;"><span>    Finished dev [unoptimized + debuginfo] target(s) in 0.48s
+</span></span><span style="display:flex;"><span>     Running `target/debug/traits-example`
+</span></span><span style="display:flex;"><span>A baby dog is called a puppy
+</span></span></code></pre></div><p><strong>在 trait 中需要用到另一个 trait 的某个功能</strong></p>
+<blockquote>
+<p>有时我们可能会需要某个 <code>trait</code> 使用另一个 <code>trait</code> 的功能。在这种情况下，需要能够依赖相关的 <code>trait</code> 也被实现。</p>
+</blockquote>
+<p>例如我们希望创建一个带有 <code>outline_print</code> 方法的 <code>trait OutlinePrint</code>，它会打印出带有星号框的值。<br>
+也就是说，如果 <code>Point</code> 实现了 <code>Display</code> 并返回 <code>(x, y)</code>，调用以 <code>1</code> 作为 <code>x</code> 和 <code>3</code> 作为 <code>y</code> 的 <code>Point</code> 实例的 <code>outline_print</code> 会显示如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>**********
+</span></span><span style="display:flex;"><span>*        *
+</span></span><span style="display:flex;"><span>* (1, 3) *
+</span></span><span style="display:flex;"><span>*        *
+</span></span><span style="display:flex;"><span>**********
+</span></span></code></pre></div><p>可以通过在 <code>trait</code> 定义中指定 <code>OutlinePrint: Display</code> 来做到这一点。如下所示</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::fmt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 指定 OutlinePrint 依赖 fmt::Display ，这类似 trait bounds
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">trait</span> OutlinePrint: <span style="color:#50fa7b">fmt</span>::Display {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">outline_print</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> output <span style="color:#ff79c6">=</span> self.to_string(); <span style="color:#6272a4">// 因为指定了 OutlinePrint 需要 Display trait，则可以在 outline_print 中使用 to_string
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">let</span> len <span style="color:#ff79c6">=</span> output.len();
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, <span style="color:#f1fa8c">&#34;*&#34;</span>.repeat(len <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">4</span>));
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;*</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">*&#34;</span>, <span style="color:#f1fa8c">&#34; &#34;</span>.repeat(len <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">2</span>));
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;* </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> *&#34;</span>, output);
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;*</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">*&#34;</span>, <span style="color:#f1fa8c">&#34; &#34;</span>.repeat(len <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">2</span>));
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, <span style="color:#f1fa8c">&#34;*&#34;</span>.repeat(len <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">4</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果尝试在一个没有实现 <code>Display</code> 的类型上实现 <code>OutlinePrint</code> 则会得到一个错误说 <code>Display</code> 是必须的而未被实现。</p>
+<p><strong>newtype 模式用于在外部crate 上实现外部 trait</strong></p>
+<blockquote>
+<p>这里，书上说了一大堆废话，我是没看懂什么意思，这里直接摘录重要部分</p>
+</blockquote>
+<p>例如，如果想要在 <code>Vec&lt;T&gt;</code> 上实现 <code>Display</code>，而孤儿规则阻止我们直接这么做，因为 <code>Display trait</code> 和 <code>Vec&lt;T&gt;</code> 都定义于我们的 <code>crate</code> 之外。<br>
+可以创建一个包含 <code>Vec&lt;T&gt;</code> 实例的 <code>Wrapper</code> 结构体，接着可以在 <code>Wrapper</code> 上实现 <code>Display</code> 并使用 <code>Vec&lt;T&gt;</code> 的值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::fmt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Wrapper</span>(<span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd;font-style:italic">String</span><span style="color:#ff79c6">&gt;</span>); <span style="color:#6272a4">// newtype 模式
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> fmt::Display <span style="color:#ff79c6">for</span> Wrapper {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Display trait 只有一个方法就是 fmt
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">fmt</span>(<span style="color:#ff79c6">&amp;</span>self, f: <span style="color:#ff79c6">&amp;</span><span style="color:#50fa7b">mut</span> fmt::Formatter) -&gt; <span style="color:#50fa7b">fmt</span>::<span style="color:#8be9fd;font-style:italic">Result</span> {
+</span></span><span style="display:flex;"><span>        write!(f, <span style="color:#f1fa8c">&#34;[{}]&#34;</span>, self.<span style="color:#bd93f9">0.</span>join(<span style="color:#f1fa8c">&#34;, &#34;</span>)) <span style="color:#6272a4">// Display 的实现使用 self.0 来访问其内部的 Vec&lt;T&gt;，因为 Wrapper 是元组结构体而 Vec&lt;T&gt; 是结构体总位于索引 0 的项。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> w <span style="color:#ff79c6">=</span> Wrapper(vec![<span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;hello&#34;</span>), <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;world&#34;</span>)]);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;w = </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span>, w);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行这段代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>    Blocking waiting for file lock on build directory
+</span></span><span style="display:flex;"><span>   Compiling rust_test v0.1.0 (/home/w/data/code/rust_test)
+</span></span><span style="display:flex;"><span>    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
+</span></span><span style="display:flex;"><span>     Running `/home/w/data/code/rust_test/target/debug/rust_test`
+</span></span><span style="display:flex;"><span>w = [hello, world]
+</span></span></code></pre></div><blockquote>
+<p>此方法的缺点是，因为 <code>Wrapper</code> 是一个新类型，它没有定义于其值之上的方法；必须直接在 <code>Wrapper</code> 上实现 <code>Vec&lt;T&gt;</code> 的所有方法<br>
+这样就可以代理到 <code>self.0</code> 上，这就允许我们完全像 <code>Vec&lt;T&gt;</code> 那样对待 <code>Wrapper</code>。<br>
+如果希望新类型拥有其内部类型的每一个方法，为封装类型实现 <code>Deref trait</code> 并返回其内部类型是一种解决方案。<br>
+如果不希望封装类型拥有所有内部类型的方法，比如为了限制封装类型的行为，则必须只自行实现所需的方法。</p>
+</blockquote>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

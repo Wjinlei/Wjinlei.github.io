@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>Rust 学习笔记(37)-Rust的面向对象</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>Rust 学习笔记(37)-Rust的面向对象</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 341 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2022-09-22">2022-09-22 11:51:35</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/rust">rust</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2022-09-22 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<p>参考章节《<a href="https://kaisery.github.io/trpl-zh-cn/ch17-01-what-is-oo.html">Rust程序设计语言</a>》第17.1章 <code>面向对象语言的特征</code></p>
+<p>我们通常认为一门编程语言是否支持面向对象特性一般是看它是否支持<code>封装</code>，<code>继承</code>，<code>多态</code>，这也就是<code>面向对象的三大特性</code></p>
+<p><strong>那么我们来看看Rust是否支持面向对象</strong></p>
+<ol>
+<li>面向对象中的对象</li>
+</ol>
+<blockquote>
+<p>面向对象的程序是由对象组成的。一个<code>对象</code>包含<code>数据</code>和<code>操作这些数据的过程</code>。这些过程通常被称为 <code>方法</code> 或 <code>操作</code>。</p>
+</blockquote>
+<p>在这个定义下，Rust 是面向对象的：<code>结构体和枚举包含数据</code> 而 <code>impl</code> 块提供了在结构体和枚举之上的<code>方法</code>。</p>
+<blockquote>
+<p>虽然带有方法的结构体和枚举并不被称为<code>对象</code>，但是他们确实提供了与对象相同的功能</p>
+</blockquote>
+<ol start="2">
+<li>面向对象中的封装</li>
+</ol>
+<blockquote>
+<p>封装的思想：对象的<code>实现细节</code> 不能被 <code>使用对象的代码获取到</code>。</p>
+</blockquote>
+<p>如果封装是一个语言被认为是面向对象语言所必要的方面的话，那么 Rust 满足这个要求。在代码中不同的部分使用 <code>pub</code> 与否可以封装其实现细节。</p>
+<ol start="3">
+<li>面向对象中的继承</li>
+</ol>
+<blockquote>
+<p>继承是一个很多编程语言都提供的机制，一个对象可以定义为继承另一个对象的定义，这使其可以获得父对象的数据和行为，而无需重新定义。</p>
+</blockquote>
+<p>如果一个语言必须有继承才能被称为面向对象语言的话，那么 Rust 就不是面向对象的。因为无法定义一个结构体继承父结构体的成员和方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>在 Rust 中我们可以使用带有 默认实现 的 trait 来实现继承的效果，当实现这个 trait 时也可以选择 覆盖 这个方法的 默认实现。这类似于子类覆盖从父类继承的方法实现。
+</span></span></code></pre></div><ol start="4">
+<li>面向对象中的多态</li>
+</ol>
+<blockquote>
+<p><code>多态</code>表现为子类型可以用于父类型被使用的地方。这意味着如果多种对象共享特定的属性，则可以相互替代使用。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>在 Rust 中我们仍然可以通过 trait 来实现多态的效果，我们可以定义一个trait对象指针，可以使用 &amp; 引用或 Box&lt;T&gt; 智能指针
+</span></span><span style="display:flex;"><span>它指向一个实现了我们指定 trait 的类型的实例，这样无论是不是不同的类型，都可以当作同一个类型对待，也就实现了多态的效果
+</span></span></code></pre></div><p><strong>我们来看一个书上的例子</strong></p>
+<p>假如我们有一个接口，它有一个 <code>draw</code> 方法，用于绘制一个东西</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">trait</span> Draw {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">draw</span>(<span style="color:#ff79c6">&amp;</span>self);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>我们有一个屏幕，屏幕上可以放很多组件，而且它们都必须实现Draw trait</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Screen</span><span style="color:#ff79c6">&lt;</span>T: <span style="color:#50fa7b">Draw</span><span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> components: <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span>, <span style="color:#6272a4">// 存放组件
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>我们现在实现它，当调用 <code>run</code> 方法时，会调用屏幕上每个组件的 <code>draw</code> 方法</p>
+<blockquote>
+<p>我们想想这么做有什么问题？</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">impl</span><span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> Screen<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">where</span>
+</span></span><span style="display:flex;"><span>    T: <span style="color:#50fa7b">Draw</span>,
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">run</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> component <span style="color:#ff79c6">in</span> self.components.iter() {
+</span></span><span style="display:flex;"><span>            component.draw();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>假如现在我们有两个组件，它们都实现了 <code>draw</code> 方法</p>
+<p>一个按钮</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Button</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> width: <span style="color:#8be9fd">u32</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> height: <span style="color:#8be9fd">u32</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> label: <span style="color:#8be9fd;font-style:italic">String</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Draw <span style="color:#ff79c6">for</span> Button {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">draw</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;Button draw.&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>一个选择框</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">SelectBox</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> width: <span style="color:#8be9fd">u32</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> height: <span style="color:#8be9fd">u32</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> options: <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd;font-style:italic">String</span><span style="color:#ff79c6">&gt;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Draw <span style="color:#ff79c6">for</span> SelectBox {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">draw</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#f1fa8c">&#34;SelectBox draw.&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>我们来使用它</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> screen <span style="color:#ff79c6">=</span> Screen {
+</span></span><span style="display:flex;"><span>        components: <span style="color:#50fa7b">vec</span><span style="color:#ff79c6">!</span>[
+</span></span><span style="display:flex;"><span>            SelectBox {
+</span></span><span style="display:flex;"><span>                width: <span style="color:#bd93f9">75</span>,
+</span></span><span style="display:flex;"><span>                height: <span style="color:#bd93f9">10</span>,
+</span></span><span style="display:flex;"><span>                options: <span style="color:#50fa7b">vec</span><span style="color:#ff79c6">!</span>[
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Yes&#34;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Maybe&#34;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;No&#34;</span>),
+</span></span><span style="display:flex;"><span>                ],
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            Button {
+</span></span><span style="display:flex;"><span>                width: <span style="color:#bd93f9">50</span>,
+</span></span><span style="display:flex;"><span>                height: <span style="color:#bd93f9">10</span>,
+</span></span><span style="display:flex;"><span>                label: <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;OK&#34;</span>),
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    screen.run();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行这段代码，你会发现这段代码并不允许编译，原因是因为类型不匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>error[E0308]: mismatched types
+</span></span><span style="display:flex;"><span>--省略部分报错--
+</span></span><span style="display:flex;"><span>        expected struct `SelectBox`, found struct `Button`
+</span></span></code></pre></div><p>你会发现，这根本无法满足多态的要求，虽然 <code>Button</code> 和 <code>SelectBox</code> 都实现了 <code>Draw trait</code><br>
+但它们两个还是无法当作同一个类型对待，这时候就我们就可以利用<code>指针</code>来代替<code>具体类型</code>了</p>
+<p><strong>trait对象指针</strong></p>
+<p>我们来看看之前的定义 <code>Vec&lt;T&gt;</code>，这个 <code>T</code> 就代表一个固定的类型，因此你无法传递其他类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Screen</span><span style="color:#ff79c6">&lt;</span>T: <span style="color:#50fa7b">Draw</span><span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> components: <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span>, <span style="color:#6272a4">// 存放组件
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div><p>所以我们要让他能够支持不同的类型，我们可以使用<code>Box&lt;T&gt;</code>智能指针，如下所示，它代表任何实现了 <code>Draw trait</code> 的类型的替身，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Screen</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> components: <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd;font-style:italic">Box</span><span style="color:#ff79c6">&lt;</span><span style="color:#ff79c6">dyn</span> Draw<span style="color:#ff79c6">&gt;&gt;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后 <code>run</code> 方法的实现也要改一下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">impl</span> Screen {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">run</span>(<span style="color:#ff79c6">&amp;</span>self) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> component <span style="color:#ff79c6">in</span> self.components.iter() {
+</span></span><span style="display:flex;"><span>            component.draw();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>最后我们来看看修改后的使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> screen <span style="color:#ff79c6">=</span> Screen {
+</span></span><span style="display:flex;"><span>        components: <span style="color:#50fa7b">vec</span><span style="color:#ff79c6">!</span>[
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">Box</span>::new(SelectBox {
+</span></span><span style="display:flex;"><span>                width: <span style="color:#bd93f9">75</span>,
+</span></span><span style="display:flex;"><span>                height: <span style="color:#bd93f9">10</span>,
+</span></span><span style="display:flex;"><span>                options: <span style="color:#50fa7b">vec</span><span style="color:#ff79c6">!</span>[
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Yes&#34;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;Maybe&#34;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;No&#34;</span>),
+</span></span><span style="display:flex;"><span>                ],
+</span></span><span style="display:flex;"><span>            }),
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">Box</span>::new(Button {
+</span></span><span style="display:flex;"><span>                width: <span style="color:#bd93f9">50</span>,
+</span></span><span style="display:flex;"><span>                height: <span style="color:#bd93f9">10</span>,
+</span></span><span style="display:flex;"><span>                label: <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;OK&#34;</span>),
+</span></span><span style="display:flex;"><span>            }),
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    screen.run();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行这段代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>    Blocking waiting for file lock on build directory
+</span></span><span style="display:flex;"><span>   Compiling rust_test v0.1.0 (/home/w/data/code/rust_test)
+</span></span><span style="display:flex;"><span>    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
+</span></span><span style="display:flex;"><span>     Running `/home/w/data/code/rust_test/target/debug/rust_test`
+</span></span><span style="display:flex;"><span>SelectBox draw.
+</span></span><span style="display:flex;"><span>Button draw.
+</span></span></code></pre></div><p>可以看到，这一次就可以了，我们成功向 <code>components</code> 中放入了不同类型的组件，但它们必须都实现了 <code>Draw trait</code></p>
+<p>通过这种方法，我们就可以实现类似面向对象中的多态的效果</p>
+<p><strong>总结一下</strong></p>
+<ol>
+<li>对于面向对象编程 Rust 为我们提供了另一种解决方案</li>
+<li>至于 Rust 是否是一门面向对象的编程语言就仁者见仁智者见智了，我认为是</li>
+</ol>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>

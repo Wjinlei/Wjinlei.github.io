@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
+    
+    
+    <title>使用hugo来写博客</title>
+</head>
+<body class="container"><div id="fastSearch">
+  <input id="searchInput" tabindex="0">
+  <ul id="searchResults"></ul>
+</div>
+
+<div style="margin: 40px; display: flex; justify-content: space-between; align-items: end;">
+  <div>
+  
+  
+  <h2>Jerry&#39;s Blog</h2>
+  <span class="color-999 font-size-14">珍爱生命，远离卷王，拒绝内卷，从我做起。温馨提示: 按 Alt&#43;/ 可以搜索哦 ^_^</span>
+  </div>
+</div>
+
+
+<div id="nav-border" style="margin: 30px 0px 30px 0px;">
+  <ul class="nav nav-tabs" style="justify-content: space-between">
+    <div class="nav" style="padding: 0px;">
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/">
+      
+      
+      <i class="fa-solid fa-house"></i>
+      
+      
+      首页
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link active" href="/posts/">
+      
+      
+      <i class="fa-solid fa-pen-nib"></i>
+      
+      
+      文章
+      </a>
+    </li>
+    
+    </div>
+
+    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+      <div class="nav" style="padding: 0px;">
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-qq"></i>
+        
+        
+        1976883731
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+        
+        
+        <i class="fa-brands fa-weixin"></i>
+        
+        
+        JerryWang1996
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="https://github.com/Wjinlei">
+        
+        
+        <i class="fa-brands fa-github"></i>
+        
+        
+        Wjinlei
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active" href="mailto:freebufer.wang@gmail.com">
+        
+        
+        <i class="fa-solid fa-envelope"></i>
+        
+        
+        freebufer.wang@gmail.com
+        </a>
+      </li>
+      
+      </div>
+    </div>
+  </ul>
+</div>
+
+<style>
+ #fastSearch {
+    visibility: hidden;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    width: 320px;
+    right: 10px;
+    top: 10px;
+  }
+
+  #fastSearch input {
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    color: #222129;
+    background-color: #EEE;
+    border: 2px solid #444;
+    padding: 4px;
+    width: 100%;
+    height: 31px;
+  }
+
+  #searchResults li {
+    list-style: none;
+    background-color: #fafede;
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    display: inline-block;
+    margin: 0;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    max-height: calc(100vh - 120px);
+    padding: 0;
+    margin: 0;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 2px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover, #searchResults a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+  }
+</style>
+<div id="content">
+<div>
+<h4>使用hugo来写博客</h4>
+<span class="color-999 font-size-14"><i class="fa-solid fa-eye"></i></i><span id="busuanzi_value_page_pv"></span>次阅读</span>
+<span class="font-size-14 color-999">本文共 251 字，阅读约 2 分钟</span>
+
+
+<div class="color-999 font-size-14">
+<time datetime="2021-11-04">2021-11-04 03:52:01</time>
+
+<i class="fa-solid fa-tags"></i>
+
+
+<a href="http://wjinlei.github.io/tags/hugo">hugo</a>
+
+
+</div>
+
+
+<div class="font-size-14 color-warning"><i class="fa-solid fa-circle-exclamation"></i>温馨提示: 本文章发布于 2021-11-04 文中内容可能已过时，请注意甄别。</div>
+
+<br>
+<h2 id="前言">前言</h2>
+<p>关于<code>hugo</code>的一切,你都可以查看其 <a href="https://gohugo.io/">官网</a> 来了解
+，我建议是跟着它的 <a href="https://gohugo.io/getting-started/quick-start/">quick-start</a> 一步一步来操作</p>
+<h2 id="安装">安装</h2>
+<ol>
+<li><code>hugo</code>通过<code>Github</code>发布，这里我推荐你 <a href="https://github.com/gohugoio/hugo/releases">下载</a> <code>extended</code>版本，而且最好是<code>.tar.gz</code>或<code>.zip</code>版本的</li>
+<li><code>设置环境变量</code>，将目录添加到你的<code>Path</code>变量中，以便<code>命令行</code>能够找到<code>hugo</code></li>
+</ol>
+<h2 id="创建博客">创建博客</h2>
+<h3 id="创建博客生成器">创建博客生成器</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hugo new site xxxxx.github.io-creator
+</span></span></code></pre></div><h3 id="将目录用git管理起来">将目录用git管理起来</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> xxxxx.github.io-creator 
+</span></span><span style="display:flex;"><span>git init
+</span></span></code></pre></div><h3 id="选择一个主题">选择一个主题</h3>
+<ul>
+<li>有很多 <a href="https://themes.gohugo.io/">主题</a> 你可以根据喜好自己选一个，推荐选择配置简单的,我用的 <a href="https://themes.gohugo.io/themes/hugo-theme-cactus/">cactus</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git submodule add https://github.com/monkeyWzr/hugo-theme-cactus.git themes/cactus
+</span></span></code></pre></div><h3 id="配置博客">配置博客</h3>
+<ul>
+<li>这一步主要是配置<code>config.toml</code>，下面是参考，你也可以查看主题对应的 <a href="https://themes.gohugo.io/themes/hugo-theme-cactus/">说明</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>baseURL = <span style="color:#f1fa8c">&#34;https://xxxx.github.io&#34;</span>
+</span></span><span style="display:flex;"><span>languageCode = <span style="color:#f1fa8c">&#34;zh-cn&#34;</span>
+</span></span><span style="display:flex;"><span>title = <span style="color:#f1fa8c">&#34;博客标题&#34;</span>
+</span></span><span style="display:flex;"><span>theme = <span style="color:#f1fa8c">&#34;cactus&#34;</span>
+</span></span><span style="display:flex;"><span>copyright = <span style="color:#f1fa8c">&#34;版权声明&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 主页，文章，标签，关于.</span>
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>name = <span style="color:#f1fa8c">&#34;Home&#34;</span>
+</span></span><span style="display:flex;"><span>url = <span style="color:#f1fa8c">&#34;/&#34;</span>
+</span></span><span style="display:flex;"><span>weight = <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>name = <span style="color:#f1fa8c">&#34;Writings&#34;</span>
+</span></span><span style="display:flex;"><span>url = <span style="color:#f1fa8c">&#34;/posts&#34;</span>
+</span></span><span style="display:flex;"><span>weight = <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>name = <span style="color:#f1fa8c">&#34;Tags&#34;</span>
+</span></span><span style="display:flex;"><span>url = <span style="color:#f1fa8c">&#34;/tags&#34;</span>
+</span></span><span style="display:flex;"><span>weight = <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>name = <span style="color:#f1fa8c">&#34;About&#34;</span>
+</span></span><span style="display:flex;"><span>url = <span style="color:#f1fa8c">&#34;/about&#34;</span>
+</span></span><span style="display:flex;"><span>weight = <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[markup]
+</span></span><span style="display:flex;"><span>  [markup.tableOfContents]
+</span></span><span style="display:flex;"><span>    startLevel = <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>    endLevel = <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span>    ordered = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  [markup.highlight]
+</span></span><span style="display:flex;"><span>    style = <span style="color:#f1fa8c">&#34;github&#34;</span>
+</span></span><span style="display:flex;"><span>    lineNos = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>    noClasses = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    tabWidth = <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[params]
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">#css = [&#34;css/custom.css&#34;]</span>
+</span></span><span style="display:flex;"><span>  colortheme = <span style="color:#f1fa8c">&#34;white&#34;</span> <span style="color:#6272a4"># dark, light, white, or classic</span>
+</span></span><span style="display:flex;"><span>  rss = <span style="color:#ff79c6">false</span> <span style="color:#6272a4"># generate rss feed. default value is false</span>
+</span></span><span style="display:flex;"><span>  showAllPostsArchive = <span style="color:#ff79c6">false</span> <span style="color:#6272a4"># default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Home page settings</span>
+</span></span><span style="display:flex;"><span>  description = <span style="color:#f1fa8c">&#34;博客描述&#34;</span>
+</span></span><span style="display:flex;"><span>  mainSection = <span style="color:#f1fa8c">&#34;posts&#34;</span>
+</span></span><span style="display:flex;"><span>  showAllPostsOnHomePage = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>  postsOnHomePage = <span style="color:#bd93f9">10</span>
+</span></span><span style="display:flex;"><span>  tagsOverview = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>  tocInline = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>  showProjectsList = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>  projectsUrl = <span style="color:#f1fa8c">&#34;你的Github地址&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference</span>
+</span></span><span style="display:flex;"><span>  dateFormat = <span style="color:#f1fa8c">&#34;2006-01-02&#34;</span> <span style="color:#6272a4"># default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Post page settings</span>
+</span></span><span style="display:flex;"><span>  show_updated = <span style="color:#ff79c6">true</span> <span style="color:#6272a4"># default</span>
+</span></span><span style="display:flex;"><span>  showReadTime = <span style="color:#ff79c6">true</span> <span style="color:#6272a4"># default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  [params.comments]
+</span></span><span style="display:flex;"><span>    enabled = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    engine = <span style="color:#f1fa8c">&#34;utterances&#34;</span> <span style="color:#6272a4"># only disqus, utterances, and cactus_comments is supported</span>
+</span></span><span style="display:flex;"><span>    [params.comments.utterances]
+</span></span><span style="display:flex;"><span>      repo = <span style="color:#f1fa8c">&#34;你的Github用户名/xxxx.github.io&#34;</span>
+</span></span><span style="display:flex;"><span>      label = <span style="color:#f1fa8c">&#34;你的Github用户名&#34;</span>
+</span></span><span style="display:flex;"><span>      theme = <span style="color:#f1fa8c">&#34;github-light&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  [[params.social]]
+</span></span><span style="display:flex;"><span>    name = <span style="color:#f1fa8c">&#34;github&#34;</span>
+</span></span><span style="display:flex;"><span>    link = <span style="color:#f1fa8c">&#34;你的Github地址&#34;</span>
+</span></span><span style="display:flex;"><span>  [[params.social]]
+</span></span><span style="display:flex;"><span>    name = <span style="color:#f1fa8c">&#34;email&#34;</span>
+</span></span><span style="display:flex;"><span>    link = <span style="color:#f1fa8c">&#34;你的邮箱&#34;</span>
+</span></span></code></pre></div><h3 id="用markdown写文章">用<code>Markdown</code>写文章</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hugo new posts/my-first-post.md
+</span></span></code></pre></div><ul>
+<li>然后打开<code>content/posts/my-first-post.md</code>写就OK了</li>
+</ul>
+<h3 id="预览效果">预览效果</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hugo server -D
+</span></span></code></pre></div><h3 id="发布博客">发布博客</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hugo -D
+</span></span></code></pre></div><ul>
+<li>这会在其目录生成<code>public</code>文件夹，记得用<code>git</code>管理起来</li>
+</ul>
+<h2 id="上传到github">上传到Github</h2>
+<ul>
+<li>在<code>Github</code>上创建一个<code>xxxx.github.io</code>的仓库，<code>xxxx</code>是你的用户名，注意全小写</li>
+<li>然后将你的<code>public</code>中的内容<code>push</code>上去吧</li>
+<li>最后你访问<code>xxxx.github.io</code>应该就能看到效果了，祝你好运!</li>
+</ul>
+
+<script src="https://utteranc.es/client.js"
+        repo="Wjinlei/wjinlei.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</div>
+</div><p class="footer text-center color-999">标签列表</p>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/ccna/">Ccna</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/compression/">Compression</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/docker/">Docker</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/golang/">Golang</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/hugo/">Hugo</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/java/">Java</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/linux/">Linux</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mame/">MAME</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/maven/">Maven</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/mybatis/">MyBatis</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/pyenv/">Pyenv</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/raylib/">Raylib</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/rust/">Rust</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/spring/">Spring</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/springboot/">Springboot</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/sql/">Sql</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/steam/">Steam</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/tokio/">Tokio</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%8B%B3%E7%9A%8797/">拳皇97</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%A8%A1%E6%8B%9F%E5%99%A8/">模拟器</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F/">游戏</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>
+
+  <a class="footer" href="http://wjinlei.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+
+
+<p class="footer text-center color-999">&copy; 2024 <a href="https://github.com/Wjinlei">Jerry Wang</a></p>
+<p class="footer text-center color-999">由 <a href="https://gohugo.io">Hugo</a> 强力驱动</p>
+<script src="/js/fuse.min.js"></script>
+<script src="/js/fastsearch.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  let randomPostList = document.getElementById("random-post-list");
+  if (randomPostList !== null) {
+    fetchJSONFile("/index.json", function (data) {
+      var options = {
+        
+        minMatchCharLength: 2,
+        shouldSort: true,
+        ignoreLocation: true,
+        threshold: 0.0,
+        keys: ["title"]
+      };
+      
+      fuseIndex = Fuse.createIndex(options.keys, data);
+      fuse = new Fuse(data, options, fuseIndex); 
+
+      let permalinks = [];
+      let html = "";
+      for (var i = 0; i < 50; i++) {
+        var index = Math.floor(Math.random() * fuse._docs.length);
+        if (index >= fuse._docs.length) {
+          break;
+        }
+
+        if (permalinks.includes(fuse._docs[index].permalink)) {
+          continue;
+        }
+
+        html = html + '<li><a href="' + fuse._docs[index].permalink + '">' + '<span class="title">' + fuse._docs[index].title + "</span></a></li>";
+        permalinks.push(fuse._docs[index].permalink);
+        fuse.removeAt(index);
+      }
+      randomPostList.innerHTML = html;
+    });
+  }
+</script>
+</body>
+</html>
